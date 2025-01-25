@@ -20,8 +20,8 @@ rtl                      : # true, false (default) # turns direction of the page
 title                    : "logl(tej)"
 title_separator          : "|"
 subtitle                 : "The long natural log of tej"
-name                     : "Tejaswa Rizyal"
-description              : "A personal portfolio and blog"
+name                     : &name "Tejaswa Rizyal"
+description              : &description "A personal portfolio and blog"
 url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -113,7 +113,7 @@ analytics:
 
 # Site Author
 author:
-  name             : "Tejaswa Rizyal"
+  name             : *name
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "MEng BSc Computer Science with High Performace Graphics and Games Engineering"
   location         : "Leeds, United Kingdom"
@@ -233,6 +233,8 @@ timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 # Pagination with jekyll-paginate
 paginate: 5 # amount of posts to show
 paginate_path: /page:num/
+# paginate disable
+
 
 # Pagination with jekyll-paginate-v2
 # See https://github.com/sverrirs/jekyll-paginate-v2/blob/master/README-GENERATOR.md#site-configuration
@@ -323,3 +325,10 @@ defaults:
       comments: # true
       share: true
       related: true
+  # _pages
+  - scope:
+      path: "_pages"
+      type: pages
+    values:
+      layout: single
+      author_profile: true
