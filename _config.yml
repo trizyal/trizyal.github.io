@@ -32,9 +32,13 @@ url: "https://trizyal.github.io" # the base hostname & protocol for your site, e
 github_username:  trizyal
 
 # Build settings
-theme: minima
+theme: minimal-mistakes-jekyll
+emote_theme: "mmistakes/minimal-mistakes@4.26.2" # remote theme
+minimal_mistakes_skin: "dark"
 plugins:
   - jekyll-feed
+  - jekyll-remote-theme
+  - jekyll-include-cache
 
 # Exclude from processing.
 # The following items will not be processed, by default.
