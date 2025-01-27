@@ -1,7 +1,6 @@
 ---
 permalink: /about/
 title: "Who am I?"
-toc: true
 layout: archive
 ---
 
@@ -19,4 +18,4 @@ post-processing, deferred shading, BRDF lighting model, and different debugging 
 
 I have also created a CPU based raytracer that uses optical physics to implement shadows, refraction, reflection and total internal reflection.
 
-More of my projects and be seen in my [portfolio]({{ "/portfolio/" | relative_url }}).
+More about my projects can be seen in my [portfolio]({{ "/portfolio/" | relative_url }}).
