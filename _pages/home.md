@@ -4,7 +4,7 @@ title: Welcome!
 permalink: /
 header: 
     overlay_color: "#3b9cba"
-    overlay_filter: "0.5"
+    overlay_filter: "0.3"
 excerpt: >
       Seems to me that you have landed on this <i>website</i> that took me far too long to make than I can bring myself to admit. But since you are already here, feel free to check out my projects!
 feature_row:
@@ -12,21 +12,21 @@ feature_row:
     alt: "raytracer"
     title: "Raytracer"
     excerpt: "A Raytracer implementing optical physics including reflection, refraction, shadows, and the fresnel effect."
-    url: "/portfolio/"
+    url: "/portfolio/#raytracer-with-optical-physics"
     btn_class: "btn--primary"
     btn_label: "Check Out"
   - image_path: /assets/images/deferred.png
     alt: "vulkan rendered"
     title: "Vulkan Renderer"
     excerpt: "A renderer in Vulkan and C++ with post-processing, deferred shading and the BRDF Lighting Model."
-    url: "/portfolio/"
+    url: "/portfolio/#vulkan-renderer"
     btn_class: "btn--primary"
     btn_label: "Check Out"
   - image_path: /assets/images/animation.png
     alt: "animation"
     title: "Animation and Collision Physics"
     excerpt: "A project implementing animation across different surfaces and collision physics."
-    url: "/portfolio/"
+    url: "/portfolio/#animation-and-collision-physics"
     btn_class: "btn--primary"
     btn_label: "Check Out"  
 ---
