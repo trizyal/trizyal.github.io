@@ -2,11 +2,11 @@
 main:
   - title: "Home"
     url: /
-  - title: "About"
-    url: /about/
   - title: "Portfolio"
     url: /portfolio/
   - title: "Blog"
     url: /posts/
-  # - title: "Sitemap"
-  #   url: /sitemap/
+  - title: "About"
+    url: /about/
+  - title: "Resume"
+    url: "/trizyalCV.pdf"
