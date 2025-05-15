@@ -40,11 +40,13 @@ using pixel positions and depth value and implement the BRDF shading with multip
 ## Animation and Collision Physics
 
 <div class="align-left img-small">
-{% include video id='uwn0VNjj_HI' provider='youtube' %}
+<video controls autoplay muted loop style="max-width: 100%; height: auto;">
+    <source src="/assets/videos/animation_collision.mp4" type="video/mp4">
+</video>
 </div>
 
 A project implementing animation across different surfaces and collision physics. This had two main parts, first being the rendering of the skeletal charactor and applying rotation based animations per frame to run. To improve the sudden stopping and running
 I implemented interpolation to blend poses to start running slowly to look realistic and same with stopping.
 
 The second part was to implement a simple collision systems for the balls/dodecahedrons. This involved collision testing with the character and the land surface and calculating impulse and direction to bounce the balls. For dodecahedrons I also implemented
-angular velocity calculations to haev realistic bounces.
+angular velocity calculations to have realistic bounces.
