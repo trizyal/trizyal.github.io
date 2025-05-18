@@ -18,7 +18,7 @@ purely libraries.
 
 <div class="align-left img-small">
 <video controls autoplay muted loop style="max-width: 100%; height: auto;">
-    <source src="/assets/videos/axiom_swerve.mp4" type="video/mp4">
+    <source src="/assets/videos/axiom_swerve.mp4" type="video/mp4" >
 </video>
 </div>
 
