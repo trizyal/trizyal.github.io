@@ -14,7 +14,7 @@ purely libraries.
 
 {: .text-right}
 
-## Axiom Swerve, a verhicular bullet hell
+## Axiom Swerve, a vehicular bullet hell game
 
 <div class="align-left img-small">
 <video controls autoplay muted loop style="max-width: 100%; height: auto;">
@@ -28,7 +28,7 @@ I was very inspired my the cyberpunk aesthetic and bullet hells that make every 
 
 <br style="clear: both;">
 
-## Ubiquitous Reality Game Engine
+## Ubiquitous Reality. a game engine for style.
 
 ![image3](/assets/images/ubqr.jpg){: .align-left .img-small}
 
