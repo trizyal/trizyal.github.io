@@ -11,6 +11,36 @@ they usually are accompanied with some images and media that is easier to showca
 In the future I am hoping to also show projects that are more terminal based or are
 purely libraries.
 
+
+{: .text-right}
+
+## Axiom Swerve, a verhicular bullet hell
+
+<div class="align-left img-small">
+<video controls autoplay muted loop style="max-width: 100%; height: auto;">
+    <source src="/assets/videos/axiom_swerve.mp4" type="video/mp4">
+</video>
+</div>
+
+I made a game with a friend using our own game engine. We wanted to have a very stylised and stumulating experience that has no wait time. Axiom swerve came to be with powerups that initiate screen space effects and different drum and bass sound effects with every action you can take. The idea was to make every moment of the game fun, keeping the player interested in not only the objectives but also the in visual effects.
+
+I was very inspired my the cyberpunk aesthetic and bullet hells that make every moment worth while.
+
+<br style="clear: both;">
+
+## Ubiquitous Reality Game Engine
+
+![image3](/assets/images/ubqr.jpg){: .align-left .img-small}
+
+I started with the idea of complex rendering effects and object specific rendering, and wanted to make a game engine that allows me to use effects with gameplay seemlessly. After a couple conversations, a random word-generator, and a simple vulkan renderer later, I started this project with a small group aiming to get a simple racing game loop possible as test.
+
+We then went on to create our own ECS from scratch, our own Vulkan loader and pipeline creator and our own event system. I took ownership of the renderer as I have developed a good skillset with Vulkan and I had ideas to improve the pipelines and also add special effects.
+
+The poster goes into a lot of details but a video should be up very soon.
+
+
+<br style="clear: both;">
+
 {: .text-right}
 
 ## Raytracer with Optical Physics
@@ -35,7 +65,9 @@ Implemening deferred shading involved creating G-Buffer where I output the norma
 using pixel positions and depth value and implement the BRDF shading with multiple light sources. This is the render that is shown in the image with the inverse square light falloff also implemented.
 
 
-<br style="clear: both;">
+<!-- <br style="clear: both;"> -->
+
+{: .text-right}
 
 ## Animation and Collision Physics
 
