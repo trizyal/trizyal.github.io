@@ -2,7 +2,7 @@
 layout: splash
 title: Welcome!
 permalink: /
-header: 
+header:
     overlay_color: "#3b9cba"
     overlay_filter: "0.3"
 excerpt: >
@@ -28,7 +28,7 @@ feature_row:
     excerpt: "A project implementing animation across different surfaces and collision physics."
     url: "/portfolio/#animation-and-collision-physics"
     btn_class: "btn--primary"
-    btn_label: "Check Out"  
+    btn_label: "Check Out"
 ---
 
 Hiya! Nice to see you here!
@@ -57,7 +57,11 @@ I was very inspired my the cyberpunk aesthetic and bullet hells that make every 
 
 ## Ubiquitous Reality. a game engine for style.
 
-![image3](/assets/images/ubqr.jpg){: .align-left .img-small}
+<div class="align-right img-small">
+<video controls autoplay muted loop style="max-width: 100%; height: auto;">
+    <source src="/assets/videos/ubqr.mp4" type="video/mp4" >
+</video>
+</div>
 
 I started with the idea of complex rendering effects and object specific rendering, and wanted to make a game engine that allows me to use effects with gameplay seemlessly. After a couple conversations, a random word-generator, and a simple vulkan renderer later, I started this project with a small group aiming to get a simple racing game loop possible as test.
 
