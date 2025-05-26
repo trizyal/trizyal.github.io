@@ -1,42 +1,25 @@
 ---
 layout: splash
-title: Welcome!
+title: Tejaswa Rizyal
 permalink: /
+redirect_from:
+  - /portfolio/
 header:
     overlay_color: "#3b9cba"
     overlay_filter: "0.3"
 excerpt: >
-      Seems to me that you have landed on this <i>website</i> that took me far too long to make than I can bring myself to admit. But since you are already here, feel free to check out my projects!
-feature_row:
-  - image_path: /assets/images/raytracer.png
-    alt: "raytracer"
-    title: "Raytracer"
-    excerpt: "A Raytracer implementing optical physics including reflection, refraction, shadows, and the fresnel effect."
-    url: "/portfolio/#raytracer-with-optical-physics"
-    btn_class: "btn--primary"
-    btn_label: "Check Out"
-  - image_path: /assets/images/deferred.png
-    alt: "vulkan rendered"
-    title: "Vulkan Renderer"
-    excerpt: "A renderer in Vulkan and C++ with post-processing, deferred shading and the BRDF Lighting Model."
-    url: "/portfolio/#vulkan-renderer"
-    btn_class: "btn--primary"
-    btn_label: "Check Out"
-  - image_path: /assets/images/animation.png
-    alt: "animation"
-    title: "Animation and Collision Physics"
-    excerpt: "A project implementing animation across different surfaces and collision physics."
-    url: "/portfolio/#animation-and-collision-physics"
-    btn_class: "btn--primary"
-    btn_label: "Check Out"
+      Seems to me that you have landed on this <i>website</i>.
 ---
 
+# About Me
+<br>
 Hiya! Nice to see you here!
-Welcome to my natural log. Well actually <code>logl()</code> is the <code>long double</code> natural log in the [GNUlibc](https://www.gnu.org/software/libc/manual/html_node/Exponents-and-Logarithms.html), but for all intents and purposes, the pun is "the long natural log of tej". I spent years writing articles in different Model United Nations in school, but since starting university I haven't really pursued that further. This is me taking that part of my life, and continuing on the paused journey and perhaps including my new knowledge in graphics and computer science in a never ending journey of learning and growing.
 
-Check out the About Me and Portfolio sections for some history and projects I have embarked on in the last 4 years. And if for any reasons you want to read my opinions on various things, check out the blog section.
+I am Tej. I am currently in my my final year of MEng BSc Computer Science with High Performance Graphics and Games Engineering. I have an interest in High Performance C/C++ Programming and Modern Graphics and rendering systems. I also am interested in computer arithmetics, especially floating point accuracies and inconsistencies.
 
-Below are some of my projects linked.
+
+<br><br><br>
+# Projects
 
 
 {: .text-right}
@@ -55,7 +38,7 @@ I was very inspired my the cyberpunk aesthetic and bullet hells that make every 
 
 <br style="clear: both;">
 
-## Ubiquitous Reality. a game engine for style.
+## Ubiquitous Reality, a game engine for style.
 
 <div class="align-right img-small">
 <video controls autoplay muted loop style="max-width: 100%; height: auto;">
@@ -76,7 +59,17 @@ The poster goes into a lot of details but a video should be up very soon.
 
 ## Raytracer with Optical Physics
 
-![image1](/assets/images/raytracer.png){: .align-left .img-small}
+<!-- ![image1](/assets/images/raytracer.png){: .align-left .img-small} -->
+<div id="slider">
+  <div class="image-container align-left img-small">
+    <img src="{{ '/assets/images/raytracer.png' | relative_url }}" class="active" alt="Image 1">
+    <img src="{{ '/assets/images/fresnelrefraction.png' | relative_url }}" alt="Image 2">
+    <img src="{{ '/assets/images/shadows.png' | relative_url }}" alt="Image 3">
+
+    <button class="nav-button left" onclick="prevImage()">❮</button>
+    <button class="nav-button right" onclick="nextImage()">❯</button>
+  </div>
+</div>
 
 This project involved making a raytracer to implement different optical effects such as reflectiona and shadows.
 I started off with first making the OpenGL rendering half of the window, which simply renders a given obj file with material properties provided. This implemnets simple blinn phong without shadows or reflections etc.
@@ -113,3 +106,92 @@ I implemented interpolation to blend poses to start running slowly to look reali
 
 The second part was to implement a simple collision systems for the balls/dodecahedrons. This involved collision testing with the character and the land surface and calculating impulse and direction to bounce the balls. For dodecahedrons I also implemented
 angular velocity calculations to have realistic bounces.
+
+
+<!-- <div id="slider">
+  <div class="image-container align-left img-small">
+    <img src="{{ '/assets/images/raytracer.png' | relative_url }}" class="active" alt="Image 1">
+    <img src="{{ '/assets/images/fresnelrefraction.png' | relative_url }}" alt="Image 2">
+    <img src="{{ '/assets/images/shadows.png' | relative_url }}" alt="Image 3">
+
+    <button class="nav-button left" onclick="prevImage()">❮</button>
+    <button class="nav-button right" onclick="nextImage()">❯</button>
+  </div>
+</div> -->
+
+<style>
+  #slider {
+    /* max-width: 600px; */
+    margin: auto;
+  }
+
+  .image-container {
+    position: relative;
+  }
+
+  #slider img {
+    width: 100%;
+    height: auto;
+    display: none;
+  }
+
+  #slider img.active {
+    display: block;
+  }
+
+  .nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(128, 128, 128, 0.5);
+    border: none;
+    color: white;
+    font-size: 24px;
+    padding: 12px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+  }
+
+  .nav-button.left {
+    left: 10px;
+  }
+
+  .nav-button.right {
+    right: 10px;
+  }
+
+  .image-container:hover .nav-button {
+    opacity: 1;
+  }
+
+  .nav-button:hover {
+    background-color: rgba(100, 100, 100, 0.7);
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const images = document.querySelectorAll("#slider img");
+    let current = 0;
+
+    function showImage(index) {
+      images.forEach((img, i) => {
+        img.classList.toggle("active", i === index);
+      });
+    }
+
+    window.nextImage = function () {
+      current = (current + 1) % images.length;
+      showImage(current);
+    }
+
+    window.prevImage = function () {
+      current = (current - 1 + images.length) % images.length;
+      showImage(current);
+    }
+
+    showImage(current);
+  });
+</script>
