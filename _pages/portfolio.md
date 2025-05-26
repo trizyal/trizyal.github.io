@@ -1,6 +1,7 @@
 ---
 permalink: /portfolio/
 title: "Portfolio"
+redirect: /#projects
 toc: false
 layout: single
 ---

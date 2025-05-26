@@ -81,7 +81,13 @@ Then implementing reflections as you can see in the image, using recursions of r
 
 ## Vulkan Renderer
 
-![image2](/assets/images/deferred.png){: .align-right .img-small}
+<!-- ![image2](/assets/images/deferred.png){: .align-right .img-small} -->
+
+<div class="align-right img-small">
+<video muted playinline autoplay loop style="max-width: 100%; height: auto;">
+    <source src="/assets/videos/vulkan.mp4" type="video/mp4">
+</video>
+</div>
 
 This project was my first major project in Vulkan, incorporating different rendering techniques that I can toggle. First I implemented simple forward shading with alpha masking, where the material properties as descriptor sets to calculate BRDF lighting in the shaders.
 Secondly, I implemented a second pipeline and renderpass to implement render-to-texture and post processing pixellation/mosaic effect. This task help me understand renderpasses and rendering to images which I used in the next rendering technique: Deferred Shading.
@@ -106,6 +112,20 @@ I implemented interpolation to blend poses to start running slowly to look reali
 
 The second part was to implement a simple collision systems for the balls/dodecahedrons. This involved collision testing with the character and the land surface and calculating impulse and direction to bounce the balls. For dodecahedrons I also implemented
 angular velocity calculations to have realistic bounces.
+
+<br style="clear: both;">
+
+{: .text-left}
+
+## Mesh Pocessing and Repair
+
+<div class="align-right img-small">
+<video controls autoplay muted loop style="max-width: 100%; height: auto;">
+    <source src="/assets/videos/hamishslow.mp4" type="video/mp4">
+</video>
+</div>
+
+A project involving mesh processing where I implemented several different command line tools, including, triangle soup parser to convert to indexed face and further to directed edge. Manifold testing for meshes, testing for pinch points and intersections. Mesh repair and simplification as well.
 
 
 <!-- <div id="slider">
