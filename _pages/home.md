@@ -128,6 +128,42 @@ angular velocity calculations to have realistic bounces.
 A project involving mesh processing where I implemented several different command line tools, including, triangle soup parser to convert to indexed face and further to directed edge. Manifold testing for meshes, testing for pinch points and intersections. Mesh repair and simplification as well.
 
 
+
+<br style="clear: both;">
+
+{: .text-right}
+
+## Bézier Curve Calculator and Visualiser
+
+<div class="align-left img-small">
+<video controls autoplay muted loop style="max-width: 100%; height: auto + 10px; padding-bottom: 10px">
+    <source src="/assets/videos/bezier.mp4" type="video/mp4">
+</video>
+</div>
+
+A Bézier curve visualiser developed from scratch where I started off with a function to set the colour of one pixel. Using that I created line drawing algorithms and drew the axes and axial planes. Using rotation matrices I also apply transformations to the axes and planes. The matrices are calculated depending on orthographic or perspective projection.
+
+Next I created the control net using the control points of the bezier curve that start at the predefined positions. I also implemented a simple sphere drawing algorithm to render the control points.
+
+The Bézier curve positions themselves are calculated using <a href="https://en.wikipedia.org/wiki/De_Casteljau%27s_algorithm" target="_blank" rel="noopener noreferrer">de Casteljau</a> algorithm setting the colours with $(s, t)$ modulating the red and blue colour channels.
+
+
+
+<br style="clear: both;">
+
+{: .text-left}
+
+## Spaceship Demo in OpenGL
+
+<div class="align-right img-small">
+<video controls autoplay muted loop style="max-width: 100%; height: auto;">
+    <source src="/assets/videos/rocket.mp4" type="video/mp4">
+</video>
+</div>
+
+Computer Graphics project in OpenGL.
+
+
 <!-- <div id="slider">
   <div class="image-container align-left img-small">
     <img src="{{ '/assets/images/raytracer.png' | relative_url }}" class="active" alt="Image 1">
