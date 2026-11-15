@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /**
- * 1. Multi-Mesh Brownian Motion Field + Interactive Mouse Perturbation & Colored Trail
+ * Full-Viewport Brownian Mesh Field + Interactive Mouse Perturbation & Colored Trail
  */
 function initHeroCanvas() {
   const canvas = document.getElementById("hero-canvas");
@@ -16,8 +16,8 @@ function initHeroCanvas() {
   let width, height;
 
   function resize() {
-    width = canvas.width = canvas.offsetWidth;
-    height = canvas.height = canvas.offsetHeight;
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
   }
   window.addEventListener("resize", resize);
   resize();
@@ -122,33 +122,27 @@ function initHeroCanvas() {
     active: false,
   };
 
-  const trail = []; // Stores { x, y, age, maxAge }
-  const MAX_TRAIL_AGE = 38;
+  const trail = [];
+  const MAX_TRAIL_AGE = 45;
 
   window.addEventListener("mousemove", (e) => {
-    const rect = canvas.getBoundingClientRect();
-    const newX = e.clientX - rect.left;
-    const newY = e.clientY - rect.top;
+    const newX = e.clientX;
+    const newY = e.clientY;
 
-    // Only track trail while inside the hero viewport
-    if (newY >= 0 && newY <= height && newX >= 0 && newX <= width) {
-      if (mouse.x !== null) {
-        mouse.vx = newX - mouse.x;
-        mouse.vy = newY - mouse.y;
-      }
-      mouse.x = newX;
-      mouse.y = newY;
-      mouse.active = true;
-
-      trail.push({
-        x: newX,
-        y: newY,
-        age: 0,
-        maxAge: MAX_TRAIL_AGE,
-      });
-    } else {
-      mouse.active = false;
+    if (mouse.x !== null) {
+      mouse.vx = newX - mouse.x;
+      mouse.vy = newY - mouse.y;
     }
+    mouse.x = newX;
+    mouse.y = newY;
+    mouse.active = true;
+
+    trail.push({
+      x: newX,
+      y: newY,
+      age: 0,
+      maxAge: MAX_TRAIL_AGE,
+    });
   });
 
   window.addEventListener("mouseleave", () => {
@@ -163,55 +157,46 @@ function initHeroCanvas() {
 
       this.x = Math.random() * width;
       this.y = Math.random() * height;
-      this.vx = (Math.random() - 0.5) * 0.6;
-      this.vy = (Math.random() - 0.5) * 0.6;
+      this.vx = (Math.random() - 0.5) * 0.5;
+      this.vy = (Math.random() - 0.5) * 0.5;
 
-      // Scale & depth variation
-      this.scale = 18 + Math.random() * 34;
-      this.alpha = 0.16 + (this.scale / 52) * 0.25;
+      this.scale = 20 + Math.random() * 38;
+      this.alpha = 0.18 + (this.scale / 58) * 0.28;
 
-      // 3D rotation angles & angular velocities
       this.angleX = Math.random() * Math.PI * 2;
       this.angleY = Math.random() * Math.PI * 2;
       this.angleZ = Math.random() * Math.PI * 2;
 
-      this.spinX = (Math.random() - 0.5) * 0.012;
-      this.spinY = (Math.random() - 0.5) * 0.012;
-      this.spinZ = (Math.random() - 0.5) * 0.008;
+      this.spinX = (Math.random() - 0.5) * 0.01;
+      this.spinY = (Math.random() - 0.5) * 0.01;
+      this.spinZ = (Math.random() - 0.5) * 0.007;
     }
 
     update() {
-      // 1. Brownian stochastic impulse (Gaussian-like random walk jitter)
-      const brownianStrength = 0.09;
+      const brownianStrength = 0.08;
       this.vx += (Math.random() + Math.random() - 1) * brownianStrength;
       this.vy += (Math.random() + Math.random() - 1) * brownianStrength;
 
-      // 2. Mouse perturbation & repulsion field
       if (mouse.active && mouse.x !== null) {
         const dx = this.x - mouse.x;
         const dy = this.y - mouse.y;
         const dist = Math.hypot(dx, dy);
-        const influenceRadius = 190;
+        const influenceRadius = 210;
 
         if (dist < influenceRadius && dist > 0.01) {
           const falloff = 1 - dist / influenceRadius;
+          const pushForce = falloff * 0.4;
+          this.vx += (dx / dist) * pushForce + mouse.vx * falloff * 0.02;
+          this.vy += (dy / dist) * pushForce + mouse.vy * falloff * 0.02;
 
-          // Radial push away from cursor + wake drag from mouse velocity
-          const pushForce = falloff * 0.45;
-          this.vx += (dx / dist) * pushForce + mouse.vx * falloff * 0.025;
-          this.vy += (dy / dist) * pushForce + mouse.vy * falloff * 0.025;
-
-          // Excite 3D rotation when disturbed by mouse
-          this.angleX += this.spinX * falloff * 4;
-          this.angleY += this.spinY * falloff * 4;
+          this.angleX += this.spinX * falloff * 3.5;
+          this.angleY += this.spinY * falloff * 3.5;
         }
       }
 
-      // 3. Viscous fluid damping (keeps velocities bounded)
-      this.vx *= 0.965;
-      this.vy *= 0.965;
+      this.vx *= 0.968;
+      this.vy *= 0.968;
 
-      // 4. Integrate position & rotation
       this.x += this.vx;
       this.y += this.vy;
 
@@ -219,8 +204,7 @@ function initHeroCanvas() {
       this.angleY += this.spinY;
       this.angleZ += this.spinZ;
 
-      // 5. Soft toroidal screen wrap with padding
-      const pad = 80;
+      const pad = 100;
       if (this.x < -pad) this.x = width + pad;
       if (this.x > width + pad) this.x = -pad;
       if (this.y < -pad) this.y = height + pad;
@@ -228,19 +212,13 @@ function initHeroCanvas() {
     }
 
     projectVertex([vx, vy, vz]) {
-      // Rotate X
       const y1 = vy * Math.cos(this.angleX) - vz * Math.sin(this.angleX);
       const z1 = vy * Math.sin(this.angleX) + vz * Math.cos(this.angleX);
-
-      // Rotate Y
       const x2 = vx * Math.cos(this.angleY) + z1 * Math.sin(this.angleY);
       const z2 = -vx * Math.sin(this.angleY) + z1 * Math.cos(this.angleY);
-
-      // Rotate Z
       const x3 = x2 * Math.cos(this.angleZ) - y1 * Math.sin(this.angleZ);
       const y3 = x2 * Math.sin(this.angleZ) + y1 * Math.cos(this.angleZ);
 
-      // Perspective projection
       const perspective = 4 / (4 + z2 * 0.45);
       return {
         x: this.x + x3 * this.scale * perspective,
@@ -251,16 +229,15 @@ function initHeroCanvas() {
     draw() {
       const projected = this.shape.vertices.map((v) => this.projectVertex(v));
 
-      // Check proximity to mouse for subtle highlight tint
       let highlight = 0;
       if (mouse.active && mouse.x !== null) {
         const d = Math.hypot(this.x - mouse.x, this.y - mouse.y);
-        if (d < 190) highlight = 1 - d / 190;
+        if (d < 210) highlight = 1 - d / 210;
       }
 
       ctx.strokeStyle =
         highlight > 0.05
-          ? `rgba(244, 114, 182, ${this.alpha + highlight * 0.35})` // Warm pink/magenta tint near cursor
+          ? `rgba(244, 114, 182, ${this.alpha + highlight * 0.35})`
           : `rgba(59, 156, 186, ${this.alpha})`;
 
       ctx.lineWidth = 1.1;
@@ -271,7 +248,6 @@ function initHeroCanvas() {
       });
       ctx.stroke();
 
-      // Vertices
       ctx.fillStyle =
         highlight > 0.05
           ? `rgba(251, 191, 36, ${0.45 + highlight * 0.5})`
@@ -285,11 +261,10 @@ function initHeroCanvas() {
     }
   }
 
-  // Spawn 16 floating Brownian meshes
-  const MESH_COUNT = 16;
+  // Spawn 24 floating meshes to cover the full website nicely
+  const MESH_COUNT = 24;
   const meshes = Array.from({ length: MESH_COUNT }, () => new BrownianMesh());
 
-  // --- Render Colored Mouse Trail ---
   function drawMouseTrail() {
     for (let i = trail.length - 1; i >= 0; i--) {
       trail[i].age++;
@@ -303,15 +278,14 @@ function initHeroCanvas() {
     for (let i = 1; i < trail.length; i++) {
       const p0 = trail[i - 1];
       const p1 = trail[i];
-      const lifeRatio = 1 - p1.age / p1.maxAge; // 1.0 = newest, 0.0 = oldest
+      const lifeRatio = 1 - p1.age / p1.maxAge;
 
-      // Gradient color shift along the trail: Amber/Gold -> Coral/Magenta
       const r = Math.round(245 - (1 - lifeRatio) * 15);
       const g = Math.round(158 * lifeRatio + 65 * (1 - lifeRatio));
       const b = Math.round(11 + (1 - lifeRatio) * 135);
 
-      ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${lifeRatio * 0.75})`;
-      ctx.lineWidth = Math.max(1, lifeRatio * 4.5);
+      ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${lifeRatio * 0.8})`;
+      ctx.lineWidth = Math.max(1, lifeRatio * 5);
       ctx.lineCap = "round";
 
       ctx.beginPath();
@@ -320,7 +294,6 @@ function initHeroCanvas() {
       ctx.stroke();
     }
 
-    // Subtle glowing cursor core
     if (mouse.active && mouse.x !== null) {
       const grad = ctx.createRadialGradient(
         mouse.x,
@@ -328,32 +301,28 @@ function initHeroCanvas() {
         0,
         mouse.x,
         mouse.y,
-        24,
+        28,
       );
-      grad.addColorStop(0, "rgba(251, 191, 36, 0.35)");
+      grad.addColorStop(0, "rgba(251, 191, 36, 0.4)");
       grad.addColorStop(1, "rgba(236, 72, 153, 0)");
       ctx.fillStyle = grad;
       ctx.beginPath();
-      ctx.arc(mouse.x, mouse.y, 24, 0, Math.PI * 2);
+      ctx.arc(mouse.x, mouse.y, 28, 0, Math.PI * 2);
       ctx.fill();
     }
   }
 
-  // --- Main Animation Loop ---
   function animate() {
     ctx.clearRect(0, 0, width, height);
 
-    // Decay mouse velocity smoothly when cursor pauses
     mouse.vx *= 0.85;
     mouse.vy *= 0.85;
 
-    // Update & render all Brownian 3D meshes
     for (const mesh of meshes) {
       mesh.update();
       mesh.draw();
     }
 
-    // Render colored cursor ribbon trail on top
     drawMouseTrail();
 
     requestAnimationFrame(animate);
@@ -363,7 +332,7 @@ function initHeroCanvas() {
 }
 
 /**
- * 2. Image Carousel for the Optical Physics Raytracer
+ * Image Carousel for the Optical Physics Raytracer
  */
 function initRaytracerCarousel() {
   const container = document.getElementById("raytracer-carousel");
@@ -391,7 +360,7 @@ function initRaytracerCarousel() {
 }
 
 /**
- * 3. Category Filter Tabs for Projects
+ * Category Filter Tabs for Projects
  */
 function initProjectFilters() {
   const buttons = document.querySelectorAll(".filter-btn");
@@ -413,7 +382,7 @@ function initProjectFilters() {
 }
 
 /**
- * 4. Automatic Copyright Year
+ * Automatic Copyright Year
  */
 function initFooterYear() {
   const yearEl = document.getElementById("year");

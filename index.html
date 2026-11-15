@@ -37,943 +37,1099 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body
-    class="bg-obsidian text-slate-200 antialiased selection:bg-accent/30 selection:text-cyan-200"
+    class="bg-obsidian text-slate-200 antialiased selection:bg-accent/30 selection:text-cyan-200 relative"
   >
-    <!-- Navigation -->
-    <header
-      class="fixed top-0 inset-x-0 z-50 glass-nav border-b border-white/10"
-    >
-      <div
-        class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between"
+    <!-- Full-Screen Background Canvas (Spans the Entire Website) -->
+    <canvas
+      id="hero-canvas"
+      class="fixed inset-0 w-full h-full pointer-events-none z-0"
+    ></canvas>
+    <div class="fixed inset-0 bg-obsidian/85 pointer-events-none z-0"></div>
+
+    <!-- All Site Content Wrapper (z-10 sits above canvas) -->
+    <div class="relative z-10">
+      <!-- Navigation -->
+      <header
+        class="fixed top-0 inset-x-0 z-50 glass-nav border-b border-white/10"
       >
-        <a
-          href="#"
-          class="font-mono text-sm font-semibold tracking-wider text-white flex items-center gap-2"
+        <div
+          class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between"
         >
-          <span class="w-2.5 h-2.5 rounded-full bg-accent animate-pulse"></span>
-          TRIZYAL<span class="text-accent">.DEV</span>
-        </a>
-
-        <nav
-          class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400"
-        >
-          <a href="#about" class="hover:text-white transition-colors"
-            >About &amp; Experience</a
+          <a
+            href="#"
+            class="font-mono text-sm font-semibold tracking-wider text-white flex items-center gap-2"
           >
-          <a href="#industry" class="hover:text-white transition-colors"
-            >Industry Work</a
-          >
-          <a href="#projects" class="hover:text-white transition-colors"
-            >Projects &amp; Tools</a
-          >
-          <a href="#contact" class="hover:text-white transition-colors"
-            >Contact</a
-          >
-        </nav>
-
-        <a
-          href="https://github.com/trizyal"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="font-mono text-xs px-3.5 py-2 rounded border border-accent/40 bg-accent/10 text-cyan-300 hover:bg-accent/20 transition-all"
-        >
-          GitHub ↗
-        </a>
-      </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section
-      class="relative min-h-[90vh] flex items-center pt-20 overflow-hidden border-b border-white/10"
-    >
-      <canvas
-        id="hero-canvas"
-        class="absolute inset-0 w-full h-full pointer-events-none"
-      ></canvas>
-      <div
-        class="absolute inset-0 bg-gradient-to-b from-obsidian/30 via-obsidian/70 to-obsidian pointer-events-none"
-      ></div>
-
-      <div
-        class="relative z-10 max-w-6xl mx-auto px-6 py-16 grid lg:grid-cols-12 gap-10 items-center"
-      >
-        <div class="lg:col-span-8 space-y-6">
-          <div
-            class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 font-mono text-xs text-cyan-300"
-          >
-            <span>SYS.READY</span>
-            <span class="text-slate-500">//</span>
-            <span>SOFTWARE ENGINEER AT RED KITE GAMES</span>
-          </div>
-
-          <h1
-            class="text-4xl sm:text-6xl font-bold tracking-tight text-white leading-tight"
-          >
-            Tejaswa Rizyal
-          </h1>
-
-          <p
-            class="text-lg sm:text-xl text-slate-300 max-w-2xl leading-relaxed"
-          >
-            Games Industry Engineer specializing in
-            <span class="text-cyan-300 font-medium">Unreal Engine</span>,
-            low-level graphics pipelines (<span class="text-white"
-              >Vulkan / DirectX / NVN2</span
-            >), and performance optimizations.
-          </p>
-
-          <!-- Tech Badges -->
-          <div class="flex flex-wrap gap-2 pt-1 font-mono text-xs">
             <span
-              class="badge flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface border border-white/10 text-cyan-300"
-              >⚡ Unreal Engine 4/5</span
-            >
-            <span
-              class="badge flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface border border-white/10 text-slate-300"
-              >🎮 Switch 2 / NVN2</span
-            >
-            <span
-              class="badge flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface border border-white/10 text-slate-300"
-              >🔹 Vulkan &amp; DX</span
-            >
-            <span
-              class="badge flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface border border-white/10 text-slate-300"
-              >🦀 Rust &amp; Go</span
-            >
-            <span
-              class="badge flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface border border-white/10 text-slate-300"
-              >🐧 Linux (Fedora/RHEL/Ubuntu)</span
-            >
-          </div>
+              class="w-2.5 h-2.5 rounded-full bg-accent animate-pulse"
+            ></span>
+            TRIZYAL<span class="text-accent">.DEV</span>
+          </a>
 
-          <div class="flex flex-wrap gap-4 pt-3">
-            <a
-              href="#industry"
-              class="px-6 py-3 rounded-lg bg-accent hover:bg-cyan-500 text-obsidian font-semibold text-sm transition-all shadow-lg shadow-accent/20"
+          <nav
+            class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400"
+          >
+            <a href="#about" class="hover:text-white transition-colors"
+              >About &amp; Experience</a
             >
-              View Industry Work
-            </a>
-            <a
-              href="#projects"
-              class="px-6 py-3 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-white font-medium text-sm transition-all"
+            <a href="#industry" class="hover:text-white transition-colors"
+              >Industry Work</a
             >
-              Personal &amp; Tooling Projects
-            </a>
-          </div>
+            <a href="#projects" class="hover:text-white transition-colors"
+              >Projects &amp; Tools</a
+            >
+            <a href="#contact" class="hover:text-white transition-colors"
+              >Contact</a
+            >
+          </nav>
+
+          <a
+            href="https://github.com/trizyal"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="font-mono text-xs px-3.5 py-2 rounded border border-accent/40 bg-accent/10 text-cyan-300 hover:bg-accent/20 transition-all"
+          >
+            GitHub ↗
+          </a>
         </div>
+      </header>
 
-        <!-- Telemetry HUD -->
-        <div class="lg:col-span-4">
-          <div
-            class="viewport-frame p-5 rounded-xl bg-surface/80 backdrop-blur-md space-y-4 font-mono text-xs"
-          >
+      <!-- Hero Section -->
+      <section
+        class="relative min-h-[90vh] flex items-center pt-20 overflow-hidden border-b border-white/10"
+      >
+        <div
+          class="relative z-10 max-w-6xl mx-auto px-6 py-16 grid lg:grid-cols-12 gap-10 items-center"
+        >
+          <div class="lg:col-span-8 space-y-6">
             <div
-              class="flex items-center justify-between text-slate-400 border-b border-white/10 pb-3"
+              class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 font-mono text-xs text-cyan-300"
             >
-              <span>ENGINEER_STATUS</span>
-              <span class="text-emerald-400">ACTIVE</span>
+              <span>SYS.READY</span>
+              <span class="text-slate-500">//</span>
+              <span>SOFTWARE ENGINEER AT RED KITE GAMES</span>
             </div>
-            <div class="space-y-2.5 text-slate-300">
-              <div class="flex justify-between">
-                <span class="text-slate-500">STUDIO</span>
-                <span class="text-cyan-300">Red Kite Games</span>
-              </div>
-              <div class="flex justify-between">
-                <span class="text-slate-500">GRADUATION</span>
-                <span>Class of 2025</span>
-              </div>
-              <div class="flex justify-between">
-                <span class="text-slate-500">EXPERIENCE</span>
-                <span>1+ Year Industry</span>
-              </div>
-              <div class="flex justify-between">
-                <span class="text-slate-500">PRIMARY_FOCUS</span>
-                <span>Renderers &amp; Optimizations</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- About Me Section -->
-    <section id="about" class="py-24 border-b border-white/10">
-      <div class="max-w-4xl mx-auto px-6 space-y-8">
-        <div>
-          <div
-            class="font-mono text-xs text-accent tracking-widest uppercase mb-2"
-          >
-            01 // Background &amp; Profile
-          </div>
-          <h2 class="text-3xl font-bold text-white">About Me</h2>
-        </div>
+            <h1
+              class="text-4xl sm:text-6xl font-bold tracking-tight text-white leading-tight"
+            >
+              Tejaswa Rizyal
+            </h1>
 
-        <div class="space-y-4 text-slate-300 text-lg leading-relaxed">
-          <p>Hiya! Nice to see you here!</p>
-          <p>
-            I graduated in
-            <strong class="text-white font-semibold">2025</strong> with an MEng
-            BSc in Computer Science with High Performance Graphics and Games
-            Engineering. Today, I've been working professionally in the games
-            industry for over a year at
-            <span class="text-cyan-300 font-semibold"
-              >[Red Kite Games
-              Limited](http://googleusercontent.com/map_location_reference/1)</span
-            >.
-          </p>
-          <p>
-            My day-to-day work centers on
-            <strong class="text-white font-semibold"
-              >Unreal Engine 4 &amp; 5</strong
-            >, touching renderer code, custom special rendering features,
-            complex frame optimizations, and hardware porting. I have deep
-            hands-on experience with <span class="text-white">Vulkan</span>,
-            <span class="text-white">DirectX</span>, and low-level graphics APIs
-            such as <span class="text-cyan-300">NVN2</span> for Nintendo Switch
-            2.
-          </p>
-          <p>
-            Outside of AAA console development, I build systems programming
-            tools in <span class="text-accent">Rust</span> and
-            <span class="text-accent">Go</span>, and maintain a Linux
-            workstation running
-            <span class="text-slate-200">Fedora, Red Hat, and Ubuntu</span>
-            environments.
-          </p>
-        </div>
+            <p
+              class="text-lg sm:text-xl text-slate-300 max-w-2xl leading-relaxed"
+            >
+              Games Industry Engineer specializing in
+              <span class="text-cyan-300 font-medium">Unreal Engine</span>,
+              low-level graphics pipelines (<span class="text-white"
+                >Vulkan / DirectX / NVN2</span
+              >), and performance optimizations.
+            </p>
 
-        <!-- Skill Stack Grid -->
-        <div class="grid sm:grid-cols-3 gap-4 pt-4 font-mono text-xs">
-          <div
-            class="p-4 rounded-xl bg-surface/60 border border-white/10 space-y-2"
-          >
-            <div class="text-cyan-300 font-bold">GRAPHICS APIS</div>
-            <div class="text-slate-400 space-y-1">
-              <div>• Vulkan / NVN2</div>
-              <div>• DirectX 11 / 12</div>
-              <div>• OpenGL / GLSL</div>
-            </div>
-          </div>
-          <div
-            class="p-4 rounded-xl bg-surface/60 border border-white/10 space-y-2"
-          >
-            <div class="text-cyan-300 font-bold">ENGINES &amp; PLATFORMS</div>
-            <div class="text-slate-400 space-y-1">
-              <div>• Unreal Engine 4 &amp; 5</div>
-              <div>• Nintendo Switch 2</div>
-              <div>• Custom Game Engines</div>
-            </div>
-          </div>
-          <div
-            class="p-4 rounded-xl bg-surface/60 border border-white/10 space-y-2"
-          >
-            <div class="text-cyan-300 font-bold">LANGUAGES &amp; OS</div>
-            <div class="text-slate-400 space-y-1">
-              <div>• C / C++20, Rust, Go</div>
-              <div>• Linux (Fedora, RHEL, Ubuntu)</div>
-              <div>• Windows Dev Environments</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Industry Credits Section -->
-    <section id="industry" class="py-24 border-b border-white/10 bg-surface/20">
-      <div class="max-w-6xl mx-auto px-6">
-        <div class="mb-14">
-          <div
-            class="font-mono text-xs text-accent tracking-widest uppercase mb-2"
-          >
-            02 // Professional Experience
-          </div>
-          <h2 class="text-3xl sm:text-4xl font-bold text-white">
-            AAA Studio Credits
-          </h2>
-        </div>
-
-        <div class="space-y-12">
-          <!-- South of Midnight (Switch 2 Port) -->
-          <article
-            class="viewport-frame rounded-2xl bg-surface/80 p-6 sm:p-8 grid lg:grid-cols-12 gap-8 items-center"
-          >
-            <div class="lg:col-span-6">
-              <div
-                class="media-shell rounded-xl overflow-hidden bg-black border border-white/10 relative group"
+            <!-- Tech Badges -->
+            <div class="flex flex-wrap gap-2 pt-1 font-mono text-xs">
+              <span
+                class="badge flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface/90 border border-white/10 text-cyan-300"
+                >⚡ Unreal Engine 4/5</span
               >
-                <img
-                  src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1000&auto=format&fit=crop"
-                  alt="South of Midnight Port Artwork"
-                  class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500 opacity-80"
-                />
-                <div
-                  class="absolute inset-0 bg-gradient-to-t from-obsidian/90 via-transparent to-transparent flex items-end p-6"
-                >
-                  <span
-                    class="font-mono text-xs px-3 py-1 rounded bg-accent text-obsidian font-bold"
-                    >RELEASED 2026 // NINTENDO SWITCH 2</span
-                  >
+              <span
+                class="badge flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface/90 border border-white/10 text-slate-300"
+                >🎮 Switch 2 / NVN2</span
+              >
+              <span
+                class="badge flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface/90 border border-white/10 text-slate-300"
+                >🔹 Vulkan &amp; DX</span
+              >
+              <span
+                class="badge flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface/90 border border-white/10 text-slate-300"
+                >🦀 Rust &amp; Go</span
+              >
+              <span
+                class="badge flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface/90 border border-white/10 text-slate-300"
+                >🐧 Linux (Fedora/RHEL/Ubuntu)</span
+              >
+            </div>
+
+            <div class="flex flex-wrap gap-4 pt-3">
+              <a
+                href="#industry"
+                class="px-6 py-3 rounded-lg bg-accent hover:bg-cyan-500 text-obsidian font-semibold text-sm transition-all shadow-lg shadow-accent/20"
+              >
+                View Industry Work
+              </a>
+              <a
+                href="#projects"
+                class="px-6 py-3 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-white font-medium text-sm transition-all"
+              >
+                Personal &amp; Tooling Projects
+              </a>
+            </div>
+          </div>
+
+          <!-- Telemetry HUD -->
+          <div class="lg:col-span-4">
+            <div
+              class="viewport-frame p-5 rounded-xl bg-surface/85 backdrop-blur-md space-y-4 font-mono text-xs shadow-2xl"
+            >
+              <div
+                class="flex items-center justify-between text-slate-400 border-b border-white/10 pb-3"
+              >
+                <span>ENGINEER_STATUS</span>
+                <span class="text-emerald-400">ACTIVE</span>
+              </div>
+              <div class="space-y-2.5 text-slate-300">
+                <div class="flex justify-between">
+                  <span class="text-slate-500">STUDIO</span>
+                  <span class="text-cyan-300">Red Kite Games</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-slate-500">GRADUATION</span>
+                  <span>Class of 2025</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-slate-500">EXPERIENCE</span>
+                  <span>1+ Year Industry</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-slate-500">PRIMARY_FOCUS</span>
+                  <span>Renderers &amp; Optimizations</span>
                 </div>
               </div>
             </div>
-            <div class="lg:col-span-6 space-y-4">
-              <div
-                class="flex items-center gap-2 font-mono text-xs text-cyan-300"
-              >
-                <span>RED KITE GAMES</span>
-                <span>•</span>
-                <span>UNREAL ENGINE 4/5</span>
-                <span>•</span>
-                <span>NVN2</span>
-              </div>
-              <h3 class="text-2xl font-bold text-white">
-                South of Midnight (Nintendo Switch 2 Port)
-              </h3>
-              <p class="text-slate-300 leading-relaxed">
-                Worked as a games industry engineer at
-                <strong class="text-white">Red Kite Games</strong> contributing
-                to the Nintendo Switch 2 port of Compulsion Games' critically
-                acclaimed action-adventure
-                <em class="text-white font-medium">South of Midnight</em>.
-              </p>
-              <p class="text-slate-300 leading-relaxed">
-                My primary responsibility on this project was
-                <strong class="text-cyan-300 font-semibold"
-                  >performance optimizations</strong
-                >—profiling GPU frame times, optimizing shading passes, and
-                leveraging NVN2 low-level graphics APIs to bring the rich
-                Southern Gothic art style and complex visual effects to handheld
-                and docked Switch 2 hardware.
-              </p>
-
-              <div class="pt-2 flex flex-wrap gap-2 font-mono text-xs">
-                <span
-                  class="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-slate-300"
-                  >Switch 2</span
-                >
-                <span
-                  class="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-slate-300"
-                  >NVN2 API</span
-                >
-                <span
-                  class="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-slate-300"
-                  >GPU Profiling</span
-                >
-                <span
-                  class="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-slate-300"
-                  >Frame Optimizations</span
-                >
-              </div>
-            </div>
-          </article>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Projects & Tools Section -->
-    <section id="projects" class="py-24">
-      <div class="max-w-6xl mx-auto px-6">
+      <!-- About Me Section -->
+      <section id="about" class="py-24 border-b border-white/10">
         <div
-          class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14"
+          class="max-w-4xl mx-auto px-6 space-y-8 bg-surface/50 backdrop-blur-sm p-8 rounded-3xl border border-white/10"
         >
           <div>
             <div
               class="font-mono text-xs text-accent tracking-widest uppercase mb-2"
             >
-              03 // Portfolio Showcase
+              01 // Background &amp; Profile
+            </div>
+            <h2 class="text-3xl font-bold text-white">About Me</h2>
+          </div>
+
+          <div class="space-y-4 text-slate-300 text-lg leading-relaxed">
+            <p>Hiya! Nice to see you here!</p>
+            <p>
+              I graduated in
+              <strong class="text-white font-semibold">2025</strong> with an
+              MEng BSc in Computer Science with High Performance Graphics and
+              Games Engineering. Today, I've been working professionally in the
+              games industry for over a year at
+              <span class="text-cyan-300 font-semibold"
+                >Red Kite Games Limited</span
+              >.
+            </p>
+            <p>
+              My day-to-day work centers on
+              <strong class="text-white font-semibold"
+                >Unreal Engine 4 &amp; 5</strong
+              >, touching renderer code, custom special rendering features,
+              complex frame optimizations, and hardware porting. I have deep
+              hands-on experience with <span class="text-white">Vulkan</span>,
+              <span class="text-white">DirectX</span>, and low-level graphics
+              APIs such as <span class="text-cyan-300">NVN2</span> for Nintendo
+              Switch 2.
+            </p>
+            <p>
+              Beyond AAA studio production, I am deeply passionate about systems
+              programming, floating-point numeric precision, and building robust
+              developer tooling in Rust and Go. I maintain a heavy Linux
+              workstation workflow utilizing Fedora, Red Hat, and Ubuntu
+              environments.
+            </p>
+          </div>
+
+          <!-- Skill Stack Grid -->
+          <div class="grid sm:grid-cols-3 gap-4 pt-4 font-mono text-xs">
+            <div
+              class="p-4 rounded-xl bg-obsidian/80 border border-white/10 space-y-2"
+            >
+              <div class="text-cyan-300 font-bold">GRAPHICS APIS</div>
+              <div class="text-slate-400 space-y-1">
+                <div>• Vulkan / NVN2</div>
+                <div>• DirectX 11 / 12</div>
+                <div>• OpenGL / GLSL</div>
+              </div>
+            </div>
+            <div
+              class="p-4 rounded-xl bg-obsidian/80 border border-white/10 space-y-2"
+            >
+              <div class="text-cyan-300 font-bold">ENGINES &amp; PLATFORMS</div>
+              <div class="text-slate-400 space-y-1">
+                <div>• Unreal Engine 4 &amp; 5</div>
+                <div>• Nintendo Switch 2</div>
+                <div>• Custom Game Engines</div>
+              </div>
+            </div>
+            <div
+              class="p-4 rounded-xl bg-obsidian/80 border border-white/10 space-y-2"
+            >
+              <div class="text-cyan-300 font-bold">LANGUAGES &amp; OS</div>
+              <div class="text-slate-400 space-y-1">
+                <div>• C / C++20, Rust, Go</div>
+                <div>• Linux (Fedora, RHEL, Ubuntu)</div>
+                <div>• Windows Dev Environments</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Industry Credits Section -->
+      <section id="industry" class="py-24 border-b border-white/10">
+        <div class="max-w-6xl mx-auto px-6">
+          <div class="mb-14">
+            <div
+              class="font-mono text-xs text-accent tracking-widest uppercase mb-2"
+            >
+              02 // Professional Experience
             </div>
             <h2 class="text-3xl sm:text-4xl font-bold text-white">
-              Open Source &amp; Graphics Engines
+              AAA Studio Credits
             </h2>
           </div>
 
-          <!-- Filter Bar -->
-          <div id="filter-bar" class="flex flex-wrap gap-2 font-mono text-xs">
-            <button
-              data-filter="all"
-              class="filter-btn active px-3.5 py-2 rounded-lg border transition-all"
+          <div class="space-y-12">
+            <!-- South of Midnight (Switch 2 Port) -->
+            <article
+              class="viewport-frame rounded-2xl bg-surface/75 backdrop-blur-md p-6 sm:p-8 grid lg:grid-cols-12 gap-8 items-center"
             >
-              All (12)
-            </button>
-            <button
-              data-filter="tools"
-              class="filter-btn px-3.5 py-2 rounded-lg border transition-all"
-            >
-              Tools &amp; Rust
-            </button>
-            <button
-              data-filter="vulkan"
-              class="filter-btn px-3.5 py-2 rounded-lg border transition-all"
-            >
-              Vulkan &amp; Engines
-            </button>
-            <button
-              data-filter="rendering"
-              class="filter-btn px-3.5 py-2 rounded-lg border transition-all"
-            >
-              Raytracing &amp; OpenGL
-            </button>
-            <button
-              data-filter="physics"
-              class="filter-btn px-3.5 py-2 rounded-lg border transition-all"
-            >
-              Physics &amp; Games
-            </button>
+              <div class="lg:col-span-6">
+                <div
+                  class="media-shell rounded-xl overflow-hidden bg-black border border-white/10 relative group"
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1000&auto=format&fit=crop"
+                    alt="South of Midnight Port Artwork"
+                    class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500 opacity-80"
+                  />
+                  <div
+                    class="absolute inset-0 bg-gradient-to-t from-obsidian/90 via-transparent to-transparent flex items-end p-6"
+                  >
+                    <span
+                      class="font-mono text-xs px-3 py-1 rounded bg-accent text-obsidian font-bold"
+                      >RELEASED 2026 // NINTENDO SWITCH 2</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="lg:col-span-6 space-y-4">
+                <div
+                  class="flex items-center gap-2 font-mono text-xs text-cyan-300"
+                >
+                  <span>RED KITE GAMES</span>
+                  <span>•</span>
+                  <span>UNREAL ENGINE 4/5</span>
+                  <span>•</span>
+                  <span>NVN2</span>
+                </div>
+                <h3 class="text-2xl font-bold text-white">
+                  South of Midnight (Nintendo Switch 2 Port)
+                </h3>
+                <p class="text-slate-300 leading-relaxed">
+                  Worked as a games industry engineer at
+                  <strong class="text-white">Red Kite Games</strong>
+                  contributing to the Nintendo Switch 2 port of Compulsion
+                  Games' critically acclaimed action-adventure title
+                  <em class="text-white font-medium">South of Midnight</em>.
+                </p>
+                <p class="text-slate-300 leading-relaxed">
+                  My core responsibility on this project was
+                  <strong class="text-cyan-300 font-semibold"
+                    >performance optimizations</strong
+                  >—profiling GPU frame budgets, reducing shader overdraw, and
+                  utilizing low-level <span class="text-white">NVN2</span> APIs
+                  to ensure fluid rendering performance across both handheld and
+                  docked hardware profiles without compromising the game's
+                  distinctive Southern Gothic aesthetic.
+                </p>
+                <div class="pt-2">
+                  <a
+                    href="https://www.redkitegames.co.uk/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 font-mono text-xs px-4 py-2.5 rounded-lg border border-accent/40 bg-accent/10 text-cyan-300 hover:bg-accent/20 transition-all shadow"
+                  >
+                    Visit Red Kite Games ↗
+                  </a>
+                </div>
+              </div>
+            </article>
           </div>
         </div>
+      </section>
 
-        <!-- Projects Grid -->
-        <div id="projects-grid" class="space-y-16">
-          <!-- GitReckd -->
-          <article
-            data-category="tools"
-            class="project-card viewport-frame rounded-2xl bg-surface/60 p-6 sm:p-8 grid lg:grid-cols-12 gap-8 items-center"
+      <!-- Projects & Tools Section -->
+      <section id="projects" class="py-24">
+        <div class="max-w-6xl mx-auto px-6">
+          <div
+            class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14"
           >
-            <div class="lg:col-span-6">
+            <div>
               <div
-                class="media-shell rounded-xl overflow-hidden bg-black border border-white/10 p-8 flex flex-col items-center justify-center min-h-[280px] text-center space-y-3"
+                class="font-mono text-xs text-accent tracking-widest uppercase mb-2"
               >
-                <div
-                  class="w-16 h-16 rounded-2xl bg-accent/20 border border-accent/40 flex items-center justify-center text-cyan-300 font-mono text-xl font-bold shadow-lg"
-                >
-                  GR
-                </div>
-                <div class="font-mono text-sm font-semibold text-white">
-                  GitReckd Workspace
-                </div>
-                <div class="font-mono text-xs text-slate-400">
-                  Tauri + Rust + React Desktop Client
-                </div>
+                03 // Portfolio Showcase
               </div>
+              <h2 class="text-3xl sm:text-4xl font-bold text-white">
+                Open Source &amp; Graphics Engines
+              </h2>
             </div>
-            <div class="lg:col-span-6 space-y-4">
-              <div
-                class="flex items-center gap-2 font-mono text-xs text-cyan-300"
-              >
-                <span>RUST</span>
-                <span>•</span>
-                <span>TAURI</span>
-                <span>•</span>
-                <span>REACT</span>
-              </div>
-              <h3 class="text-2xl font-bold text-white">
-                GitReckd (WIP Git &amp; Repo Workspace)
-              </h3>
-              <p class="text-slate-300 leading-relaxed">
-                A high-performance desktop Git and repository management
-                workspace built with Rust, Tauri, and React. GitReckd merges
-                native Git speed with Perforce-style workflows, local workspace
-                organization, and GitHub integrations.
-              </p>
-              <p class="text-slate-300 text-sm leading-relaxed">
-                Features include P4-style file history scrubbing (time-lapse),
-                high-speed tree viewer with un-tracked local overlays, branch
-                changelist grouping, YAML metadata hot-reloading (<code
-                  class="text-cyan-300"
-                  >metadata.yml</code
-                >), and OAuth integration with GitHub GraphQL queries.
-              </p>
-            </div>
-          </article>
 
-          <!-- Forge -->
-          <article
-            data-category="tools"
-            class="project-card viewport-frame rounded-2xl bg-surface/60 p-6 sm:p-8 grid lg:grid-cols-12 gap-8 items-center"
-          >
-            <div class="lg:col-span-6 lg:order-2">
-              <div
-                class="media-shell rounded-xl overflow-hidden bg-black border border-white/10 p-8 flex flex-col items-center justify-center min-h-[280px] text-center space-y-3"
+            <!-- Filter Bar -->
+            <div id="filter-bar" class="flex flex-wrap gap-2 font-mono text-xs">
+              <button
+                data-filter="all"
+                class="filter-btn active px-3.5 py-2 rounded-lg border transition-all"
               >
-                <div
-                  class="w-16 h-16 rounded-2xl bg-orange-500/20 border border-orange-500/40 flex items-center justify-center text-orange-300 font-mono text-xl font-bold shadow-lg"
-                >
-                  FG
-                </div>
-                <div class="font-mono text-sm font-semibold text-white">
-                  Forge Workspace
-                </div>
-                <div class="font-mono text-xs text-slate-400">
-                  Written in Go (Windows Desktop)
-                </div>
-              </div>
-            </div>
-            <div class="lg:col-span-6 lg:order-1 space-y-4">
-              <div
-                class="flex items-center gap-2 font-mono text-xs text-cyan-300"
+                All (12)
+              </button>
+              <button
+                data-filter="tools"
+                class="filter-btn px-3.5 py-2 rounded-lg border transition-all"
               >
-                <span>GO</span>
-                <span>•</span>
-                <span>WINDOWS SYSTEMS</span>
-              </div>
-              <h3 class="text-2xl font-bold text-white">
-                Forge Workspace &amp; Window Manager
-              </h3>
-              <p class="text-slate-300 leading-relaxed">
-                Forge (<a
-                  href="https://github.com/trizyal/forge"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-cyan-300 underline hover:text-white"
-                  >github.com/trizyal/forge</a
-                >) is a high-performance workspace and window management utility
-                written in Go. Designed specifically for Windows environments to
-                streamline multi-project developer workflows.
-              </p>
+                Tools &amp; Rust
+              </button>
+              <button
+                data-filter="vulkan"
+                class="filter-btn px-3.5 py-2 rounded-lg border transition-all"
+              >
+                Vulkan &amp; Engines
+              </button>
+              <button
+                data-filter="rendering"
+                class="filter-btn px-3.5 py-2 rounded-lg border transition-all"
+              >
+                Raytracing &amp; OpenGL
+              </button>
+              <button
+                data-filter="physics"
+                class="filter-btn px-3.5 py-2 rounded-lg border transition-all"
+              >
+                Physics &amp; Games
+              </button>
             </div>
-          </article>
+          </div>
 
-          <!-- Anvil-VK -->
-          <article
-            data-category="vulkan"
-            class="project-card viewport-frame rounded-2xl bg-surface/60 p-6 sm:p-8 grid lg:grid-cols-12 gap-8 items-center"
-          >
-            <div class="lg:col-span-6">
-              <div
-                class="media-shell rounded-xl overflow-hidden bg-black border border-white/10 p-8 flex flex-col items-center justify-center min-h-[280px] text-center space-y-3"
-              >
+          <!-- Projects Grid -->
+          <div id="projects-grid" class="space-y-16">
+            <!-- GitReckd -->
+            <article
+              data-category="tools"
+              class="project-card viewport-frame rounded-2xl bg-surface/75 backdrop-blur-md p-6 sm:p-8 grid lg:grid-cols-12 gap-8 items-center"
+            >
+              <div class="lg:col-span-6">
                 <div
-                  class="w-16 h-16 rounded-2xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-300 font-mono text-xl font-bold shadow-lg"
+                  class="media-shell rounded-xl overflow-hidden bg-black/80 border border-white/10 p-8 flex flex-col items-center justify-center min-h-[280px] text-center space-y-3"
                 >
-                  VK
-                </div>
-                <div class="font-mono text-sm font-semibold text-white">
-                  Anvil-VK Renderer
-                </div>
-                <div class="font-mono text-xs text-slate-400">
-                  C++ Vulkan Template &amp; Rendergraph
+                  <div
+                    class="w-16 h-16 rounded-2xl bg-accent/20 border border-accent/40 flex items-center justify-center text-cyan-300 font-mono text-xl font-bold shadow-lg"
+                  >
+                    GR
+                  </div>
+                  <div class="font-mono text-sm font-semibold text-white">
+                    GitReckd Workspace
+                  </div>
+                  <div class="font-mono text-xs text-slate-400">
+                    Tauri + Rust + React Desktop Client
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="lg:col-span-6 space-y-4">
-              <div
-                class="flex items-center gap-2 font-mono text-xs text-cyan-300"
-              >
-                <span>C++</span>
-                <span>•</span>
-                <span>VULKAN</span>
-                <span>•</span>
-                <span>RENDERGRAPH</span>
+              <div class="lg:col-span-6 space-y-4">
+                <div
+                  class="flex items-center gap-2 font-mono text-xs text-cyan-300"
+                >
+                  <span>RUST</span>
+                  <span>•</span>
+                  <span>TAURI</span>
+                  <span>•</span>
+                  <span>REACT</span>
+                </div>
+                <h3 class="text-2xl font-bold text-white">
+                  GitReckd (WIP Git &amp; Repo Workspace)
+                </h3>
+                <p class="text-slate-300 leading-relaxed">
+                  A high-performance desktop Git and repository management
+                  workspace built with <span class="text-white">Rust</span>,
+                  <span class="text-white">Tauri</span>, and
+                  <span class="text-white">React</span>. GitReckd merges native
+                  Git speed with Perforce-style workflows, local workspace
+                  organization, and deep GitHub integrations.
+                </p>
+                <p class="text-slate-300 text-sm leading-relaxed">
+                  Key features include P4-style file history scrubbing
+                  (time-lapse), high-speed tree rendering with un-tracked local
+                  filesystem overlays, branch changelist grouping, YAML metadata
+                  hot-reloading (<code class="text-cyan-300">metadata.yml</code
+                  >), and secure OAuth authentication backed by native OS
+                  keychains.
+                </p>
+                <div class="pt-2">
+                  <a
+                    href="https://github.com/trizyal"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 font-mono text-xs px-4 py-2.5 rounded-lg border border-accent/40 bg-accent/10 text-cyan-300 hover:bg-accent/20 transition-all shadow"
+                  >
+                    View on GitHub ↗
+                  </a>
+                </div>
               </div>
-              <h3 class="text-2xl font-bold text-white">
-                Anvil-VK Renderer Template
-              </h3>
-              <p class="text-slate-300 leading-relaxed">
-                Anvil-VK (<a
-                  href="https://github.com/trizyal/anvil-vk"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-cyan-300 underline hover:text-white"
-                  >github.com/trizyal/anvil-vk</a
-                >) is a robust Vulkan renderer template project equipped with
-                foundational rendering utilities, frame synchronization helpers,
-                and a modular rendergraph system built for Windows development.
-              </p>
-            </div>
-          </article>
+            </article>
 
-          <!-- Lucid (Game Jam) -->
-          <article
-            data-category="physics"
-            class="project-card viewport-frame rounded-2xl bg-surface/60 p-6 sm:p-8 grid lg:grid-cols-12 gap-8 items-center"
-          >
-            <div class="lg:col-span-6 lg:order-2">
-              <div
-                class="media-shell rounded-xl overflow-hidden bg-black border border-white/10 p-8 flex flex-col items-center justify-center min-h-[280px] text-center space-y-3"
-              >
+            <!-- Forge -->
+            <article
+              data-category="tools"
+              class="project-card viewport-frame rounded-2xl bg-surface/75 backdrop-blur-md p-6 sm:p-8 grid lg:grid-cols-12 gap-8 items-center"
+            >
+              <div class="lg:col-span-6 lg:order-2">
                 <div
-                  class="w-16 h-16 rounded-2xl bg-purple-500/20 border border-purple-500/40 flex items-center justify-center text-purple-300 font-mono text-xl font-bold shadow-lg"
+                  class="media-shell rounded-xl overflow-hidden bg-black/80 border border-white/10 p-8 flex flex-col items-center justify-center min-h-[280px] text-center space-y-3"
                 >
-                  LC
+                  <div
+                    class="w-16 h-16 rounded-2xl bg-orange-500/20 border border-orange-500/40 flex items-center justify-center text-orange-300 font-mono text-xl font-bold shadow-lg"
+                  >
+                    FG
+                  </div>
+                  <div class="font-mono text-sm font-semibold text-white">
+                    Forge Workspace
+                  </div>
+                  <div class="font-mono text-xs text-slate-400">
+                    Written in Go (Windows Desktop)
+                  </div>
                 </div>
-                <div class="font-mono text-sm font-semibold text-white">
-                  Lucid Game Jam
+              </div>
+              <div class="lg:col-span-6 lg:order-1 space-y-4">
+                <div
+                  class="flex items-center gap-2 font-mono text-xs text-cyan-300"
+                >
+                  <span>GO</span>
+                  <span>•</span>
+                  <span>WINDOWS SYSTEMS</span>
                 </div>
-                <div class="font-mono text-xs text-slate-400">
+                <h3 class="text-2xl font-bold text-white">
+                  Forge Workspace &amp; Window Manager
+                </h3>
+                <p class="text-slate-300 leading-relaxed">
+                  <strong class="text-white">Forge</strong> is a
+                  high-performance workspace and window management utility
+                  engineered in <span class="text-white">Go</span> for Windows
+                  desktop environments. It streamlines complex multi-repo
+                  development sessions, offering rapid window tiling, state
+                  persistence, and minimal resource overhead.
+                </p>
+                <div class="pt-2">
+                  <a
+                    href="https://github.com/trizyal/forge"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 font-mono text-xs px-4 py-2.5 rounded-lg border border-accent/40 bg-accent/10 text-cyan-300 hover:bg-accent/20 transition-all shadow"
+                  >
+                    View on GitHub ↗
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Anvil-VK -->
+            <article
+              data-category="vulkan"
+              class="project-card viewport-frame rounded-2xl bg-surface/75 backdrop-blur-md p-6 sm:p-8 grid lg:grid-cols-12 gap-8 items-center"
+            >
+              <div class="lg:col-span-6">
+                <div
+                  class="media-shell rounded-xl overflow-hidden bg-black/80 border border-white/10 p-8 flex flex-col items-center justify-center min-h-[280px] text-center space-y-3"
+                >
+                  <div
+                    class="w-16 h-16 rounded-2xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-300 font-mono text-xl font-bold shadow-lg"
+                  >
+                    VK
+                  </div>
+                  <div class="font-mono text-sm font-semibold text-white">
+                    Anvil-VK Renderer
+                  </div>
+                  <div class="font-mono text-xs text-slate-400">
+                    C++ Vulkan Template &amp; Rendergraph
+                  </div>
+                </div>
+              </div>
+              <div class="lg:col-span-6 space-y-4">
+                <div
+                  class="flex items-center gap-2 font-mono text-xs text-cyan-300"
+                >
+                  <span>C++</span>
+                  <span>•</span>
+                  <span>VULKAN</span>
+                  <span>•</span>
+                  <span>RENDERGRAPH</span>
+                </div>
+                <h3 class="text-2xl font-bold text-white">
+                  Anvil-VK Renderer Template
+                </h3>
+                <p class="text-slate-300 leading-relaxed">
+                  <strong class="text-white">Anvil-VK</strong> is a modular C++
+                  Vulkan renderer template designed to accelerate graphics
+                  application prototyping. It includes foundational device
+                  initialization utilities, robust frame synchronization
+                  helpers, and an extensible rendergraph architecture for clean
+                  pass dependency management.
+                </p>
+                <div class="pt-2">
+                  <a
+                    href="https://github.com/trizyal/anvil-vk"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 font-mono text-xs px-4 py-2.5 rounded-lg border border-accent/40 bg-accent/10 text-cyan-300 hover:bg-accent/20 transition-all shadow"
+                  >
+                    View on GitHub ↗
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Lucid (Game Jam) -->
+            <article
+              data-category="physics"
+              class="project-card viewport-frame rounded-2xl bg-surface/75 backdrop-blur-md p-6 sm:p-8 grid lg:grid-cols-12 gap-8 items-center"
+            >
+              <div class="lg:col-span-6 lg:order-2">
+                <div
+                  class="media-shell rounded-xl overflow-hidden bg-black/80 border border-white/10 p-8 flex flex-col items-center justify-center min-h-[280px] text-center space-y-3"
+                >
+                  <div
+                    class="w-16 h-16 rounded-2xl bg-purple-500/20 border border-purple-500/40 flex items-center justify-center text-purple-300 font-mono text-xl font-bold shadow-lg"
+                  >
+                    LC
+                  </div>
+                  <div class="font-mono text-sm font-semibold text-white">
+                    Lucid Game Jam
+                  </div>
+                  <div class="font-mono text-xs text-slate-400">
+                    Itch.io Release
+                  </div>
+                </div>
+              </div>
+              <div class="lg:col-span-6 lg:order-1 space-y-4">
+                <div
+                  class="flex items-center gap-2 font-mono text-xs text-cyan-300"
+                >
+                  <span>GAME JAM</span>
+                  <span>•</span>
+                  <span>RENDERING &amp; GAMEPLAY</span>
+                </div>
+                <h3 class="text-2xl font-bold text-white">
+                  Lucid (Game Jam Project)
+                </h3>
+                <p class="text-slate-300 leading-relaxed">
+                  Developed collaboratively during a game jam with friends,
+                  <strong class="text-white">Lucid</strong> explores surreal
+                  mechanics and atmospheric pacing. I took technical ownership
+                  of core rendering implementations, custom shaders, and
+                  responsive gameplay feature loops.
+                </p>
+                <div class="pt-2">
                   <a
                     href="https://xj-project.itch.io/lucid"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="text-cyan-300 underline"
-                    >xj-project.itch.io/lucid</a
+                    class="inline-flex items-center gap-2 font-mono text-xs px-4 py-2.5 rounded-lg border border-purple-500/40 bg-purple-500/10 text-purple-300 hover:bg-purple-500/20 transition-all shadow"
                   >
+                    Play on Itch.io ↗
+                  </a>
                 </div>
               </div>
-            </div>
-            <div class="lg:col-span-6 lg:order-1 space-y-4">
-              <div
-                class="flex items-center gap-2 font-mono text-xs text-cyan-300"
-              >
-                <span>GAME JAM</span>
-                <span>•</span>
-                <span>RENDERING &amp; GAMEPLAY</span>
-              </div>
-              <h3 class="text-2xl font-bold text-white">
-                Lucid (Game Jam Project)
-              </h3>
-              <p class="text-slate-300 leading-relaxed">
-                A collaborative game jam project built with friends where I took
-                ownership of core rendering implementation and key gameplay
-                features. Explore the game on Itch.io:
-                <a
-                  href="https://xj-project.itch.io/lucid"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-cyan-300 underline hover:text-white"
-                  >xj-project.itch.io/lucid</a
-                >.
-              </p>
-            </div>
-          </article>
+            </article>
 
-          <!-- Project: Axiom Swerve -->
-          <article
-            data-category="physics"
-            class="project-card viewport-frame rounded-2xl bg-surface/60 p-6 sm:p-8 grid lg:grid-cols-12 gap-8 items-center"
-          >
-            <div class="lg:col-span-6">
-              <div
-                class="media-shell rounded-xl overflow-hidden bg-black border border-white/10"
-              >
-                <video
-                  controls
-                  autoplay
-                  muted
-                  loop
-                  playsinline
-                  class="w-full h-auto block"
-                >
-                  <source
-                    src="assets/videos/axiom_swerve.mp4"
-                    type="video/mp4"
-                  />
-                </video>
-              </div>
-            </div>
-            <div class="lg:col-span-6 space-y-4">
-              <div class="font-mono text-xs text-cyan-300">
-                CUSTOM ENGINE // BULLET HELL
-              </div>
-              <h3 class="text-2xl font-bold text-white">
-                Axiom Swerve, a vehicular bullet hell game
-              </h3>
-              <p class="text-slate-300 leading-relaxed">
-                Made with a friend using our own custom game engine featuring
-                screen-space post-processing powerups and reactive drum-and-bass
-                audio tied to player actions.
-              </p>
-            </div>
-          </article>
-
-          <!-- Project: Ubiquitous Reality -->
-          <article
-            data-category="vulkan"
-            class="project-card viewport-frame rounded-2xl bg-surface/60 p-6 sm:p-8 grid lg:grid-cols-12 gap-8 items-center"
-          >
-            <div class="lg:col-span-6 lg:order-2">
-              <div
-                class="media-shell rounded-xl overflow-hidden bg-black border border-white/10"
-              >
-                <video
-                  controls
-                  autoplay
-                  muted
-                  loop
-                  playsinline
-                  class="w-full h-auto block"
-                >
-                  <source src="assets/videos/ubqr.mp4" type="video/mp4" />
-                </video>
-              </div>
-            </div>
-            <div class="lg:col-span-6 lg:order-1 space-y-4">
-              <div class="font-mono text-xs text-cyan-300">
-                CUSTOM ECS // VULKAN RENDERER
-              </div>
-              <h3 class="text-2xl font-bold text-white">
-                Ubiquitous Reality, a game engine for style
-              </h3>
-              <p class="text-slate-300 leading-relaxed">
-                Custom game engine built with an ECS from scratch, Vulkan
-                loader, and custom pipeline creator designed for a stylized
-                racing game loop.
-              </p>
-            </div>
-          </article>
-
-          <!-- Project: Raytracer with Optical Physics -->
-          <article
-            data-category="rendering"
-            class="project-card viewport-frame rounded-2xl bg-surface/60 p-6 sm:p-8 grid lg:grid-cols-12 gap-8 items-center"
-          >
-            <div class="lg:col-span-6">
-              <div
-                id="raytracer-carousel"
-                class="relative rounded-xl overflow-hidden bg-black border border-white/10"
-              >
-                <img
-                  src="assets/images/raytracer.png"
-                  alt="Raytracer Primary"
-                  class="carousel-slide active w-full h-auto"
-                />
-                <img
-                  src="assets/images/fresnelrefraction.png"
-                  alt="Fresnel Refraction"
-                  class="carousel-slide w-full h-auto hidden"
-                />
-                <img
-                  src="assets/images/shadows.png"
-                  alt="Raytraced Shadows"
-                  class="carousel-slide w-full h-auto hidden"
-                />
-                <button
-                  type="button"
-                  id="carousel-prev"
-                  class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-obsidian/80 text-white flex items-center justify-center"
-                >
-                  ❮
-                </button>
-                <button
-                  type="button"
-                  id="carousel-next"
-                  class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-obsidian/80 text-white flex items-center justify-center"
-                >
-                  ❯
-                </button>
+            <!-- Axiom Swerve -->
+            <article
+              data-category="physics"
+              class="project-card viewport-frame rounded-2xl bg-surface/75 backdrop-blur-md p-6 sm:p-8 grid lg:grid-cols-12 gap-8 items-center"
+            >
+              <div class="lg:col-span-6">
                 <div
-                  id="carousel-counter"
-                  class="absolute bottom-3 right-3 px-2 py-1 rounded bg-obsidian/80 font-mono text-xs text-cyan-300"
+                  class="media-shell rounded-xl overflow-hidden bg-black border border-white/10"
                 >
-                  1 / 3
+                  <video
+                    controls
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    class="w-full h-auto block"
+                  >
+                    <source
+                      src="assets/videos/axiom_swerve.mp4"
+                      type="video/mp4"
+                    />
+                  </video>
                 </div>
               </div>
-            </div>
-            <div class="lg:col-span-6 space-y-4">
-              <div class="font-mono text-xs text-cyan-300">
-                CPU RAYTRACING // OPTICAL PHYSICS
+              <div class="lg:col-span-6 space-y-4">
+                <div class="font-mono text-xs text-cyan-300">
+                  CUSTOM ENGINE // BULLET HELL
+                </div>
+                <h3 class="text-2xl font-bold text-white">
+                  Axiom Swerve, a vehicular bullet hell game
+                </h3>
+                <p class="text-slate-300 leading-relaxed">
+                  Built alongside a peer using our own custom-engineered game
+                  engine. <strong class="text-white">Axiom Swerve</strong> was
+                  designed for zero wait-time stimulation, integrating dynamic
+                  screen-space post-processing powerups and reactive
+                  drum-and-bass audio layers tied directly to player inputs.
+                </p>
+                <div class="pt-2">
+                  <a
+                    href="https://github.com/trizyal"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 font-mono text-xs px-4 py-2.5 rounded-lg border border-accent/40 bg-accent/10 text-cyan-300 hover:bg-accent/20 transition-all shadow"
+                  >
+                    View on GitHub ↗
+                  </a>
+                </div>
               </div>
-              <h3 class="text-2xl font-bold text-white">
-                Raytracer with Optical Physics
-              </h3>
-              <p class="text-slate-300 leading-relaxed">
-                CPU raytracer implementing primary/shadow rays, recursive
-                reflections, Snell's Law refraction with Schlick's
-                approximation, and Beer's Law absorption.
-              </p>
-            </div>
-          </article>
+            </article>
 
-          <!-- Project: Vulkan Renderer -->
-          <article
-            data-category="vulkan rendering"
-            class="project-card viewport-frame rounded-2xl bg-surface/60 p-6 sm:p-8 grid lg:grid-cols-12 gap-8 items-center"
-          >
-            <div class="lg:col-span-6 lg:order-2">
-              <div
-                class="media-shell rounded-xl overflow-hidden bg-black border border-white/10"
-              >
-                <video
-                  controls
-                  autoplay
-                  muted
-                  loop
-                  playsinline
-                  class="w-full h-auto block"
+            <!-- Ubiquitous Reality -->
+            <article
+              data-category="vulkan"
+              class="project-card viewport-frame rounded-2xl bg-surface/75 backdrop-blur-md p-6 sm:p-8 grid lg:grid-cols-12 gap-8 items-center"
+            >
+              <div class="lg:col-span-6 lg:order-2">
+                <div
+                  class="media-shell rounded-xl overflow-hidden bg-black border border-white/10"
                 >
-                  <source src="assets/videos/vulkan.mp4" type="video/mp4" />
-                </video>
+                  <video
+                    controls
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    class="w-full h-auto block"
+                  >
+                    <source src="assets/videos/ubqr.mp4" type="video/mp4" />
+                  </video>
+                </div>
               </div>
-            </div>
-            <div class="lg:col-span-6 lg:order-1 space-y-4">
-              <div class="font-mono text-xs text-cyan-300">
-                REAL-TIME PBR // DEFERRED SHADING
+              <div class="lg:col-span-6 lg:order-1 space-y-4">
+                <div class="font-mono text-xs text-cyan-300">
+                  CUSTOM ECS // VULKAN RENDERER
+                </div>
+                <h3 class="text-2xl font-bold text-white">
+                  Ubiquitous Reality, a game engine for style
+                </h3>
+                <p class="text-slate-300 leading-relaxed">
+                  A custom-built game engine architected to unify complex
+                  rendering effects with seamless gameplay loops. Developed with
+                  a small team, featuring our own Entity Component System (ECS)
+                  written from scratch, a custom Vulkan loader, pipeline
+                  creator, and event bus. I took direct ownership of the
+                  renderer subsystem.
+                </p>
+                <div class="pt-2">
+                  <a
+                    href="https://github.com/trizyal"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 font-mono text-xs px-4 py-2.5 rounded-lg border border-accent/40 bg-accent/10 text-cyan-300 hover:bg-accent/20 transition-all shadow"
+                  >
+                    View on GitHub ↗
+                  </a>
+                </div>
               </div>
-              <h3 class="text-2xl font-bold text-white">Vulkan Renderer</h3>
-              <p class="text-slate-300 leading-relaxed">
-                Full Vulkan renderer featuring Cook-Torrance PBR, subpass
-                pixelation filters, and a 4-attachment deferred shading G-buffer
-                pipeline.
-              </p>
-            </div>
-          </article>
+            </article>
 
-          <!-- Project: Animation & Collision Physics -->
-          <article
-            data-category="physics"
-            class="project-card viewport-frame rounded-2xl bg-surface/60 p-6 sm:p-8 grid lg:grid-cols-12 gap-8 items-center"
-          >
-            <div class="lg:col-span-6">
-              <div
-                class="media-shell rounded-xl overflow-hidden bg-black border border-white/10"
-              >
-                <video
-                  controls
-                  autoplay
-                  muted
-                  loop
-                  playsinline
-                  class="w-full h-auto block"
+            <!-- Raytracer with Optical Physics -->
+            <article
+              data-category="rendering"
+              class="project-card viewport-frame rounded-2xl bg-surface/75 backdrop-blur-md p-6 sm:p-8 grid lg:grid-cols-12 gap-8 items-center"
+            >
+              <div class="lg:col-span-6">
+                <div
+                  id="raytracer-carousel"
+                  class="relative rounded-xl overflow-hidden bg-black border border-white/10"
                 >
-                  <source
-                    src="assets/videos/animation_collision.mp4"
-                    type="video/mp4"
+                  <img
+                    src="assets/images/raytracer.png"
+                    alt="Raytracer Primary"
+                    class="carousel-slide active w-full h-auto"
                   />
-                </video>
+                  <img
+                    src="assets/images/fresnelrefraction.png"
+                    alt="Fresnel Refraction"
+                    class="carousel-slide w-full h-auto hidden"
+                  />
+                  <img
+                    src="assets/images/shadows.png"
+                    alt="Raytraced Shadows"
+                    class="carousel-slide w-full h-auto hidden"
+                  />
+                  <button
+                    type="button"
+                    id="carousel-prev"
+                    class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-obsidian/80 text-white flex items-center justify-center"
+                  >
+                    ❮
+                  </button>
+                  <button
+                    type="button"
+                    id="carousel-next"
+                    class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-obsidian/80 text-white flex items-center justify-center"
+                  >
+                    ❯
+                  </button>
+                  <div
+                    id="carousel-counter"
+                    class="absolute bottom-3 right-3 px-2 py-1 rounded bg-obsidian/80 font-mono text-xs text-cyan-300"
+                  >
+                    1 / 3
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="lg:col-span-6 space-y-4">
-              <div class="font-mono text-xs text-cyan-300">
-                SKELETAL ANIMATION // RIGID BODIES
+              <div class="lg:col-span-6 space-y-4">
+                <div class="font-mono text-xs text-cyan-300">
+                  CPU RAYTRACING // OPTICAL PHYSICS
+                </div>
+                <h3 class="text-2xl font-bold text-white">
+                  Raytracer with Optical Physics
+                </h3>
+                <p class="text-slate-300 leading-relaxed">
+                  A physically-based CPU raytracer designed to simulate complex
+                  optical phenomena. Starting from an OpenGL OBJ previewer, I
+                  implemented primary ray generation, triangle intersection
+                  tests, barycentric interpolation, and CPU-side Blinn-Phong
+                  shading.
+                </p>
+                <p class="text-slate-300 text-sm leading-relaxed">
+                  Advanced features include hard shadow rays with origin
+                  displacement to eliminate shadow acne, recursive reflection
+                  bounces with energy attenuation, refraction modeled via
+                  Snell's Law and Schlick's Fresnel approximation, total
+                  internal reflection, and Beer's Law volume absorption for
+                  colored transparency.
+                </p>
+                <div class="pt-2">
+                  <a
+                    href="https://github.com/trizyal"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 font-mono text-xs px-4 py-2.5 rounded-lg border border-accent/40 bg-accent/10 text-cyan-300 hover:bg-accent/20 transition-all shadow"
+                  >
+                    View on GitHub ↗
+                  </a>
+                </div>
               </div>
-              <h3 class="text-2xl font-bold text-white">
-                Animation and Collision Physics
-              </h3>
-              <p class="text-slate-300 leading-relaxed">
-                Skeletal character animation with pose blending and rigid body
-                collision response for spheres and dodecahedrons.
-              </p>
-            </div>
-          </article>
+            </article>
 
-          <!-- Project: Mesh Processing & Repair -->
-          <article
-            data-category="physics"
-            class="project-card viewport-frame rounded-2xl bg-surface/60 p-6 sm:p-8 grid lg:grid-cols-12 gap-8 items-center"
-          >
-            <div class="lg:col-span-6 lg:order-2">
-              <div
-                class="media-shell rounded-xl overflow-hidden bg-black border border-white/10"
-              >
-                <video
-                  controls
-                  autoplay
-                  muted
-                  loop
-                  playsinline
-                  class="w-full h-auto block"
+            <!-- Vulkan Renderer -->
+            <article
+              data-category="vulkan rendering"
+              class="project-card viewport-frame rounded-2xl bg-surface/75 backdrop-blur-md p-6 sm:p-8 grid lg:grid-cols-12 gap-8 items-center"
+            >
+              <div class="lg:col-span-6 lg:order-2">
+                <div
+                  class="media-shell rounded-xl overflow-hidden bg-black border border-white/10"
                 >
-                  <source src="assets/videos/hamishslow.mp4" type="video/mp4" />
-                </video>
+                  <video
+                    controls
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    class="w-full h-auto block"
+                  >
+                    <source src="assets/videos/vulkan.mp4" type="video/mp4" />
+                  </video>
+                </div>
               </div>
-            </div>
-            <div class="lg:col-span-6 lg:order-1 space-y-4">
-              <div class="font-mono text-xs text-cyan-300">
-                GEOMETRY CLI // MANIFOLD TOOLS
+              <div class="lg:col-span-6 lg:order-1 space-y-4">
+                <div class="font-mono text-xs text-cyan-300">
+                  REAL-TIME PBR // DEFERRED SHADING
+                </div>
+                <h3 class="text-2xl font-bold text-white">Vulkan Renderer</h3>
+                <p class="text-slate-300 leading-relaxed">
+                  A high-performance real-time rendering application built from
+                  scratch in <span class="text-white">Vulkan</span>. Establishes
+                  complete rendering infrastructure including logical device
+                  selection, swapchains, framebuffers, and GLFW input handling.
+                </p>
+                <p class="text-slate-300 text-sm leading-relaxed">
+                  Features Cook-Torrance PBR shading (Beckmann NDF, Schlick
+                  Fresnel, Lambertian diffuse), alpha-masking pipelines, custom
+                  render-to-texture post-processing pixelation filters with
+                  subpass synchronization, and a 4-attachment G-buffer deferred
+                  shading pipeline to eliminate over-shading bottlenecks.
+                </p>
+                <div class="pt-2">
+                  <a
+                    href="https://github.com/trizyal"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 font-mono text-xs px-4 py-2.5 rounded-lg border border-accent/40 bg-accent/10 text-cyan-300 hover:bg-accent/20 transition-all shadow"
+                  >
+                    View on GitHub ↗
+                  </a>
+                </div>
               </div>
-              <h3 class="text-2xl font-bold text-white">
-                Mesh Processing and Repair
-              </h3>
-              <p class="text-slate-300 leading-relaxed">
-                CLI tools converting triangle soups to directed edges, manifold
-                testing, intersection detection, and automated
-                repair/simplification.
-              </p>
-            </div>
-          </article>
+            </article>
 
-          <!-- Project: Bezier Curve Calculator -->
-          <article
-            data-category="rendering"
-            class="project-card viewport-frame rounded-2xl bg-surface/60 p-6 sm:p-8 grid lg:grid-cols-12 gap-8 items-center"
-          >
-            <div class="lg:col-span-6">
-              <div
-                class="media-shell rounded-xl overflow-hidden bg-black border border-white/10"
-              >
-                <video
-                  controls
-                  autoplay
-                  muted
-                  loop
-                  playsinline
-                  class="w-full h-auto block"
+            <!-- Animation & Collision Physics -->
+            <article
+              data-category="physics"
+              class="project-card viewport-frame rounded-2xl bg-surface/75 backdrop-blur-md p-6 sm:p-8 grid lg:grid-cols-12 gap-8 items-center"
+            >
+              <div class="lg:col-span-6">
+                <div
+                  class="media-shell rounded-xl overflow-hidden bg-black border border-white/10"
                 >
-                  <source src="assets/videos/bezier.mp4" type="video/mp4" />
-                </video>
+                  <video
+                    controls
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    class="w-full h-auto block"
+                  >
+                    <source
+                      src="assets/videos/animation_collision.mp4"
+                      type="video/mp4"
+                    />
+                  </video>
+                </div>
               </div>
-            </div>
-            <div class="lg:col-span-6 space-y-4">
-              <div class="font-mono text-xs text-cyan-300">
-                SOFTWARE RASTERIZER
+              <div class="lg:col-span-6 space-y-4">
+                <div class="font-mono text-xs text-cyan-300">
+                  SKELETAL ANIMATION // RIGID BODIES
+                </div>
+                <h3 class="text-2xl font-bold text-white">
+                  Animation and Collision Physics
+                </h3>
+                <p class="text-slate-300 leading-relaxed">
+                  Engineered skeletal character rendering pipeline featuring
+                  per-frame joint rotation animations and smooth pose
+                  interpolation to transition realistically between locomotion
+                  states (start/stop/run).
+                </p>
+                <p class="text-slate-300 text-sm leading-relaxed">
+                  Coupled with a custom rigid-body collision response system for
+                  spheres and dodecahedrons, computing contact impulses, surface
+                  bounce directions, and full angular velocity calculations.
+                </p>
+                <div class="pt-2">
+                  <a
+                    href="https://github.com/trizyal"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 font-mono text-xs px-4 py-2.5 rounded-lg border border-accent/40 bg-accent/10 text-cyan-300 hover:bg-accent/20 transition-all shadow"
+                  >
+                    View on GitHub ↗
+                  </a>
+                </div>
               </div>
-              <h3 class="text-2xl font-bold text-white">
-                Bézier Curve Calculator and Visualiser
-              </h3>
-              <p class="text-slate-300 leading-relaxed">
-                Rasterizer built from a single-pixel function implementing de
-                Casteljau's algorithm, control nets, and projection matrices.
-              </p>
-            </div>
-          </article>
+            </article>
 
-          <!-- Project: Spaceship Demo -->
-          <article
-            data-category="rendering"
-            class="project-card viewport-frame rounded-2xl bg-surface/60 p-6 sm:p-8 grid lg:grid-cols-12 gap-8 items-center"
-          >
-            <div class="lg:col-span-6 lg:order-2">
-              <div
-                class="media-shell rounded-xl overflow-hidden bg-black border border-white/10"
-              >
-                <video
-                  controls
-                  autoplay
-                  muted
-                  loop
-                  playsinline
-                  class="w-full h-auto block"
+            <!-- Mesh Processing & Repair -->
+            <article
+              data-category="physics"
+              class="project-card viewport-frame rounded-2xl bg-surface/75 backdrop-blur-md p-6 sm:p-8 grid lg:grid-cols-12 gap-8 items-center"
+            >
+              <div class="lg:col-span-6 lg:order-2">
+                <div
+                  class="media-shell rounded-xl overflow-hidden bg-black border border-white/10"
                 >
-                  <source src="assets/videos/rocket.mp4" type="video/mp4" />
-                </video>
+                  <video
+                    controls
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    class="w-full h-auto block"
+                  >
+                    <source
+                      src="assets/videos/hamishslow.mp4"
+                      type="video/mp4"
+                    />
+                  </video>
+                </div>
               </div>
-            </div>
-            <div class="lg:col-span-6 lg:order-1 space-y-4">
-              <div class="font-mono text-xs text-cyan-300">
-                OPENGL // 3D SCENE
+              <div class="lg:col-span-6 lg:order-1 space-y-4">
+                <div class="font-mono text-xs text-cyan-300">
+                  GEOMETRY CLI // MANIFOLD TOOLS
+                </div>
+                <h3 class="text-2xl font-bold text-white">
+                  Mesh Processing and Repair
+                </h3>
+                <p class="text-slate-300 leading-relaxed">
+                  A robust suite of command-line geometry processing utilities.
+                  Parses raw triangle soups into indexed face sets and advanced
+                  directed-edge data structures.
+                </p>
+                <p class="text-slate-300 text-sm leading-relaxed">
+                  Provides automated topological manifold verification,
+                  self-intersection and pinch-point detection, and algorithmic
+                  mesh repair and simplification tools.
+                </p>
+                <div class="pt-2">
+                  <a
+                    href="https://github.com/trizyal"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 font-mono text-xs px-4 py-2.5 rounded-lg border border-accent/40 bg-accent/10 text-cyan-300 hover:bg-accent/20 transition-all shadow"
+                  >
+                    View on GitHub ↗
+                  </a>
+                </div>
               </div>
-              <h3 class="text-2xl font-bold text-white">
-                Spaceship Demo in OpenGL
-              </h3>
-              <p class="text-slate-300 leading-relaxed">
-                Interactive 3D computer graphics scene built in OpenGL featuring
-                hierarchical transformations and lighting.
-              </p>
-            </div>
-          </article>
+            </article>
+
+            <!-- Bezier Curve Calculator -->
+            <article
+              data-category="rendering"
+              class="project-card viewport-frame rounded-2xl bg-surface/75 backdrop-blur-md p-6 sm:p-8 grid lg:grid-cols-12 gap-8 items-center"
+            >
+              <div class="lg:col-span-6">
+                <div
+                  class="media-shell rounded-xl overflow-hidden bg-black border border-white/10"
+                >
+                  <video
+                    controls
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    class="w-full h-auto block"
+                  >
+                    <source src="assets/videos/bezier.mp4" type="video/mp4" />
+                  </video>
+                </div>
+              </div>
+              <div class="lg:col-span-6 space-y-4">
+                <div class="font-mono text-xs text-cyan-300">
+                  SOFTWARE RASTERIZER
+                </div>
+                <h3 class="text-2xl font-bold text-white">
+                  Bézier Curve Calculator and Visualiser
+                </h3>
+                <p class="text-slate-300 leading-relaxed">
+                  A software rasterizer built entirely from a single-pixel
+                  drawing function. Implements custom line rasterization
+                  algorithms, 3D coordinate axes, axial planes, and
+                  transformation matrices supporting both orthographic and
+                  perspective projections.
+                </p>
+                <p class="text-slate-300 text-sm leading-relaxed">
+                  Evaluates parametric curves and surfaces via de Casteljau's
+                  algorithm, rendering control nets with custom sphere
+                  primitives and modulating red/blue color channels with surface
+                  parameters
+                  <span class="font-mono text-cyan-200">(s, t)</span>.
+                </p>
+                <div class="pt-2">
+                  <a
+                    href="https://github.com/trizyal"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 font-mono text-xs px-4 py-2.5 rounded-lg border border-accent/40 bg-accent/10 text-cyan-300 hover:bg-accent/20 transition-all shadow"
+                  >
+                    View on GitHub ↗
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Spaceship Demo -->
+            <article
+              data-category="rendering"
+              class="project-card viewport-frame rounded-2xl bg-surface/75 backdrop-blur-md p-6 sm:p-8 grid lg:grid-cols-12 gap-8 items-center"
+            >
+              <div class="lg:col-span-6 lg:order-2">
+                <div
+                  class="media-shell rounded-xl overflow-hidden bg-black border border-white/10"
+                >
+                  <video
+                    controls
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    class="w-full h-auto block"
+                  >
+                    <source src="assets/videos/rocket.mp4" type="video/mp4" />
+                  </video>
+                </div>
+              </div>
+              <div class="lg:col-span-6 lg:order-1 space-y-4">
+                <div class="font-mono text-xs text-cyan-300">
+                  OPENGL // 3D SCENE
+                </div>
+                <h3 class="text-2xl font-bold text-white">
+                  Spaceship Demo in OpenGL
+                </h3>
+                <p class="text-slate-300 leading-relaxed">
+                  An interactive 3D computer graphics scene built in
+                  <span class="text-white">OpenGL</span>. Demonstrates core
+                  graphics concepts including hierarchical transformations, mesh
+                  loading, custom lighting formulations, and real-time camera
+                  controllers.
+                </p>
+                <div class="pt-2">
+                  <a
+                    href="https://github.com/trizyal"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 font-mono text-xs px-4 py-2.5 rounded-lg border border-accent/40 bg-accent/10 text-cyan-300 hover:bg-accent/20 transition-all shadow"
+                  >
+                    View on GitHub ↗
+                  </a>
+                </div>
+              </div>
+            </article>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Footer -->
-    <footer id="contact" class="border-t border-white/10 bg-surface/40 py-12">
-      <div
-        class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-400"
+      <!-- Footer -->
+      <footer
+        id="contact"
+        class="border-t border-white/10 bg-surface/60 backdrop-blur-md py-12"
       >
-        <div class="font-mono text-xs">
-          &copy; <span id="year"></span> Tejaswa Rizyal // Red Kite Games
-          Engineer
+        <div
+          class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-400"
+        >
+          <div class="font-mono text-xs">
+            &copy; <span id="year"></span> Tejaswa Rizyal // Red Kite Games
+            Engineer
+          </div>
+          <div class="flex items-center gap-6 font-mono text-xs">
+            <a
+              href="https://github.com/trizyal"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-cyan-300 transition-colors"
+              >GitHub</a
+            >
+            <a
+              href="https://www.redkitegames.co.uk/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-cyan-300 transition-colors"
+              >Red Kite Games</a
+            >
+            <a href="#" class="hover:text-cyan-300 transition-colors"
+              >Back to Top ↑</a
+            >
+          </div>
         </div>
-        <div class="flex items-center gap-6 font-mono text-xs">
-          <a
-            href="https://github.com/trizyal"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="hover:text-cyan-300 transition-colors"
-            >GitHub</a
-          >
-          <a
-            href="https://www.redkitegames.co.uk/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="hover:text-cyan-300 transition-colors"
-            >Red Kite Games</a
-          >
-          <a href="#" class="hover:text-cyan-300 transition-colors"
-            >Back to Top ↑</a
-          >
-        </div>
-      </div>
-    </footer>
+      </footer>
+    </div>
+    <!-- End of site content wrapper -->
 
     <script src="main.js"></script>
   </body>
