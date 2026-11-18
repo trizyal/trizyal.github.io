@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  initThemeToggle();
   initHeroCanvas();
   initRaytracerCarousel();
   initProjectFilters();
@@ -6,7 +7,35 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /**
- * Full-Viewport Brownian Mesh Field + Interactive Mouse Perturbation & Colored Trail
+ * Handle Light/Dark Mode Toggling
+ */
+function initThemeToggle() {
+  const toggleBtn = document.getElementById("theme-toggle");
+  if (!toggleBtn) return;
+
+  if (
+    localStorage.theme === "dark" ||
+    (!("theme" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches) ||
+    !("theme" in localStorage)
+  ) {
+    document.documentElement.classList.add("dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+  }
+
+  toggleBtn.addEventListener("click", () => {
+    document.documentElement.classList.toggle("dark");
+    if (document.documentElement.classList.contains("dark")) {
+      localStorage.theme = "dark";
+    } else {
+      localStorage.theme = "light";
+    }
+  });
+}
+
+/**
+ * Full-Viewport Brownian Mesh Field + Magical Pink Particle Trail
  */
 function initHeroCanvas() {
   const canvas = document.getElementById("hero-canvas");
@@ -28,92 +57,43 @@ function initHeroCanvas() {
   const SHAPES = {
     icosahedron: {
       vertices: [
-        [-1, t, 0],
-        [1, t, 0],
-        [-1, -t, 0],
-        [1, -t, 0],
-        [0, -1, t],
-        [0, 1, t],
-        [0, -1, -t],
-        [0, 1, -t],
-        [t, 0, -1],
-        [t, 0, 1],
-        [-t, 0, -1],
-        [-t, 0, 1],
+        [-1, t, 0], [1, t, 0], [-1, -t, 0], [1, -t, 0],
+        [0, -1, t], [0, 1, t], [0, -1, -t], [0, 1, -t],
+        [t, 0, -1], [t, 0, 1], [-t, 0, -1], [-t, 0, 1]
       ],
       edges: [
-        [0, 11],
-        [0, 5],
-        [0, 1],
-        [0, 7],
-        [0, 10],
-        [1, 5],
-        [5, 11],
-        [11, 10],
-        [10, 7],
-        [7, 1],
-        [3, 9],
-        [3, 4],
-        [3, 2],
-        [3, 6],
-        [3, 8],
-        [4, 9],
-        [2, 4],
-        [6, 2],
-        [8, 6],
-        [9, 8],
-        [1, 9],
-        [5, 4],
-        [11, 2],
-        [10, 6],
-        [7, 8],
+        [0, 11], [0, 5], [0, 1], [0, 7], [0, 10], [1, 5],
+        [5, 11], [11, 10], [10, 7], [7, 1], [3, 9], [3, 4],
+        [3, 2], [3, 6], [3, 8], [4, 9], [2, 4], [6, 2], [8, 6],
+        [9, 8], [1, 9], [5, 4], [11, 2], [10, 6], [7, 8]
       ],
     },
     octahedron: {
       vertices: [
-        [1.4, 0, 0],
-        [-1.4, 0, 0],
-        [0, 1.4, 0],
-        [0, -1.4, 0],
-        [0, 0, 1.4],
-        [0, 0, -1.4],
+        [1.4, 0, 0], [-1.4, 0, 0], [0, 1.4, 0],
+        [0, -1.4, 0], [0, 0, 1.4], [0, 0, -1.4]
       ],
       edges: [
-        [0, 2],
-        [0, 3],
-        [0, 4],
-        [0, 5],
-        [1, 2],
-        [1, 3],
-        [1, 4],
-        [1, 5],
-        [2, 4],
-        [4, 3],
-        [3, 5],
-        [5, 2],
+        [0, 2], [0, 3], [0, 4], [0, 5],
+        [1, 2], [1, 3], [1, 4], [1, 5],
+        [2, 4], [4, 3], [3, 5], [5, 2]
       ],
     },
     tetrahedron: {
       vertices: [
-        [1.2, 1.2, 1.2],
-        [-1.2, -1.2, 1.2],
-        [-1.2, 1.2, -1.2],
-        [1.2, -1.2, -1.2],
+        [1.2, 1.2, 1.2], [-1.2, -1.2, 1.2],
+        [-1.2, 1.2, -1.2], [1.2, -1.2, -1.2]
       ],
       edges: [
-        [0, 1],
-        [0, 2],
-        [0, 3],
-        [1, 2],
-        [2, 3],
-        [3, 1],
+        [0, 1], [0, 2], [0, 3],
+        [1, 2], [2, 3], [3, 1]
       ],
     },
   };
 
   const shapeKeys = Object.keys(SHAPES);
 
-  // --- Mouse State & Colored Trail History ---
+  // --- Mouse State & Magical Particle Trail History ---
   const mouse = {
     x: null,
     y: null,
@@ -122,8 +102,7 @@ function initHeroCanvas() {
     active: false,
   };
 
-  const trail = [];
-  const MAX_TRAIL_AGE = 45;
+  const trailParticles = [];
 
   window.addEventListener("mousemove", (e) => {
     const newX = e.clientX;
@@ -137,12 +116,31 @@ function initHeroCanvas() {
     mouse.y = newY;
     mouse.active = true;
 
-    trail.push({
-      x: newX,
-      y: newY,
-      age: 0,
-      maxAge: MAX_TRAIL_AGE,
-    });
+    const particleShapes = ["heart", "star", "sparkle"];
+    const pinks = [
+      [255, 105, 180], // HotPink
+      [255, 20, 147],  // DeepPink
+      [255, 182, 193], // LightPink
+      [255, 192, 203], // Pink
+      [219, 39, 119],  // Deep Rose/Pink
+    ];
+
+    // Spawn 2 particles per mouse movement for a lush trail
+    for (let i = 0; i < 2; i++) {
+      trailParticles.push({
+        x: newX + (Math.random() - 0.5) * 20,
+        y: newY + (Math.random() - 0.5) * 20,
+        vx: (Math.random() - 0.5) * 1.5,
+        vy: (Math.random() - 0.5) * 1.5 - 0.5,
+        life: 0,
+        maxLife: 30 + Math.random() * 25,
+        shape: particleShapes[Math.floor(Math.random() * particleShapes.length)],
+        color: pinks[Math.floor(Math.random() * pinks.length)],
+        size: 5 + Math.random() * 9,
+        rot: Math.random() * Math.PI * 2,
+        rotSpeed: (Math.random() - 0.5) * 0.15,
+      });
+    }
   });
 
   window.addEventListener("mouseleave", () => {
@@ -226,7 +224,7 @@ function initHeroCanvas() {
       };
     }
 
-    draw() {
+    draw(isDark) {
       const projected = this.shape.vertices.map((v) => this.projectVertex(v));
 
       let highlight = 0;
@@ -235,10 +233,14 @@ function initHeroCanvas() {
         if (d < 210) highlight = 1 - d / 210;
       }
 
-      ctx.strokeStyle =
-        highlight > 0.05
-          ? `rgba(244, 114, 182, ${this.alpha + highlight * 0.35})`
-          : `rgba(59, 156, 186, ${this.alpha})`;
+      const baseCyan = isDark ? '59, 156, 186' : '14, 116, 144';
+      const highlightPink = isDark ? '244, 114, 182' : '219, 39, 119';
+      const fillCyan = isDark ? '56, 189, 248' : '2, 132, 199';
+      const fillAmber = isDark ? '251, 191, 36' : '217, 119, 6';
+
+      ctx.strokeStyle = highlight > 0.05
+          ? `rgba(${highlightPink}, ${this.alpha + highlight * 0.35})`
+          : `rgba(${baseCyan}, ${this.alpha})`;
 
       ctx.lineWidth = 1.1;
       ctx.beginPath();
@@ -248,10 +250,9 @@ function initHeroCanvas() {
       });
       ctx.stroke();
 
-      ctx.fillStyle =
-        highlight > 0.05
-          ? `rgba(251, 191, 36, ${0.45 + highlight * 0.5})`
-          : `rgba(56, 189, 248, ${this.alpha + 0.15})`;
+      ctx.fillStyle = highlight > 0.05
+          ? `rgba(${fillAmber}, ${0.45 + highlight * 0.5})`
+          : `rgba(${fillCyan}, ${this.alpha + 0.15})`;
 
       projected.forEach((p) => {
         ctx.beginPath();
@@ -261,39 +262,88 @@ function initHeroCanvas() {
     }
   }
 
-  // Spawn 24 floating meshes to cover the full website nicely
   const MESH_COUNT = 24;
   const meshes = Array.from({ length: MESH_COUNT }, () => new BrownianMesh());
 
-  function drawMouseTrail() {
-    for (let i = trail.length - 1; i >= 0; i--) {
-      trail[i].age++;
-      if (trail[i].age >= trail[i].maxAge) {
-        trail.splice(i, 1);
+  // --- Particle Drawing Helpers ---
+  function drawStar(ctx, size) {
+    const points = 5;
+    const outerRadius = size * 0.7;
+    const innerRadius = size * 0.3;
+    ctx.beginPath();
+    for (let i = 0; i < points * 2; i++) {
+      const radius = i % 2 === 0 ? outerRadius : innerRadius;
+      const angle = (i * Math.PI) / points - Math.PI / 2;
+      ctx.lineTo(Math.cos(angle) * radius, Math.sin(angle) * radius);
+    }
+    ctx.closePath();
+    ctx.fill();
+  }
+
+  function drawHeart(ctx, size) {
+    ctx.beginPath();
+    const topCurveHeight = size * 0.3;
+    ctx.moveTo(0, topCurveHeight);
+    ctx.bezierCurveTo(0, 0, -size / 2, 0, -size / 2, topCurveHeight);
+    ctx.bezierCurveTo(-size / 2, size / 2, 0, size * 0.8, 0, size);
+    ctx.bezierCurveTo(0, size * 0.8, size / 2, size / 2, size / 2, topCurveHeight);
+    ctx.bezierCurveTo(size / 2, 0, 0, 0, 0, topCurveHeight);
+    ctx.fill();
+  }
+
+  function drawSparkle(ctx, size) {
+    const s = size * 0.8;
+    ctx.beginPath();
+    ctx.moveTo(0, -s);
+    ctx.quadraticCurveTo(0, 0, s, 0);
+    ctx.quadraticCurveTo(0, 0, 0, s);
+    ctx.quadraticCurveTo(0, 0, -s, 0);
+    ctx.quadraticCurveTo(0, 0, 0, -s);
+    ctx.fill();
+  }
+
+  function drawMouseTrail(isDark) {
+    for (let i = trailParticles.length - 1; i >= 0; i--) {
+      const p = trailParticles[i];
+      p.life++;
+
+      if (p.life >= p.maxLife) {
+        trailParticles.splice(i, 1);
+        continue;
       }
+
+      p.x += p.vx;
+      p.y += p.vy;
+      p.rot += p.rotSpeed;
+
+      const lifeRatio = 1 - p.life / p.maxLife;
+      // Boost alpha for dark mode to make it brighter/more vivid
+      const baseAlpha = isDark ? Math.min(1, lifeRatio * 1.2) : lifeRatio * 0.9;
+
+      ctx.fillStyle = `rgba(${p.color[0]}, ${p.color[1]}, ${p.color[2]}, ${baseAlpha})`;
+      ctx.shadowBlur = isDark ? 18 : 12;
+      ctx.shadowColor = `rgba(${p.color[0]}, ${p.color[1]}, ${p.color[2]}, ${baseAlpha})`;
+
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot);
+
+      if (p.shape === "star") {
+        drawStar(ctx, p.size);
+      } else if (p.shape === "heart") {
+        ctx.translate(0, -p.size * 0.35); // Center the heart visually
+        drawHeart(ctx, p.size);
+      } else {
+        drawSparkle(ctx, p.size);
+      }
+
+      ctx.restore();
     }
 
-    if (trail.length < 2) return;
+    // Reset shadow so it doesn't affect other elements
+    ctx.shadowBlur = 0;
 
-    for (let i = 1; i < trail.length; i++) {
-      const p0 = trail[i - 1];
-      const p1 = trail[i];
-      const lifeRatio = 1 - p1.age / p1.maxAge;
-
-      const r = Math.round(245 - (1 - lifeRatio) * 15);
-      const g = Math.round(158 * lifeRatio + 65 * (1 - lifeRatio));
-      const b = Math.round(11 + (1 - lifeRatio) * 135);
-
-      ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${lifeRatio * 0.8})`;
-      ctx.lineWidth = Math.max(1, lifeRatio * 5);
-      ctx.lineCap = "round";
-
-      ctx.beginPath();
-      ctx.moveTo(p0.x, p0.y);
-      ctx.lineTo(p1.x, p1.y);
-      ctx.stroke();
-    }
-
+    // Soft glowing cursor orb
     if (mouse.active && mouse.x !== null) {
       const grad = ctx.createRadialGradient(
         mouse.x,
@@ -301,13 +351,19 @@ function initHeroCanvas() {
         0,
         mouse.x,
         mouse.y,
-        28,
+        35
       );
-      grad.addColorStop(0, "rgba(251, 191, 36, 0.4)");
-      grad.addColorStop(1, "rgba(236, 72, 153, 0)");
+      if (isDark) {
+        grad.addColorStop(0, "rgba(255, 105, 180, 0.4)");
+        grad.addColorStop(1, "rgba(236, 72, 153, 0)");
+      } else {
+        grad.addColorStop(0, "rgba(217, 119, 6, 0.3)");
+        grad.addColorStop(1, "rgba(219, 39, 119, 0)");
+      }
+
       ctx.fillStyle = grad;
       ctx.beginPath();
-      ctx.arc(mouse.x, mouse.y, 28, 0, Math.PI * 2);
+      ctx.arc(mouse.x, mouse.y, 35, 0, Math.PI * 2);
       ctx.fill();
     }
   }
@@ -318,12 +374,14 @@ function initHeroCanvas() {
     mouse.vx *= 0.85;
     mouse.vy *= 0.85;
 
+    const isDark = document.documentElement.classList.contains("dark");
+
     for (const mesh of meshes) {
       mesh.update();
-      mesh.draw();
+      mesh.draw(isDark);
     }
 
-    drawMouseTrail();
+    drawMouseTrail(isDark);
 
     requestAnimationFrame(animate);
   }
@@ -375,7 +433,7 @@ function initProjectFilters() {
       cards.forEach((card) => {
         const categories = card.dataset.category.split(" ");
         const isMatch = filter === "all" || categories.includes(filter);
-        card.classList.toggle("hidden", !isMatch);
+        card.style.display = isMatch ? "grid" : "none";
       });
     });
   });
