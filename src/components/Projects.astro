@@ -1,0 +1,957 @@
+<!-- Projects & Tools Section -->
+<section id="projects" class="py-24">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+      <div>
+        <div class="font-mono text-xs text-accent tracking-widest uppercase mb-2">
+          04 // Portfolio Showcase
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-fascinate text-slate-900 dark:text-white">
+          Open Source &amp; Graphics
+        </h2>
+      </div>
+
+      <!-- Filter Bar -->
+      <div id="filter-bar" class="flex flex-wrap gap-2 font-mono text-xs">
+        <button
+          data-filter="all"
+          class="filter-btn active px-3.5 py-2 rounded-lg border transition-all"
+        >
+          All
+        </button>
+        <button
+          data-filter="games-engines"
+          class="filter-btn px-3.5 py-2 rounded-lg border transition-all"
+        >
+          Games and Engines
+        </button>
+        <button
+          data-filter="visualizers"
+          class="filter-btn px-3.5 py-2 rounded-lg border transition-all"
+        >
+          Visualizers
+        </button>
+        <button
+          data-filter="tools"
+          class="filter-btn px-3.5 py-2 rounded-lg border transition-all"
+        >
+          Tools and Utility
+        </button>
+      </div>
+    </div>
+
+    <!-- Projects Grid -->
+    <div id="projects-grid" class="space-y-16">
+      <!-- GitReckd -->
+      <article
+        data-category="tools"
+        class="project-card viewport-frame rounded-2xl bg-white/60 dark:bg-surface/50 backdrop-blur-md p-6 sm:p-8 grid lg:grid-cols-12 gap-8 items-center"
+      >
+        <div class="lg:col-span-6">
+          <div class="media-shell rounded-xl overflow-hidden bg-slate-900 dark:bg-black/80 border border-slate-300 dark:border-white/10 relative h-full min-h-[280px]">
+            <img
+              src="https://placehold.co/800x450/11151f/38bdf8?text=GitReckd+Desktop+Workspace"
+              alt="GitReckd Placeholder"
+              class="w-full h-full object-cover opacity-90 dark:opacity-100"
+            />
+          </div>
+        </div>
+        <div class="lg:col-span-6 space-y-4">
+          <div class="flex flex-wrap items-center gap-2 font-mono text-xs text-cyan-700 dark:text-cyan-300">
+            <span class="flex items-center gap-1">
+              <i
+                class="w-3.5 h-3.5 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/rust.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/rust.svg');"
+              ></i>{" "}
+              RUST
+            </span>
+            <span class="text-slate-400 dark:text-slate-600">•</span>
+            <span class="flex items-center gap-1">
+              <i
+                class="w-3.5 h-3.5 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/tauri.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/tauri.svg');"
+              ></i>{" "}
+              TAURI
+            </span>
+            <span class="text-slate-400 dark:text-slate-600">•</span>
+            <span class="flex items-center gap-1">
+              <i
+                class="w-3.5 h-3.5 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/react.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/react.svg');"
+              ></i>{" "}
+              REACT
+            </span>
+          </div>
+          <h3 class="text-2xl font-bold text-slate-900 dark:text-white">
+            GitReckd Workspace (WIP)
+          </h3>
+          <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm">
+            A high-performance desktop Git and repository management workspace
+            merging native Git speed with Perforce-style workflows. Designed for
+            complex codebases in a minimal dark-mode UI.
+          </p>
+
+          <!-- Platform Tags -->
+          <div class="flex flex-wrap gap-2 pt-3 font-mono text-[10px]">
+            <span class="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-300">
+              <i
+                class="w-3 h-3 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/windows.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/windows.svg');"
+              ></i>{" "}
+              Windows
+            </span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Forge -->
+      <article
+        data-category="tools"
+        class="project-card viewport-frame rounded-2xl bg-white/60 dark:bg-surface/50 backdrop-blur-md p-6 sm:p-8 grid lg:grid-cols-12 gap-8 items-center"
+      >
+        <div class="lg:col-span-6 lg:order-2 h-full">
+          <!-- Terminal Window Simulator -->
+          <div class="media-shell rounded-xl overflow-hidden bg-[#0d1117] border border-slate-700/60 dark:border-white/10 flex flex-col h-full shadow-2xl relative">
+            <!-- Terminal Header Bar -->
+            <div class="flex items-center px-4 py-2.5 bg-slate-800/50 border-b border-slate-700/60">
+              <div class="flex gap-1.5">
+                <div class="w-3 h-3 rounded-full bg-red-500/90"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-500/90"></div>
+                <div class="w-3 h-3 rounded-full bg-green-500/90"></div>
+              </div>
+              <div class="mx-auto font-mono text-[10px] sm:text-xs text-slate-400 font-medium tracking-wider">
+                bash
+              </div>
+            </div>
+            <!-- Terminal Body -->
+            <div class="p-4 md:p-5 overflow-x-auto w-full">
+              <pre class="font-mono text-[10px] sm:text-[11px] xl:text-xs text-slate-300 leading-snug"><span class="text-emerald-400 font-medium">user@sys</span><span class="text-white">:</span><span class="text-blue-400 font-medium">~</span>$ forge --about
+
+<span class="text-orange-500 font-bold">  __
+ / _|  ___   _ __   __ _   ___
+| |_  / _ \ | '__| / _' | / _ \
+|  _|| (_) || |   | (_| ||  __/
+|_|   \___/ |_|    \__, | \___|
+                   |___/</span>
+
+Forge is a workspace orchestration engine.
+It allows you to visually arrange your windows,
+save the layout, and magically snap them all
+back into place.
+
+<span class="text-slate-400">Repository:</span> <a href="https://github.com/trizyal/forge" target="_blank" class="text-cyan-400 hover:underline">github.com/trizyal/forge</a>
+
+<span class="text-slate-400">License:</span> GPL-3.0 License
+forge Copyright (C) 2026 trizyal
+This program comes with ABSOLUTELY NO WARRANTY
+This is free software, and you are welcome to redistribute it
+under certain conditions. For details, see gnu.org/licenses/</pre>
+            </div>
+          </div>
+        </div>
+        <div class="lg:col-span-6 lg:order-1 space-y-4">
+          <div class="flex flex-wrap items-center gap-2 font-mono text-xs text-cyan-700 dark:text-cyan-300">
+            <span class="flex items-center gap-1">
+              <i
+                class="w-3.5 h-3.5 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/go.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/go.svg');"
+              ></i>{" "}
+              GO
+            </span>
+            <span class="text-slate-400 dark:text-slate-600">•</span>
+            <span>WINDOW MANAGER</span>
+          </div>
+          <h3 class="text-2xl font-bold text-slate-900 dark:text-white">
+            Forge Workspace &amp; Window Manager
+          </h3>
+          <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+            <strong class="text-slate-900 dark:text-white">Forge</strong> is a
+            high-performance workspace and window management utility engineered
+            in <span class="text-slate-900 dark:text-white">Go</span>. It
+            currently runs on Windows and streamlines complex multi-repo
+            development sessions.
+          </p>
+          <!-- Platform Tags -->
+          <div class="flex flex-wrap gap-2 pt-3 font-mono text-[10px]">
+            <span class="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-300">
+              <i
+                class="w-3 h-3 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/windows.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/windows.svg');"
+              ></i>{" "}
+              Windows
+            </span>
+          </div>
+          <div class="pt-2 font-mono">
+            <a
+              href="https://github.com/trizyal/forge"
+              target="_blank"
+              class="inline-flex items-center gap-2 font-mono text-xs px-4 py-2.5 rounded-lg border border-accent/40 bg-accent/10 text-cyan-700 dark:text-cyan-300 hover:bg-accent/20 transition-all shadow"
+            >
+              View on GitHub ↗
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Anvil-VK -->
+      <article
+        data-category="games-engines"
+        class="project-card viewport-frame rounded-2xl bg-white/60 dark:bg-surface/50 backdrop-blur-md p-6 sm:p-8 grid lg:grid-cols-12 gap-8 items-center"
+      >
+        <div class="lg:col-span-6">
+          <div class="media-shell rounded-xl overflow-hidden bg-slate-100 dark:bg-black/80 border border-slate-300 dark:border-white/10 p-8 flex flex-col items-center justify-center min-h-[280px] text-center space-y-3">
+            <div class="w-16 h-16 rounded-2xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-700 dark:text-cyan-300 font-mono text-xl font-bold shadow-lg">
+              VK
+            </div>
+            <div class="font-mono text-sm font-semibold text-slate-900 dark:text-white">
+              Anvil-VK Renderer
+            </div>
+            <div class="font-mono text-xs text-slate-500 dark:text-slate-400">
+              C++ Vulkan Template &amp; Rendergraph
+            </div>
+          </div>
+        </div>
+        <div class="lg:col-span-6 space-y-4">
+          <div class="flex flex-wrap items-center gap-2 font-mono text-xs text-cyan-700 dark:text-cyan-300">
+            <span class="flex items-center gap-1">
+              <i
+                class="w-3.5 h-3.5 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/cplusplus.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/cplusplus.svg');"
+              ></i>{" "}
+              C++
+            </span>
+            <span class="text-slate-400 dark:text-slate-600">•</span>
+            <span class="flex items-center gap-1">
+              <i
+                class="w-3.5 h-3.5 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/vulkan.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/vulkan.svg');"
+              ></i>{" "}
+              VULKAN
+            </span>
+            <span class="text-slate-400 dark:text-slate-600">•</span>
+            <span>RENDERGRAPH</span>
+          </div>
+          <h3 class="text-2xl font-bold text-slate-900 dark:text-white">
+            Anvil-VK Renderer Template
+          </h3>
+          <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+            <strong class="text-slate-900 dark:text-white">Anvil-VK</strong> is
+            a modular C++ Vulkan renderer template designed to accelerate
+            graphics prototyping on Windows. It includes foundational device
+            initialization utilities, robust frame synchronization helpers, and
+            an extensible rendergraph.
+          </p>
+          <!-- Platform Tags -->
+          <div class="flex flex-wrap gap-2 pt-3 font-mono text-[10px]">
+            <span class="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-300">
+              <i
+                class="w-3 h-3 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/windows.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/windows.svg');"
+              ></i>{" "}
+              Windows
+            </span>
+          </div>
+          <div class="pt-2 font-mono">
+            <a
+              href="https://github.com/trizyal/anvil-vk"
+              target="_blank"
+              class="inline-flex items-center gap-2 font-mono text-xs px-4 py-2.5 rounded-lg border border-accent/40 bg-accent/10 text-cyan-700 dark:text-cyan-300 hover:bg-accent/20 transition-all shadow"
+            >
+              View on GitHub ↗
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Lucid (Game Jam) -->
+      <article
+        data-category="games-engines"
+        class="project-card viewport-frame rounded-2xl bg-white/60 dark:bg-surface/50 backdrop-blur-md p-6 sm:p-8 grid lg:grid-cols-12 gap-8 items-center"
+      >
+        <div class="lg:col-span-6 lg:order-2">
+          <div class="media-shell rounded-xl overflow-hidden bg-slate-100 dark:bg-black/80 border border-slate-300 dark:border-white/10 p-8 flex flex-col items-center justify-center min-h-[280px] text-center space-y-3 relative">
+            <img
+              src="https://placehold.co/800x450/11151f/a855f7?text=Lucid+Game+Jam"
+              alt="Lucid Game Jam"
+              class="absolute inset-0 w-full h-full object-cover opacity-60 dark:opacity-50"
+            />
+            <div class="relative z-10 w-16 h-16 rounded-2xl bg-purple-500/20 border border-purple-500/40 flex items-center justify-center text-purple-700 dark:text-purple-300 font-mono text-xl font-bold shadow-lg">
+              LC
+            </div>
+            <div class="relative z-10 font-mono text-sm font-semibold text-slate-900 dark:text-white">
+              Lucid Game Jam
+            </div>
+          </div>
+        </div>
+        <div class="lg:col-span-6 lg:order-1 space-y-4">
+          <div class="flex flex-wrap items-center gap-2 font-mono text-xs text-purple-700 dark:text-purple-400">
+            <span class="flex items-center gap-1">
+              <i
+                class="w-3.5 h-3.5 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/cplusplus.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/cplusplus.svg');"
+              ></i>{" "}
+              C++
+            </span>
+            <span class="text-slate-400 dark:text-slate-600">•</span>
+            <span>GAME JAM</span>
+            <span class="text-slate-400 dark:text-slate-600">•</span>
+            <span>RENDERING</span>
+          </div>
+          <h3 class="text-2xl font-bold text-slate-900 dark:text-white">
+            Lucid (Game Jam Project)
+          </h3>
+          <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+            Developed collaboratively during a game jam with friends,{" "}
+            <strong class="text-slate-900 dark:text-white">Lucid</strong>{" "}
+            explores surreal mechanics and atmospheric pacing. I took technical
+            ownership of core rendering implementations, writing custom shaders,
+            and responsive gameplay loops.
+          </p>
+          <div class="pt-2 font-mono">
+            <a
+              href="https://xj-project.itch.io/lucid"
+              target="_blank"
+              class="inline-flex items-center gap-2 font-mono text-xs px-4 py-2.5 rounded-lg border border-purple-500/40 bg-purple-500/10 text-purple-700 dark:text-purple-300 hover:bg-purple-500/20 transition-all shadow"
+            >
+              Play on Itch.io ↗
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Axiom Swerve -->
+      <article
+        data-category="games-engines"
+        class="project-card viewport-frame rounded-2xl bg-white/60 dark:bg-surface/50 backdrop-blur-md p-6 sm:p-8 grid lg:grid-cols-12 gap-8 items-center"
+      >
+        <div class="lg:col-span-6">
+          <div class="media-shell rounded-xl overflow-hidden bg-slate-900 dark:bg-black border border-slate-300 dark:border-white/10 aspect-video flex items-center justify-center">
+            <video
+              controls
+              autoplay
+              muted
+              loop
+              playsinline
+              class="w-full h-auto block opacity-90 dark:opacity-100"
+            >
+              <source src="assets/videos/axiom_swerve.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+        <div class="lg:col-span-6 space-y-4">
+          <div class="flex flex-wrap items-center gap-2 font-mono text-xs text-cyan-700 dark:text-cyan-300">
+            <span class="flex items-center gap-1">
+              <i
+                class="w-3.5 h-3.5 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/cplusplus.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/cplusplus.svg');"
+              ></i>{" "}
+              C++
+            </span>
+            <span class="text-slate-400 dark:text-slate-600">•</span>
+            <span>CUSTOM ENGINE</span>
+          </div>
+          <h3 class="text-2xl font-bold text-slate-900 dark:text-white">
+            Axiom Swerve
+          </h3>
+          <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+            Built alongside a peer using our own custom-engineered game engine.
+            Designed for zero wait-time stimulation, integrating dynamic
+            screen-space post-processing powerups.
+          </p>
+          <div class="flex flex-wrap gap-2 pt-3 font-mono text-[10px]">
+            <span class="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-300">
+              <i
+                class="w-3 h-3 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linux.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linux.svg');"
+              ></i>{" "}
+              Linux
+            </span>
+            <span class="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-300">
+              <i
+                class="w-3 h-3 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/fedora.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/fedora.svg');"
+              ></i>{" "}
+              Fedora
+            </span>
+            <span class="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-300">
+              <i
+                class="w-3 h-3 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/redhat.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/redhat.svg');"
+              ></i>{" "}
+              Red Hat
+            </span>
+            <span class="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-300">
+              <i
+                class="w-3 h-3 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/ubuntu.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/ubuntu.svg');"
+              ></i>{" "}
+              Ubuntu
+            </span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Ubiquitous Reality -->
+      <article
+        data-category="games-engines"
+        class="project-card viewport-frame rounded-2xl bg-white/60 dark:bg-surface/50 backdrop-blur-md p-6 sm:p-8 grid lg:grid-cols-12 gap-8 items-center"
+      >
+        <div class="lg:col-span-6 lg:order-2">
+          <div class="media-shell rounded-xl overflow-hidden bg-slate-900 dark:bg-black border border-slate-300 dark:border-white/10 aspect-video flex items-center justify-center">
+            <video
+              controls
+              autoplay
+              muted
+              loop
+              playsinline
+              class="w-full h-auto block opacity-90 dark:opacity-100"
+            >
+              <source src="assets/videos/ubqr.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+        <div class="lg:col-span-6 lg:order-1 space-y-4">
+          <div class="flex flex-wrap items-center gap-2 font-mono text-xs text-cyan-700 dark:text-cyan-300">
+            <span class="flex items-center gap-1">
+              <i
+                class="w-3.5 h-3.5 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/cplusplus.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/cplusplus.svg');"
+              ></i>{" "}
+              C++
+            </span>
+            <span class="text-slate-400 dark:text-slate-600">•</span>
+            <span class="flex items-center gap-1">
+              <i
+                class="w-3.5 h-3.5 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/vulkan.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/vulkan.svg');"
+              ></i>{" "}
+              VULKAN
+            </span>
+            <span class="text-slate-400 dark:text-slate-600">•</span>
+            <span>ECS</span>
+          </div>
+          <h3 class="text-2xl font-bold text-slate-900 dark:text-white">
+            Ubiquitous Reality, a game engine
+          </h3>
+          <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+            A custom-built game engine architected to unify complex rendering
+            effects with seamless gameplay loops. I took direct ownership of the
+            renderer subsystem (Vulkan loader, pipeline creator).
+          </p>
+          <div class="flex flex-wrap gap-2 pt-3 font-mono text-[10px]">
+            <span class="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-300">
+              <i
+                class="w-3 h-3 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linux.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linux.svg');"
+              ></i>{" "}
+              Linux
+            </span>
+            <span class="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-300">
+              <i
+                class="w-3 h-3 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/fedora.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/fedora.svg');"
+              ></i>{" "}
+              Fedora
+            </span>
+            <span class="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-300">
+              <i
+                class="w-3 h-3 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/redhat.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/redhat.svg');"
+              ></i>{" "}
+              Red Hat
+            </span>
+            <span class="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-300">
+              <i
+                class="w-3 h-3 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/ubuntu.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/ubuntu.svg');"
+              ></i>{" "}
+              Ubuntu
+            </span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Raytracer -->
+      <article
+        data-category="visualizers"
+        class="project-card viewport-frame rounded-2xl bg-white/60 dark:bg-surface/50 backdrop-blur-md p-6 sm:p-8 grid lg:grid-cols-12 gap-8 items-center"
+      >
+        <div class="lg:col-span-6">
+          <div
+            id="raytracer-carousel"
+            class="relative rounded-xl overflow-hidden bg-slate-900 dark:bg-black border border-slate-300 dark:border-white/10 aspect-video flex items-center justify-center"
+          >
+            <img
+              src="assets/images/raytracer.png"
+              alt="Raytracer Primary"
+              class="carousel-slide active w-full h-auto opacity-90 dark:opacity-80"
+            />
+            <img
+              src="assets/images/fresnelrefraction.png"
+              alt="Fresnel Refraction"
+              class="carousel-slide w-full h-auto hidden opacity-90 dark:opacity-80"
+            />
+            <img
+              src="assets/images/shadows.png"
+              alt="Raytraced Shadows"
+              class="carousel-slide w-full h-auto hidden opacity-90 dark:opacity-80"
+            />
+            <button
+              type="button"
+              id="carousel-prev"
+              class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-slate-800/80 dark:bg-obsidian/80 text-white flex items-center justify-center"
+            >
+              ❮
+            </button>
+            <button
+              type="button"
+              id="carousel-next"
+              class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-slate-800/80 dark:bg-obsidian/80 text-white flex items-center justify-center"
+            >
+              ❯
+            </button>
+            <div
+              id="carousel-counter"
+              class="absolute bottom-3 right-3 px-2 py-1 rounded bg-slate-800/80 dark:bg-obsidian/80 font-mono text-xs text-cyan-300"
+            >
+              1 / 3
+            </div>
+          </div>
+        </div>
+        <div class="lg:col-span-6 space-y-4">
+          <div class="flex flex-wrap items-center gap-2 font-mono text-xs text-cyan-700 dark:text-cyan-300">
+            <span class="flex items-center gap-1">
+              <i
+                class="w-3.5 h-3.5 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/cplusplus.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/cplusplus.svg');"
+              ></i>{" "}
+              C++
+            </span>
+            <span class="text-slate-400 dark:text-slate-600">•</span>
+            <span>CPU RAYTRACING</span>
+          </div>
+          <h3 class="text-2xl font-bold text-slate-900 dark:text-white">
+            Raytracer with Optical Physics
+          </h3>
+          <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+            A physically-based CPU raytracer designed to simulate complex
+            optical phenomena. Includes hard shadow rays to eliminate acne,
+            recursive reflection, Snell's Law refraction, and Beer's Law volume
+            absorption.
+          </p>
+          <div class="flex flex-wrap gap-2 pt-3 font-mono text-[10px]">
+            <span class="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-300">
+              <i
+                class="w-3 h-3 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linux.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linux.svg');"
+              ></i>{" "}
+              Linux
+            </span>
+            <span class="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-300">
+              <i
+                class="w-3 h-3 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/fedora.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/fedora.svg');"
+              ></i>{" "}
+              Fedora
+            </span>
+            <span class="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-300">
+              <i
+                class="w-3 h-3 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/redhat.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/redhat.svg');"
+              ></i>{" "}
+              Red Hat
+            </span>
+            <span class="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-300">
+              <i
+                class="w-3 h-3 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/ubuntu.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/ubuntu.svg');"
+              ></i>{" "}
+              Ubuntu
+            </span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Vulkan Renderer -->
+      <article
+        data-category="visualizers"
+        class="project-card viewport-frame rounded-2xl bg-white/60 dark:bg-surface/50 backdrop-blur-md p-6 sm:p-8 grid lg:grid-cols-12 gap-8 items-center"
+      >
+        <div class="lg:col-span-6 lg:order-2">
+          <div class="media-shell rounded-xl overflow-hidden bg-slate-900 dark:bg-black border border-slate-300 dark:border-white/10 aspect-video flex items-center justify-center">
+            <video
+              controls
+              autoplay
+              muted
+              loop
+              playsinline
+              class="w-full h-auto block opacity-90 dark:opacity-100"
+            >
+              <source src="assets/videos/vulkan.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+        <div class="lg:col-span-6 lg:order-1 space-y-4">
+          <div class="flex flex-wrap items-center gap-2 font-mono text-xs text-cyan-700 dark:text-cyan-300">
+            <span class="flex items-center gap-1">
+              <i
+                class="w-3.5 h-3.5 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/cplusplus.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/cplusplus.svg');"
+              ></i>{" "}
+              C++
+            </span>
+            <span class="text-slate-400 dark:text-slate-600">•</span>
+            <span class="flex items-center gap-1">
+              <i
+                class="w-3.5 h-3.5 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/vulkan.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/vulkan.svg');"
+              ></i>{" "}
+              VULKAN
+            </span>
+            <span class="text-slate-400 dark:text-slate-600">•</span>
+            <span>DEFERRED SHADING</span>
+          </div>
+          <h3 class="text-2xl font-bold text-slate-900 dark:text-white">
+            Vulkan Renderer
+          </h3>
+          <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+            A high-performance real-time rendering app built in{" "}
+            <span class="text-slate-900 dark:text-white">Vulkan</span>. Features
+            Cook-Torrance PBR shading, alpha-masking, and a 4-attachment
+            G-buffer deferred pipeline.
+          </p>
+          <div class="flex flex-wrap gap-2 pt-3 font-mono text-[10px]">
+            <span class="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-300">
+              <i
+                class="w-3 h-3 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linux.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linux.svg');"
+              ></i>{" "}
+              Linux
+            </span>
+            <span class="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-300">
+              <i
+                class="w-3 h-3 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/fedora.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/fedora.svg');"
+              ></i>{" "}
+              Fedora
+            </span>
+            <span class="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-300">
+              <i
+                class="w-3 h-3 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/redhat.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/redhat.svg');"
+              ></i>{" "}
+              Red Hat
+            </span>
+            <span class="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-300">
+              <i
+                class="w-3 h-3 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/ubuntu.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/ubuntu.svg');"
+              ></i>{" "}
+              Ubuntu
+            </span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Animation & Collision -->
+      <article
+        data-category="games-engines"
+        class="project-card viewport-frame rounded-2xl bg-white/60 dark:bg-surface/50 backdrop-blur-md p-6 sm:p-8 grid lg:grid-cols-12 gap-8 items-center"
+      >
+        <div class="lg:col-span-6">
+          <div class="media-shell rounded-xl overflow-hidden bg-slate-900 dark:bg-black border border-slate-300 dark:border-white/10 aspect-video flex items-center justify-center">
+            <video
+              controls
+              autoplay
+              muted
+              loop
+              playsinline
+              class="w-full h-auto block opacity-90 dark:opacity-100"
+            >
+              <source
+                src="assets/videos/animation_collision.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+        </div>
+        <div class="lg:col-span-6 space-y-4">
+          <div class="flex flex-wrap items-center gap-2 font-mono text-xs text-cyan-700 dark:text-cyan-300">
+            <span class="flex items-center gap-1">
+              <i
+                class="w-3.5 h-3.5 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/cplusplus.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/cplusplus.svg');"
+              ></i>{" "}
+              C++
+            </span>
+            <span class="text-slate-400 dark:text-slate-600">•</span>
+            <span>PHYSICS ENGINE</span>
+          </div>
+          <h3 class="text-2xl font-bold text-slate-900 dark:text-white">
+            Animation and Collision Physics
+          </h3>
+          <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+            Engineered skeletal character rendering pipeline featuring per-frame
+            joint rotation animations. Coupled with a custom rigid-body
+            collision response system for computing contact impulses and angular
+            velocity.
+          </p>
+          <div class="flex flex-wrap gap-2 pt-3 font-mono text-[10px]">
+            <span class="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-300">
+              <i
+                class="w-3 h-3 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linux.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linux.svg');"
+              ></i>{" "}
+              Linux
+            </span>
+            <span class="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-300">
+              <i
+                class="w-3 h-3 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/fedora.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/fedora.svg');"
+              ></i>{" "}
+              Fedora
+            </span>
+            <span class="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-300">
+              <i
+                class="w-3 h-3 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/redhat.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/redhat.svg');"
+              ></i>{" "}
+              Red Hat
+            </span>
+            <span class="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-300">
+              <i
+                class="w-3 h-3 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/ubuntu.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/ubuntu.svg');"
+              ></i>{" "}
+              Ubuntu
+            </span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Mesh Processing -->
+      <article
+        data-category="tools"
+        class="project-card viewport-frame rounded-2xl bg-white/60 dark:bg-surface/50 backdrop-blur-md p-6 sm:p-8 grid lg:grid-cols-12 gap-8 items-center"
+      >
+        <div class="lg:col-span-6 lg:order-2">
+          <div class="media-shell rounded-xl overflow-hidden bg-slate-900 dark:bg-black border border-slate-300 dark:border-white/10 aspect-video flex items-center justify-center">
+            <video
+              controls
+              autoplay
+              muted
+              loop
+              playsinline
+              class="w-full h-auto block opacity-90 dark:opacity-100"
+            >
+              <source src="assets/videos/hamishslow.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+        <div class="lg:col-span-6 lg:order-1 space-y-4">
+          <div class="flex flex-wrap items-center gap-2 font-mono text-xs text-cyan-700 dark:text-cyan-300">
+            <span class="flex items-center gap-1">
+              <i
+                class="w-3.5 h-3.5 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/rust.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/rust.svg');"
+              ></i>{" "}
+              RUST
+            </span>
+            <span class="text-slate-400 dark:text-slate-600">•</span>
+            <span>GEOMETRY CLI</span>
+          </div>
+          <h3 class="text-2xl font-bold text-slate-900 dark:text-white">
+            Mesh Processing and Repair
+          </h3>
+          <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+            A robust suite of CLI geometry processing utilities. Parses raw
+            triangle soups into advanced directed-edge data structures for
+            automated topological manifold verification and algorithmic mesh
+            repair.
+          </p>
+          <div class="flex flex-wrap gap-2 pt-3 font-mono text-[10px]">
+            <span class="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-300">
+              <i
+                class="w-3 h-3 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linux.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linux.svg');"
+              ></i>{" "}
+              Linux
+            </span>
+            <span class="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-300">
+              <i
+                class="w-3 h-3 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/fedora.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/fedora.svg');"
+              ></i>{" "}
+              Fedora
+            </span>
+            <span class="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-300">
+              <i
+                class="w-3 h-3 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/redhat.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/redhat.svg');"
+              ></i>{" "}
+              Red Hat
+            </span>
+            <span class="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-300">
+              <i
+                class="w-3 h-3 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/ubuntu.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/ubuntu.svg');"
+              ></i>{" "}
+              Ubuntu
+            </span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Bezier Curve -->
+      <article
+        data-category="visualizers"
+        class="project-card viewport-frame rounded-2xl bg-white/60 dark:bg-surface/50 backdrop-blur-md p-6 sm:p-8 grid lg:grid-cols-12 gap-8 items-center"
+      >
+        <div class="lg:col-span-6">
+          <div class="media-shell rounded-xl overflow-hidden bg-slate-900 dark:bg-black border border-slate-300 dark:border-white/10 aspect-video flex items-center justify-center">
+            <video
+              controls
+              autoplay
+              muted
+              loop
+              playsinline
+              class="w-full h-auto block opacity-90 dark:opacity-100"
+            >
+              <source src="assets/videos/bezier.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+        <div class="lg:col-span-6 space-y-4">
+          <div class="flex flex-wrap items-center gap-2 font-mono text-xs text-cyan-700 dark:text-cyan-300">
+            <span class="flex items-center gap-1">
+              <i
+                class="w-3.5 h-3.5 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/cplusplus.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/cplusplus.svg');"
+              ></i>{" "}
+              C++
+            </span>
+            <span class="text-slate-400 dark:text-slate-600">•</span>
+            <span>SOFTWARE RASTERIZER</span>
+          </div>
+          <h3 class="text-2xl font-bold text-slate-900 dark:text-white">
+            Bézier Curve Calculator and Visualiser
+          </h3>
+          <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+            A software rasterizer built from a single-pixel drawing function.
+            Evaluates parametric curves and surfaces via de Casteljau's
+            algorithm, rendering control nets with custom primitives.
+          </p>
+          <div class="flex flex-wrap gap-2 pt-3 font-mono text-[10px]">
+            <span class="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-300">
+              <i
+                class="w-3 h-3 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linux.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linux.svg');"
+              ></i>{" "}
+              Linux
+            </span>
+            <span class="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-300">
+              <i
+                class="w-3 h-3 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/fedora.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/fedora.svg');"
+              ></i>{" "}
+              Fedora
+            </span>
+            <span class="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-300">
+              <i
+                class="w-3 h-3 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/redhat.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/redhat.svg');"
+              ></i>{" "}
+              Red Hat
+            </span>
+            <span class="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-300">
+              <i
+                class="w-3 h-3 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/ubuntu.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/ubuntu.svg');"
+              ></i>{" "}
+              Ubuntu
+            </span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Spaceship Demo -->
+      <article
+        data-category="visualizers"
+        class="project-card viewport-frame rounded-2xl bg-white/60 dark:bg-surface/50 backdrop-blur-md p-6 sm:p-8 grid lg:grid-cols-12 gap-8 items-center"
+      >
+        <div class="lg:col-span-6 lg:order-2">
+          <div class="media-shell rounded-xl overflow-hidden bg-slate-900 dark:bg-black border border-slate-300 dark:border-white/10 aspect-video flex items-center justify-center">
+            <video
+              controls
+              autoplay
+              muted
+              loop
+              playsinline
+              class="w-full h-auto block opacity-90 dark:opacity-100"
+            >
+              <source src="assets/videos/rocket.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+        <div class="lg:col-span-6 lg:order-1 space-y-4">
+          <div class="flex flex-wrap items-center gap-2 font-mono text-xs text-cyan-700 dark:text-cyan-300">
+            <span class="flex items-center gap-1">
+              <i
+                class="w-3.5 h-3.5 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/cplusplus.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/cplusplus.svg');"
+              ></i>{" "}
+              C++
+            </span>
+            <span class="text-slate-400 dark:text-slate-600">•</span>
+            <span class="flex items-center gap-1">
+              <i
+                class="w-3.5 h-3.5 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/opengl.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/opengl.svg');"
+              ></i>{" "}
+              OPENGL
+            </span>
+          </div>
+          <h3 class="text-2xl font-bold text-slate-900 dark:text-white">
+            Spaceship Demo in OpenGL
+          </h3>
+          <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+            An interactive 3D computer graphics scene built in{" "}
+            <span class="text-slate-900 dark:text-white">OpenGL</span>.
+            Demonstrates core concepts including hierarchical transformations,
+            mesh loading, custom lighting formulations, and real-time cameras.
+          </p>
+          <div class="flex flex-wrap gap-2 pt-3 font-mono text-[10px]">
+            <span class="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-300">
+              <i
+                class="w-3 h-3 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linux.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linux.svg');"
+              ></i>{" "}
+              Linux
+            </span>
+            <span class="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-300">
+              <i
+                class="w-3 h-3 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/fedora.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/fedora.svg');"
+              ></i>{" "}
+              Fedora
+            </span>
+            <span class="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-300">
+              <i
+                class="w-3 h-3 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/redhat.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/redhat.svg');"
+              ></i>{" "}
+              Red Hat
+            </span>
+            <span class="flex items-center gap-1.5 px-2 py-1 rounded bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-300">
+              <i
+                class="w-3 h-3 svg-icon"
+                style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/ubuntu.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/ubuntu.svg');"
+              ></i>{" "}
+              Ubuntu
+            </span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
