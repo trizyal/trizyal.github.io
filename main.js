@@ -147,7 +147,7 @@ function initHeroCanvas() {
     mouse.active = false;
   });
 
-  // --- Brownian Mesh Particle Class ---
+// --- Brownian Mesh Particle Class ---
   class BrownianMesh {
     constructor() {
       const key = shapeKeys[Math.floor(Math.random() * shapeKeys.length)];
@@ -159,7 +159,9 @@ function initHeroCanvas() {
       this.vy = (Math.random() - 0.5) * 0.5;
 
       this.scale = 20 + Math.random() * 38;
-      this.alpha = 0.18 + (this.scale / 58) * 0.28;
+
+      // 1. Boosted base opacity (was 0.18 + ... * 0.28)
+      this.alpha = 0.45 + (this.scale / 58) * 0.45;
 
       this.angleX = Math.random() * Math.PI * 2;
       this.angleY = Math.random() * Math.PI * 2;
@@ -233,16 +235,24 @@ function initHeroCanvas() {
         if (d < 210) highlight = 1 - d / 210;
       }
 
-      const baseCyan = isDark ? '59, 156, 186' : '14, 116, 144';
-      const highlightPink = isDark ? '244, 114, 182' : '219, 39, 119';
-      const fillCyan = isDark ? '56, 189, 248' : '2, 132, 199';
-      const fillAmber = isDark ? '251, 191, 36' : '217, 119, 6';
+      // 2. Brighter, more saturated color palettes
+      const baseCyan = isDark ? '34, 211, 238' : '6, 182, 212';
+      const highlightPink = isDark ? '244, 114, 182' : '236, 72, 153';
+      const fillCyan = isDark ? '125, 211, 252' : '2, 132, 199';
+      const fillAmber = isDark ? '253, 224, 71' : '245, 158, 11';
+
+      // 3. Add shadowBlur for a neon glow effect
+      ctx.shadowBlur = isDark ? 10 : 5;
+      ctx.shadowColor = highlight > 0.05
+          ? `rgba(${highlightPink}, 0.8)`
+          : `rgba(${baseCyan}, 0.6)`;
 
       ctx.strokeStyle = highlight > 0.05
-          ? `rgba(${highlightPink}, ${this.alpha + highlight * 0.35})`
+          ? `rgba(${highlightPink}, ${this.alpha + highlight * 0.5})`
           : `rgba(${baseCyan}, ${this.alpha})`;
 
-      ctx.lineWidth = 1.1;
+      // 4. Thicker wireframe lines (was 1.1)
+      ctx.lineWidth = 1.8;
       ctx.beginPath();
       this.shape.edges.forEach(([i, j]) => {
         ctx.moveTo(projected[i].x, projected[i].y);
@@ -251,14 +261,18 @@ function initHeroCanvas() {
       ctx.stroke();
 
       ctx.fillStyle = highlight > 0.05
-          ? `rgba(${fillAmber}, ${0.45 + highlight * 0.5})`
-          : `rgba(${fillCyan}, ${this.alpha + 0.15})`;
+          ? `rgba(${fillAmber}, ${0.7 + highlight * 0.3})`
+          : `rgba(${fillCyan}, ${this.alpha + 0.3})`;
 
       projected.forEach((p) => {
         ctx.beginPath();
-        ctx.arc(p.x, p.y, 1.8, 0, Math.PI * 2);
+        // 5. Slightly larger vertex nodes (was 1.8)
+        ctx.arc(p.x, p.y, 2.5, 0, Math.PI * 2);
         ctx.fill();
       });
+
+      // Reset shadow so it doesn't bleed into other shapes
+      ctx.shadowBlur = 0;
     }
   }
 
