@@ -33,7 +33,9 @@ try {
   });
 
   fs.writeFileSync(outputFile, combinedOutput.trim());
-  console.log(`✅ Successfully merged ${files.length} files into ${outputFile}`);
+  console.log(
+    `✅ Successfully merged ${files.length} files into ${outputFile}`
+  );
 } catch (err) {
   console.error('❌ Error reading directories or files:', err.message);
 }

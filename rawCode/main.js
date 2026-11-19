@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   initThemeToggle();
   initHeroCanvas();
   initRaytracerCarousel();
@@ -10,26 +10,26 @@ document.addEventListener("DOMContentLoaded", () => {
  * Handle Light/Dark Mode Toggling
  */
 function initThemeToggle() {
-  const toggleBtn = document.getElementById("theme-toggle");
+  const toggleBtn = document.getElementById('theme-toggle');
   if (!toggleBtn) return;
 
   if (
-    localStorage.theme === "dark" ||
-    (!("theme" in localStorage) &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches) ||
-    !("theme" in localStorage)
+    localStorage.theme === 'dark' ||
+    (!('theme' in localStorage) &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches) ||
+    !('theme' in localStorage)
   ) {
-    document.documentElement.classList.add("dark");
+    document.documentElement.classList.add('dark');
   } else {
-    document.documentElement.classList.remove("dark");
+    document.documentElement.classList.remove('dark');
   }
 
-  toggleBtn.addEventListener("click", () => {
-    document.documentElement.classList.toggle("dark");
-    if (document.documentElement.classList.contains("dark")) {
-      localStorage.theme = "dark";
+  toggleBtn.addEventListener('click', () => {
+    document.documentElement.classList.toggle('dark');
+    if (document.documentElement.classList.contains('dark')) {
+      localStorage.theme = 'dark';
     } else {
-      localStorage.theme = "light";
+      localStorage.theme = 'light';
     }
   });
 }
@@ -38,17 +38,17 @@ function initThemeToggle() {
  * Full-Viewport Brownian Mesh Field + Magical Pink Particle Trail
  */
 function initHeroCanvas() {
-  const canvas = document.getElementById("hero-canvas");
+  const canvas = document.getElementById('hero-canvas');
   if (!canvas) return;
 
-  const ctx = canvas.getContext("2d");
+  const ctx = canvas.getContext('2d');
   let width, height;
 
   function resize() {
     width = canvas.width = window.innerWidth;
     height = canvas.height = window.innerHeight;
   }
-  window.addEventListener("resize", resize);
+  window.addEventListener('resize', resize);
   resize();
 
   // --- Polyhedron Geometry Definitions ---
@@ -57,36 +57,85 @@ function initHeroCanvas() {
   const SHAPES = {
     icosahedron: {
       vertices: [
-        [-1, t, 0], [1, t, 0], [-1, -t, 0], [1, -t, 0],
-        [0, -1, t], [0, 1, t], [0, -1, -t], [0, 1, -t],
-        [t, 0, -1], [t, 0, 1], [-t, 0, -1], [-t, 0, 1]
+        [-1, t, 0],
+        [1, t, 0],
+        [-1, -t, 0],
+        [1, -t, 0],
+        [0, -1, t],
+        [0, 1, t],
+        [0, -1, -t],
+        [0, 1, -t],
+        [t, 0, -1],
+        [t, 0, 1],
+        [-t, 0, -1],
+        [-t, 0, 1],
       ],
       edges: [
-        [0, 11], [0, 5], [0, 1], [0, 7], [0, 10], [1, 5],
-        [5, 11], [11, 10], [10, 7], [7, 1], [3, 9], [3, 4],
-        [3, 2], [3, 6], [3, 8], [4, 9], [2, 4], [6, 2], [8, 6],
-        [9, 8], [1, 9], [5, 4], [11, 2], [10, 6], [7, 8]
+        [0, 11],
+        [0, 5],
+        [0, 1],
+        [0, 7],
+        [0, 10],
+        [1, 5],
+        [5, 11],
+        [11, 10],
+        [10, 7],
+        [7, 1],
+        [3, 9],
+        [3, 4],
+        [3, 2],
+        [3, 6],
+        [3, 8],
+        [4, 9],
+        [2, 4],
+        [6, 2],
+        [8, 6],
+        [9, 8],
+        [1, 9],
+        [5, 4],
+        [11, 2],
+        [10, 6],
+        [7, 8],
       ],
     },
     octahedron: {
       vertices: [
-        [1.4, 0, 0], [-1.4, 0, 0], [0, 1.4, 0],
-        [0, -1.4, 0], [0, 0, 1.4], [0, 0, -1.4]
+        [1.4, 0, 0],
+        [-1.4, 0, 0],
+        [0, 1.4, 0],
+        [0, -1.4, 0],
+        [0, 0, 1.4],
+        [0, 0, -1.4],
       ],
       edges: [
-        [0, 2], [0, 3], [0, 4], [0, 5],
-        [1, 2], [1, 3], [1, 4], [1, 5],
-        [2, 4], [4, 3], [3, 5], [5, 2]
+        [0, 2],
+        [0, 3],
+        [0, 4],
+        [0, 5],
+        [1, 2],
+        [1, 3],
+        [1, 4],
+        [1, 5],
+        [2, 4],
+        [4, 3],
+        [3, 5],
+        [5, 2],
       ],
     },
     tetrahedron: {
       vertices: [
-        [1.2, 1.2, 1.2], [-1.2, -1.2, 1.2],
-        [-1.2, 1.2, -1.2], [1.2, -1.2, -1.2]
+        [1.2, 1.2, 1.2],
+        [-1.2, -1.2, 1.2],
+        [-1.2, 1.2, -1.2],
+        [1.2, -1.2, -1.2],
       ],
       edges: [
-        [0, 1], [0, 2], [0, 3],
-        [1, 2], [2, 3], [3, 1]
+        [0, 1],
+        [0, 2],
+        [0, 3],
+        [1, 2],
+        [2, 3],
+        [3, 1],
       ],
     },
   };
@@ -104,7 +153,7 @@ function initHeroCanvas() {
 
   const trailParticles = [];
 
-  window.addEventListener("mousemove", (e) => {
+  window.addEventListener('mousemove', (e) => {
     const newX = e.clientX;
     const newY = e.clientY;
 
@@ -116,13 +165,13 @@ function initHeroCanvas() {
     mouse.y = newY;
     mouse.active = true;
 
-    const particleShapes = ["heart", "star", "sparkle"];
+    const particleShapes = ['heart', 'star', 'sparkle'];
     const pinks = [
       [255, 105, 180], // HotPink
-      [255, 20, 147],  // DeepPink
+      [255, 20, 147], // DeepPink
       [255, 182, 193], // LightPink
       [255, 192, 203], // Pink
-      [219, 39, 119],  // Deep Rose/Pink
+      [219, 39, 119], // Deep Rose/Pink
     ];
 
     // Spawn 2 particles per mouse movement for a lush trail
@@ -134,7 +183,8 @@ function initHeroCanvas() {
         vy: (Math.random() - 0.5) * 1.5 - 0.5,
         life: 0,
         maxLife: 30 + Math.random() * 25,
-        shape: particleShapes[Math.floor(Math.random() * particleShapes.length)],
+        shape:
+          particleShapes[Math.floor(Math.random() * particleShapes.length)],
         color: pinks[Math.floor(Math.random() * pinks.length)],
         size: 5 + Math.random() * 9,
         rot: Math.random() * Math.PI * 2,
@@ -143,11 +193,11 @@ function initHeroCanvas() {
     }
   });
 
-  window.addEventListener("mouseleave", () => {
+  window.addEventListener('mouseleave', () => {
     mouse.active = false;
   });
 
-// --- Brownian Mesh Particle Class ---
+  // --- Brownian Mesh Particle Class ---
   class BrownianMesh {
     constructor() {
       const key = shapeKeys[Math.floor(Math.random() * shapeKeys.length)];
@@ -243,11 +293,13 @@ function initHeroCanvas() {
 
       // 3. Add shadowBlur for a neon glow effect
       ctx.shadowBlur = isDark ? 10 : 5;
-      ctx.shadowColor = highlight > 0.05
+      ctx.shadowColor =
+        highlight > 0.05
           ? `rgba(${highlightPink}, 0.8)`
           : `rgba(${baseCyan}, 0.6)`;
 
-      ctx.strokeStyle = highlight > 0.05
+      ctx.strokeStyle =
+        highlight > 0.05
           ? `rgba(${highlightPink}, ${this.alpha + highlight * 0.5})`
           : `rgba(${baseCyan}, ${this.alpha})`;
 
@@ -260,7 +312,8 @@ function initHeroCanvas() {
       });
       ctx.stroke();
 
-      ctx.fillStyle = highlight > 0.05
+      ctx.fillStyle =
+        highlight > 0.05
           ? `rgba(${fillAmber}, ${0.7 + highlight * 0.3})`
           : `rgba(${fillCyan}, ${this.alpha + 0.3})`;
 
@@ -300,7 +353,14 @@ function initHeroCanvas() {
     ctx.moveTo(0, topCurveHeight);
     ctx.bezierCurveTo(0, 0, -size / 2, 0, -size / 2, topCurveHeight);
     ctx.bezierCurveTo(-size / 2, size / 2, 0, size * 0.8, 0, size);
-    ctx.bezierCurveTo(0, size * 0.8, size / 2, size / 2, size / 2, topCurveHeight);
+    ctx.bezierCurveTo(
+      0,
+      size * 0.8,
+      size / 2,
+      size / 2,
+      size / 2,
+      topCurveHeight
+    );
     ctx.bezierCurveTo(size / 2, 0, 0, 0, 0, topCurveHeight);
     ctx.fill();
   }
@@ -342,9 +402,9 @@ function initHeroCanvas() {
       ctx.translate(p.x, p.y);
       ctx.rotate(p.rot);
 
-      if (p.shape === "star") {
+      if (p.shape === 'star') {
         drawStar(ctx, p.size);
-      } else if (p.shape === "heart") {
+      } else if (p.shape === 'heart') {
         ctx.translate(0, -p.size * 0.35); // Center the heart visually
         drawHeart(ctx, p.size);
       } else {
@@ -368,11 +428,11 @@ function initHeroCanvas() {
         35
       );
       if (isDark) {
-        grad.addColorStop(0, "rgba(255, 105, 180, 0.4)");
-        grad.addColorStop(1, "rgba(236, 72, 153, 0)");
+        grad.addColorStop(0, 'rgba(255, 105, 180, 0.4)');
+        grad.addColorStop(1, 'rgba(236, 72, 153, 0)');
       } else {
-        grad.addColorStop(0, "rgba(217, 119, 6, 0.3)");
-        grad.addColorStop(1, "rgba(219, 39, 119, 0)");
+        grad.addColorStop(0, 'rgba(217, 119, 6, 0.3)');
+        grad.addColorStop(1, 'rgba(219, 39, 119, 0)');
       }
 
       ctx.fillStyle = grad;
@@ -388,7 +448,7 @@ function initHeroCanvas() {
     mouse.vx *= 0.85;
     mouse.vy *= 0.85;
 
-    const isDark = document.documentElement.classList.contains("dark");
+    const isDark = document.documentElement.classList.contains('dark');
 
     for (const mesh of meshes) {
       mesh.update();
@@ -407,47 +467,47 @@ function initHeroCanvas() {
  * Image Carousel for the Optical Physics Raytracer
  */
 function initRaytracerCarousel() {
-  const container = document.getElementById("raytracer-carousel");
+  const container = document.getElementById('raytracer-carousel');
   if (!container) return;
 
-  const slides = container.querySelectorAll(".carousel-slide");
-  const prevBtn = document.getElementById("carousel-prev");
-  const nextBtn = document.getElementById("carousel-next");
-  const counter = document.getElementById("carousel-counter");
+  const slides = container.querySelectorAll('.carousel-slide');
+  const prevBtn = document.getElementById('carousel-prev');
+  const nextBtn = document.getElementById('carousel-next');
+  const counter = document.getElementById('carousel-counter');
 
   let currentIndex = 0;
 
   function updateCarousel(newIndex) {
     currentIndex = (newIndex + slides.length) % slides.length;
     slides.forEach((slide, idx) => {
-      slide.classList.toggle("hidden", idx !== currentIndex);
+      slide.classList.toggle('hidden', idx !== currentIndex);
     });
     if (counter) {
       counter.textContent = `${currentIndex + 1} / ${slides.length}`;
     }
   }
 
-  prevBtn?.addEventListener("click", () => updateCarousel(currentIndex - 1));
-  nextBtn?.addEventListener("click", () => updateCarousel(currentIndex + 1));
+  prevBtn?.addEventListener('click', () => updateCarousel(currentIndex - 1));
+  nextBtn?.addEventListener('click', () => updateCarousel(currentIndex + 1));
 }
 
 /**
  * Category Filter Tabs for Projects
  */
 function initProjectFilters() {
-  const buttons = document.querySelectorAll(".filter-btn");
-  const cards = document.querySelectorAll(".project-card");
+  const buttons = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.project-card');
 
   buttons.forEach((btn) => {
-    btn.addEventListener("click", () => {
+    btn.addEventListener('click', () => {
       const filter = btn.dataset.filter;
-      buttons.forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
+      buttons.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
 
       cards.forEach((card) => {
-        const categories = card.dataset.category.split(" ");
-        const isMatch = filter === "all" || categories.includes(filter);
-        card.style.display = isMatch ? "grid" : "none";
+        const categories = card.dataset.category.split(' ');
+        const isMatch = filter === 'all' || categories.includes(filter);
+        card.style.display = isMatch ? 'grid' : 'none';
       });
     });
   });
@@ -457,7 +517,7 @@ function initProjectFilters() {
  * Automatic Copyright Year
  */
 function initFooterYear() {
-  const yearEl = document.getElementById("year");
+  const yearEl = document.getElementById('year');
   if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
   }
