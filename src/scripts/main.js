@@ -182,11 +182,11 @@ function initHeroCanvas() {
         vx: (Math.random() - 0.5) * 1.5,
         vy: (Math.random() - 0.5) * 1.5 - 0.5,
         life: 0,
-        maxLife: 30 + Math.random() * 25,
+        maxLife: 90 + Math.random() * 25,
         shape:
           particleShapes[Math.floor(Math.random() * particleShapes.length)],
         color: pinks[Math.floor(Math.random() * pinks.length)],
-        size: 5 + Math.random() * 9,
+        size: 10 + Math.random() * 9,
         rot: Math.random() * Math.PI * 2,
         rotSpeed: (Math.random() - 0.5) * 0.15,
       });
@@ -223,7 +223,7 @@ function initHeroCanvas() {
     }
 
     update() {
-      const brownianStrength = 0.08;
+      const brownianStrength = 0.2;
       this.vx += (Math.random() + Math.random() - 1) * brownianStrength;
       this.vy += (Math.random() + Math.random() - 1) * brownianStrength;
 
@@ -329,7 +329,7 @@ function initHeroCanvas() {
     }
   }
 
-  const MESH_COUNT = 24;
+  const MESH_COUNT = 34;
   const meshes = Array.from({ length: MESH_COUNT }, () => new BrownianMesh());
 
   // --- Particle Drawing Helpers ---
