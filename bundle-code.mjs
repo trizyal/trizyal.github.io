@@ -1,8 +1,8 @@
-import fs from 'node:fs';
-import path from 'node:path';
+import fs from "node:fs";
+import path from "node:path";
 
-const srcDir = './src';
-const outputFile = './all_code.txt';
+const srcDir = "./src";
+const outputFile = "./all_code.txt";
 
 // Recursively get all files in the directory
 function getAllFiles(dirPath, arrayOfFiles = []) {
@@ -22,12 +22,12 @@ function getAllFiles(dirPath, arrayOfFiles = []) {
 
 try {
   const files = getAllFiles(srcDir);
-  let combinedOutput = '';
+  let combinedOutput = "";
 
   files.forEach((file) => {
-    const content = fs.readFileSync(file, 'utf-8');
+    const content = fs.readFileSync(file, "utf-8");
     // Normalize path separators for Windows/Unix
-    const cleanPath = file.replace(/\\/g, '/');
+    const cleanPath = file.replace(/\\/g, "/");
     combinedOutput += `\n\n========== FILE: ${cleanPath} ==========\n\n`;
     combinedOutput += content;
   });
@@ -37,5 +37,5 @@ try {
     `✅ Successfully merged ${files.length} files into ${outputFile}`
   );
 } catch (err) {
-  console.error('❌ Error reading directories or files:', err.message);
+  console.error("❌ Error reading directories or files:", err.message);
 }

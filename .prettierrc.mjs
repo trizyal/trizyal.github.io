@@ -1,17 +1,17 @@
 /** @type {import("prettier").Config} */
 export default {
   semi: true,
-  singleQuote: true,
+  singleQuote: false,
   tabWidth: 2,
   printWidth: 80,
-  trailingComma: 'es5',
-  endOfLine: 'lf',
-  plugins: ['prettier-plugin-astro', 'prettier-plugin-tailwindcss'],
+  trailingComma: "es5",
+  endOfLine: "lf",
+  plugins: ["prettier-plugin-astro", "prettier-plugin-tailwindcss"],
   overrides: [
     {
-      files: '*.astro',
+      files: "*.astro",
       options: {
-        parser: 'astro',
+        parser: "astro",
       },
     },
   ],

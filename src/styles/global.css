@@ -1,11 +1,13 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-sans: 'Inter', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-  --font-fascinate: 'Fascinate', cursive;
+  --font-sans: "Antic", sans-serif; /* Content Text */
+  /* --font-mono: "JetBrains Mono", monospace; */
+  --font-mono: "Space Mono", monospace; /* Code / Links / Labels */
+  --font-grotesk: "Space Grotesk", sans-serif; /* Titles and Info */
+  --font-fascinate: "Fascinate", cursive; /* Super Titles */
 
   --color-obsidian: #090b10;
   --color-surface: #11151f;

@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   initThemeToggle();
   initHeroCanvas();
   initRaytracerCarousel();
@@ -10,26 +10,26 @@ document.addEventListener('DOMContentLoaded', () => {
  * Handle Light/Dark Mode Toggling
  */
 function initThemeToggle() {
-  const toggleBtn = document.getElementById('theme-toggle');
+  const toggleBtn = document.getElementById("theme-toggle");
   if (!toggleBtn) return;
 
   if (
-    localStorage.theme === 'dark' ||
-    (!('theme' in localStorage) &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches) ||
-    !('theme' in localStorage)
+    localStorage.theme === "dark" ||
+    (!("theme" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches) ||
+    !("theme" in localStorage)
   ) {
-    document.documentElement.classList.add('dark');
+    document.documentElement.classList.add("dark");
   } else {
-    document.documentElement.classList.remove('dark');
+    document.documentElement.classList.remove("dark");
   }
 
-  toggleBtn.addEventListener('click', () => {
-    document.documentElement.classList.toggle('dark');
-    if (document.documentElement.classList.contains('dark')) {
-      localStorage.theme = 'dark';
+  toggleBtn.addEventListener("click", () => {
+    document.documentElement.classList.toggle("dark");
+    if (document.documentElement.classList.contains("dark")) {
+      localStorage.theme = "dark";
     } else {
-      localStorage.theme = 'light';
+      localStorage.theme = "light";
     }
   });
 }
@@ -38,17 +38,17 @@ function initThemeToggle() {
  * Full-Viewport Brownian Mesh Field + Magical Pink Particle Trail
  */
 function initHeroCanvas() {
-  const canvas = document.getElementById('hero-canvas');
+  const canvas = document.getElementById("hero-canvas");
   if (!canvas) return;
 
-  const ctx = canvas.getContext('2d');
+  const ctx = canvas.getContext("2d");
   let width, height;
 
   function resize() {
     width = canvas.width = window.innerWidth;
     height = canvas.height = window.innerHeight;
   }
-  window.addEventListener('resize', resize);
+  window.addEventListener("resize", resize);
   resize();
 
   // --- Polyhedron Geometry Definitions ---
@@ -153,7 +153,7 @@ function initHeroCanvas() {
 
   const trailParticles = [];
 
-  window.addEventListener('mousemove', (e) => {
+  window.addEventListener("mousemove", (e) => {
     const newX = e.clientX;
     const newY = e.clientY;
 
@@ -165,7 +165,7 @@ function initHeroCanvas() {
     mouse.y = newY;
     mouse.active = true;
 
-    const particleShapes = ['heart', 'star', 'sparkle'];
+    const particleShapes = ["heart", "star", "sparkle"];
     const pinks = [
       [255, 105, 180], // HotPink
       [255, 20, 147], // DeepPink
@@ -193,7 +193,7 @@ function initHeroCanvas() {
     }
   });
 
-  window.addEventListener('mouseleave', () => {
+  window.addEventListener("mouseleave", () => {
     mouse.active = false;
   });
 
@@ -286,10 +286,10 @@ function initHeroCanvas() {
       }
 
       // 2. Brighter, more saturated color palettes
-      const baseCyan = isDark ? '34, 211, 238' : '6, 182, 212';
-      const highlightPink = isDark ? '244, 114, 182' : '236, 72, 153';
-      const fillCyan = isDark ? '125, 211, 252' : '2, 132, 199';
-      const fillAmber = isDark ? '253, 224, 71' : '245, 158, 11';
+      const baseCyan = isDark ? "34, 211, 238" : "6, 182, 212";
+      const highlightPink = isDark ? "244, 114, 182" : "236, 72, 153";
+      const fillCyan = isDark ? "125, 211, 252" : "2, 132, 199";
+      const fillAmber = isDark ? "253, 224, 71" : "245, 158, 11";
 
       // 3. Add shadowBlur for a neon glow effect
       ctx.shadowBlur = isDark ? 10 : 5;
@@ -402,9 +402,9 @@ function initHeroCanvas() {
       ctx.translate(p.x, p.y);
       ctx.rotate(p.rot);
 
-      if (p.shape === 'star') {
+      if (p.shape === "star") {
         drawStar(ctx, p.size);
-      } else if (p.shape === 'heart') {
+      } else if (p.shape === "heart") {
         ctx.translate(0, -p.size * 0.35); // Center the heart visually
         drawHeart(ctx, p.size);
       } else {
@@ -428,11 +428,11 @@ function initHeroCanvas() {
         35
       );
       if (isDark) {
-        grad.addColorStop(0, 'rgba(255, 105, 180, 0.4)');
-        grad.addColorStop(1, 'rgba(236, 72, 153, 0)');
+        grad.addColorStop(0, "rgba(255, 105, 180, 0.4)");
+        grad.addColorStop(1, "rgba(236, 72, 153, 0)");
       } else {
-        grad.addColorStop(0, 'rgba(217, 119, 6, 0.3)');
-        grad.addColorStop(1, 'rgba(219, 39, 119, 0)');
+        grad.addColorStop(0, "rgba(217, 119, 6, 0.3)");
+        grad.addColorStop(1, "rgba(219, 39, 119, 0)");
       }
 
       ctx.fillStyle = grad;
@@ -448,7 +448,7 @@ function initHeroCanvas() {
     mouse.vx *= 0.85;
     mouse.vy *= 0.85;
 
-    const isDark = document.documentElement.classList.contains('dark');
+    const isDark = document.documentElement.classList.contains("dark");
 
     for (const mesh of meshes) {
       mesh.update();
@@ -467,47 +467,47 @@ function initHeroCanvas() {
  * Image Carousel for the Optical Physics Raytracer
  */
 function initRaytracerCarousel() {
-  const container = document.getElementById('raytracer-carousel');
+  const container = document.getElementById("raytracer-carousel");
   if (!container) return;
 
-  const slides = container.querySelectorAll('.carousel-slide');
-  const prevBtn = document.getElementById('carousel-prev');
-  const nextBtn = document.getElementById('carousel-next');
-  const counter = document.getElementById('carousel-counter');
+  const slides = container.querySelectorAll(".carousel-slide");
+  const prevBtn = document.getElementById("carousel-prev");
+  const nextBtn = document.getElementById("carousel-next");
+  const counter = document.getElementById("carousel-counter");
 
   let currentIndex = 0;
 
   function updateCarousel(newIndex) {
     currentIndex = (newIndex + slides.length) % slides.length;
     slides.forEach((slide, idx) => {
-      slide.classList.toggle('hidden', idx !== currentIndex);
+      slide.classList.toggle("hidden", idx !== currentIndex);
     });
     if (counter) {
       counter.textContent = `${currentIndex + 1} / ${slides.length}`;
     }
   }
 
-  prevBtn?.addEventListener('click', () => updateCarousel(currentIndex - 1));
-  nextBtn?.addEventListener('click', () => updateCarousel(currentIndex + 1));
+  prevBtn?.addEventListener("click", () => updateCarousel(currentIndex - 1));
+  nextBtn?.addEventListener("click", () => updateCarousel(currentIndex + 1));
 }
 
 /**
  * Category Filter Tabs for Projects
  */
 function initProjectFilters() {
-  const buttons = document.querySelectorAll('.filter-btn');
-  const cards = document.querySelectorAll('.project-card');
+  const buttons = document.querySelectorAll(".filter-btn");
+  const cards = document.querySelectorAll(".project-card");
 
   buttons.forEach((btn) => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener("click", () => {
       const filter = btn.dataset.filter;
-      buttons.forEach((b) => b.classList.remove('active'));
-      btn.classList.add('active');
+      buttons.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
 
       cards.forEach((card) => {
-        const categories = card.dataset.category.split(' ');
-        const isMatch = filter === 'all' || categories.includes(filter);
-        card.style.display = isMatch ? 'grid' : 'none';
+        const categories = card.dataset.category.split(" ");
+        const isMatch = filter === "all" || categories.includes(filter);
+        card.style.display = isMatch ? "grid" : "none";
       });
     });
   });
@@ -517,7 +517,7 @@ function initProjectFilters() {
  * Automatic Copyright Year
  */
 function initFooterYear() {
-  const yearEl = document.getElementById('year');
+  const yearEl = document.getElementById("year");
   if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
   }
