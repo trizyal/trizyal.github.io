@@ -955,3 +955,52 @@ under certain conditions. For details, see gnu.org/licenses/</pre>
     </div>
   </div>
 </section>
+
+<script>
+  // Project Filtering Logic
+  const buttons = document.querySelectorAll(".filter-btn");
+  const cards = document.querySelectorAll(
+    ".project-card"
+  ) as NodeListOf<HTMLElement>;
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const filter = (btn as HTMLElement).dataset.filter;
+      buttons.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      cards.forEach((card) => {
+        // Fix 1 & 2: Safely parse the dataset category with a fallback string
+        const categories = (card.dataset.category || "").split(" ");
+        const isMatch =
+          filter === "all" || (filter && categories.includes(filter));
+        card.style.display = isMatch ? "grid" : "none";
+      });
+    });
+  });
+
+  // Raytracer Carousel Logic
+  const container = document.getElementById("raytracer-carousel");
+  if (container) {
+    const slides = container.querySelectorAll(".carousel-slide");
+    const prevBtn = document.getElementById("carousel-prev");
+    const nextBtn = document.getElementById("carousel-next");
+    const counter = document.getElementById("carousel-counter");
+
+    let currentIndex = 0;
+
+    // Fix 3: Explicitly define newIndex as a number
+    function updateCarousel(newIndex: number) {
+      currentIndex = (newIndex + slides.length) % slides.length;
+      slides.forEach((slide, idx) => {
+        slide.classList.toggle("hidden", idx !== currentIndex);
+      });
+      if (counter) {
+        counter.textContent = `${currentIndex + 1} / ${slides.length}`;
+      }
+    }
+
+    prevBtn?.addEventListener("click", () => updateCarousel(currentIndex - 1));
+    nextBtn?.addEventListener("click", () => updateCarousel(currentIndex + 1));
+  }
+</script>
