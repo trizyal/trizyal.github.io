@@ -50,12 +50,12 @@
         <div class="lg:col-span-6">
           <div class="carousel relative rounded-xl overflow-hidden bg-slate-900 dark:bg-black border border-slate-300 dark:border-white/10 aspect-video flex items-center justify-center">
             <img
-              src="assets/images/gitreckd.png"
+              src="/images/gitreckd.png"
               alt="GitReckd Submitted View"
               class="carousel-slide active w-full h-auto opacity-90 dark:opacity-80"
             />
             <img
-              src="assets/images/gitreckd-icon-color.png"
+              src="/images/gitreckd-icon-color.png"
               alt="GitReckd Logo"
               class="carousel-slide w-full h-auto hidden opacity-90 dark:opacity-80"
             />
@@ -71,7 +71,7 @@
             >
               ❯
             </button>
-            <div class="carousel-prev absolute bottom-3 right-3 px-2 py-1 rounded bg-slate-800/80 dark:bg-obsidian/80 font-mono text-xs text-cyan-300">
+            <div class="carousel-counter absolute bottom-3 right-3 px-2 py-1 rounded bg-slate-800/80 dark:bg-obsidian/80 font-mono text-xs text-cyan-300">
               1 / 2
             </div>
           </div>
@@ -354,7 +354,7 @@ under certain conditions. For details, see gnu.org/licenses/</pre>
               playsinline
               class="w-full h-auto block opacity-90 dark:opacity-100"
             >
-              <source src="assets/videos/axiom_swerve.mp4" type="video/mp4" />
+              <source src="/videos/axiom_swerve.mp4" type="video/mp4" />
             </video>
           </div>
         </div>
@@ -426,7 +426,7 @@ under certain conditions. For details, see gnu.org/licenses/</pre>
               playsinline
               class="w-full h-auto block opacity-90 dark:opacity-100"
             >
-              <source src="assets/videos/ubqr.mp4" type="video/mp4" />
+              <source src="/videos/ubqr.mp4" type="video/mp4" />
             </video>
           </div>
         </div>
@@ -499,17 +499,17 @@ under certain conditions. For details, see gnu.org/licenses/</pre>
         <div class="lg:col-span-6">
           <div class="carousel relative rounded-xl overflow-hidden bg-slate-900 dark:bg-black border border-slate-300 dark:border-white/10 aspect-video flex items-center justify-center">
             <img
-              src="assets/images/raytracer.png"
+              src="/images/raytracer.png"
               alt="Raytracer Primary"
               class="carousel-slide active w-full h-auto opacity-90 dark:opacity-80"
             />
             <img
-              src="assets/images/fresnelrefraction.png"
+              src="/images/fresnelrefraction.png"
               alt="Fresnel Refraction"
               class="carousel-slide w-full h-auto hidden opacity-90 dark:opacity-80"
             />
             <img
-              src="assets/images/shadows.png"
+              src="/images/shadows.png"
               alt="Raytraced Shadows"
               class="carousel-slide w-full h-auto hidden opacity-90 dark:opacity-80"
             />
@@ -599,7 +599,7 @@ under certain conditions. For details, see gnu.org/licenses/</pre>
               playsinline
               class="w-full h-auto block opacity-90 dark:opacity-100"
             >
-              <source src="assets/videos/vulkan.mp4" type="video/mp4" />
+              <source src="/videos/vulkan.mp4" type="video/mp4" />
             </video>
           </div>
         </div>
@@ -680,10 +680,7 @@ under certain conditions. For details, see gnu.org/licenses/</pre>
               playsinline
               class="w-full h-auto block opacity-90 dark:opacity-100"
             >
-              <source
-                src="assets/videos/animation_collision.mp4"
-                type="video/mp4"
-              />
+              <source src="/videos/animation_collision.mp4" type="video/mp4" />
             </video>
           </div>
         </div>
@@ -756,7 +753,7 @@ under certain conditions. For details, see gnu.org/licenses/</pre>
               playsinline
               class="w-full h-auto block opacity-90 dark:opacity-100"
             >
-              <source src="assets/videos/hamishslow.mp4" type="video/mp4" />
+              <source src="/videos/hamishslow.mp4" type="video/mp4" />
             </video>
           </div>
         </div>
@@ -829,7 +826,7 @@ under certain conditions. For details, see gnu.org/licenses/</pre>
               playsinline
               class="w-full h-auto block opacity-90 dark:opacity-100"
             >
-              <source src="assets/videos/bezier.mp4" type="video/mp4" />
+              <source src="/videos/bezier.mp4" type="video/mp4" />
             </video>
           </div>
         </div>
@@ -901,7 +898,7 @@ under certain conditions. For details, see gnu.org/licenses/</pre>
               playsinline
               class="w-full h-auto block opacity-90 dark:opacity-100"
             >
-              <source src="assets/videos/rocket.mp4" type="video/mp4" />
+              <source src="/videos/rocket.mp4" type="video/mp4" />
             </video>
           </div>
         </div>
@@ -970,7 +967,7 @@ under certain conditions. For details, see gnu.org/licenses/</pre>
 
 <script>
   // Project Filtering Logic
-  const buttons = document.querySelectorAll(".filter-btn");
+  const buttons = document.querySelectorAll("#filter-bar .filter-btn");
   const cards = document.querySelectorAll(
     ".project-card"
   ) as NodeListOf<HTMLElement>;
