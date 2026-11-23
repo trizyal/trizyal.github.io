@@ -9,7 +9,7 @@ import "../styles/global.css";
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>tRizyal | Graphics and Engine Programmer</title>
 
-    <link rel="icon" type="image/svg+xml" href="/triz_logo.png" />
+    <link rel="icon" type="image/png" href="/triz_logo.png" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -26,3 +26,11 @@ import "../styles/global.css";
     <slot />
   </body>
 </html>
+
+<script is:inline>
+  if (localStorage.theme === "light") {
+    document.documentElement.classList.remove("dark");
+  } else {
+    document.documentElement.classList.add("dark");
+  }
+</script>

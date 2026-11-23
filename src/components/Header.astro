@@ -142,7 +142,7 @@
   // 2. Scroll Spy Logic for Dynamic Nav Highlighting
   // Wait for the DOM to load before setting up the observer
   document.addEventListener("DOMContentLoaded", () => {
-    const sections = document.querySelectorAll("section[id]");
+    const sections = document.querySelectorAll("section[id], footer[id]");
     const navLinks = document.querySelectorAll(".nav-link");
 
     // The observer watches as sections enter/leave the screen
