@@ -1,0 +1,204 @@
+---
+import "../styles/global.css";
+---
+
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Under Construction | tRizyal</title>
+    <link rel="icon" type="image/png" href="/triz_logo.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fascinate&family=Space+Grotesk:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="bg-obsidian text-slate-200 min-h-screen flex flex-col justify-between relative overflow-hidden">
+    <!-- Subtle Blueprint Grid Background -->
+    <div class="blueprint-grid fixed inset-0 pointer-events-none z-0"></div>
+
+    <!-- Top Animated Caution Tape -->
+    <div class="hazard-tape h-4 w-full relative z-10 border-b border-amber-500/40"></div>
+
+    <!-- Main Content -->
+    <main class="relative z-10 flex-1 flex items-center justify-center px-6 py-16">
+      <div class="viewport-frame max-w-xl w-full rounded-2xl bg-surface/85 backdrop-blur-md p-8 sm:p-10 text-center space-y-6">
+        <!-- Status Pill -->
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 font-mono text-xs text-amber-400">
+          <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+          <span>STATUS // UNDER CONSTRUCTION</span>
+        </div>
+
+        <!-- Rotating Gear + Wrench Icon -->
+        <div class="flex justify-center py-2">
+          <div class="w-20 h-20 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 shadow-lg shadow-amber-500/10">
+            <svg
+              class="w-10 h-10 animate-spin-slow"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Heading & Dynamic Description -->
+        <div class="space-y-2">
+          <div
+            id="wip-kicker"
+            class="font-mono text-xs text-cyan-400 tracking-widest uppercase"
+          >
+            // SECTION IN PROGRESS
+          </div>
+          <h1
+            id="wip-title"
+            class="text-4xl sm:text-5xl font-fascinate text-white"
+          >
+            Work in Progress
+          </h1>
+          <p
+            id="wip-desc"
+            class="text-sm sm:text-base text-slate-400 leading-relaxed pt-2"
+          >
+            This corner of the site is currently being built and organized.
+            Check back soon!
+          </p>
+        </div>
+
+        <!-- Animated Striped Progress Bar -->
+        <div class="space-y-2 pt-2">
+          <div class="flex justify-between font-mono text-[11px] text-slate-400">
+            <span>BUILD_PROGRESS</span>
+            <span class="text-amber-400">COMPILING...</span>
+          </div>
+          <div class="h-3 w-full rounded-full bg-obsidian border border-white/10 overflow-hidden p-0.5">
+            <div class="progress-stripes h-full w-2/3 rounded-full"></div>
+          </div>
+        </div>
+
+        <!-- Navigation Actions -->
+        <div class="flex flex-wrap items-center justify-center gap-3 pt-4 font-mono text-xs">
+          <a
+            href="/"
+            class="px-5 py-2.5 rounded-lg bg-accent hover:bg-cyan-500 text-obsidian font-bold transition-all shadow-lg shadow-accent/20"
+          >
+            ← Back to Home
+          </a>
+          <button
+            type="button"
+            onclick="history.back()"
+            class="px-5 py-2.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 transition-all cursor-pointer"
+          >
+            Go Back
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Bottom Animated Caution Tape -->
+    <div class="hazard-tape h-4 w-full relative z-10 border-t border-amber-500/40"></div>
+  </body>
+</html>
+
+<style>
+  .blueprint-grid {
+    background-image:
+      linear-gradient(to right, rgba(59, 156, 186, 0.07) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(59, 156, 186, 0.07) 1px, transparent 1px);
+    background-size: 36px 36px;
+  }
+
+  .hazard-tape {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      #f59e0b,
+      #f59e0b 16px,
+      #090b10 16px,
+      #090b10 32px
+    );
+    background-size: 45.25px 45.25px;
+    animation: slide-stripes 1.6s linear infinite;
+  }
+
+  .progress-stripes {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      #f59e0b,
+      #f59e0b 10px,
+      #fbbf24 10px,
+      #fbbf24 20px
+    );
+    background-size: 28.28px 28.28px;
+    animation: slide-stripes 1s linear infinite;
+  }
+
+  .animate-spin-slow {
+    animation: spin 10s linear infinite;
+  }
+
+  @keyframes slide-stripes {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: 45.25px 0;
+    }
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>
+
+<script>
+  const sections: Record<
+    string,
+    { kicker: string; title: string; desc: string }
+  > = {
+    blog: {
+      kicker: "// 05 — TECHNICAL WRITING",
+      title: "Blog",
+      desc: "Write-ups on graphics pipelines, Vulkan, Unreal Engine optimizations, and systems tooling are currently being drafted.",
+    },
+    "reading-list": {
+      kicker: "// 06 — CURATED ARTICLES",
+      title: "Reading List",
+      desc: "Organizing my TBR pile of rendering deep-dives, ray tracing guides, and engineering essays.",
+    },
+    library: {
+      kicker: "// 07 — BLOGROLL & WEBRINGS",
+      title: "Library",
+      desc: "Putting together a clean shelf of favorite graphics blogs, newsletters, and indie webrings.",
+    },
+  };
+
+  const params = new URLSearchParams(window.location.search);
+  const key = params.get("section");
+
+  if (key && sections[key]) {
+    const info = sections[key];
+    const kickerEl = document.getElementById("wip-kicker");
+    const titleEl = document.getElementById("wip-title");
+    const descEl = document.getElementById("wip-desc");
+
+    if (kickerEl) kickerEl.textContent = info.kicker;
+    if (titleEl) titleEl.textContent = info.title;
+    if (descEl) descEl.textContent = info.desc;
+    document.title = `${info.title} (WIP) | tRizyal`;
+  }
+</script>
