@@ -11,11 +11,23 @@
     "artboards": [
       {
         "id": 1,
-        "name": "Artboard 1",
+        "name": "Logo1",
         "rect": {
           "x0": 0.0,
           "y0": 0.0,
           "x1": 1000.0,
+          "y1": 1000.0
+        },
+        "show_center_mark": false,
+        "show_cross_hairs": false
+      },
+      {
+        "id": 2,
+        "name": "logowith4t",
+        "rect": {
+          "x0": 1020.0,
+          "y0": 0.0,
+          "x1": 2020.0,
           "y1": 1000.0
         },
         "show_center_mark": false,
@@ -1063,6 +1075,126 @@
                   ]
                 }
               }
+            },
+            {
+              "id": 22,
+              "kind": {
+                "type": "text",
+                "kind": {
+                  "kind": "point"
+                },
+                "xf": [
+                  7.852004155930228,
+                  0.0,
+                  0.0,
+                  6.096761680569425,
+                  1160.0,
+                  636.4308746056694
+                ],
+                "runs": [
+                  {
+                    "text": "4",
+                    "style": {
+                      "font_family": "OCR A Extended",
+                      "font_style": "Regular",
+                      "size": 128.0,
+                      "tracking": 0.0,
+                      "baseline_shift": 0.0,
+                      "h_scale": 100.0,
+                      "v_scale": 100.0,
+                      "rotation": 0.0,
+                      "fill": {
+                        "type": "solid",
+                        "color": {
+                          "model": "rgb",
+                          "r": 0.0,
+                          "g": 0.0,
+                          "b": 0.0
+                        }
+                      },
+                      "stroke": {
+                        "type": "none"
+                      },
+                      "stroke_width": 0.0,
+                      "underline": false,
+                      "strikethrough": false,
+                      "all_caps": false
+                    }
+                  }
+                ],
+                "para": {
+                  "justify": "Left",
+                  "justify_auto": true,
+                  "left_indent": 0.0,
+                  "right_indent": 0.0,
+                  "first_line_indent": 0.0,
+                  "space_before": 0.0,
+                  "space_after": 0.0,
+                  "hyphenate": false,
+                  "mojikumi": "lineEndHalf",
+                  "burasagari": "standard"
+                }
+              }
+            },
+            {
+              "id": 23,
+              "kind": {
+                "type": "text",
+                "kind": {
+                  "kind": "point"
+                },
+                "xf": [
+                  71.98910523237433,
+                  0.0,
+                  0.0,
+                  73.6164891990112,
+                  1359.485024276856,
+                  863.6582617150028
+                ],
+                "runs": [
+                  {
+                    "text": "t",
+                    "style": {
+                      "font_family": "Lucida Console",
+                      "font_style": "Regular",
+                      "size": 12.0,
+                      "tracking": 0.0,
+                      "baseline_shift": 0.0,
+                      "h_scale": 100.0,
+                      "v_scale": 100.0,
+                      "rotation": 0.0,
+                      "fill": {
+                        "type": "solid",
+                        "color": {
+                          "model": "rgb",
+                          "r": 0.0,
+                          "g": 0.0,
+                          "b": 0.0
+                        }
+                      },
+                      "stroke": {
+                        "type": "none"
+                      },
+                      "stroke_width": 0.0,
+                      "underline": false,
+                      "strikethrough": false,
+                      "all_caps": false
+                    }
+                  }
+                ],
+                "para": {
+                  "justify": "Left",
+                  "justify_auto": true,
+                  "left_indent": 0.0,
+                  "right_indent": 0.0,
+                  "first_line_indent": 0.0,
+                  "space_before": 0.0,
+                  "space_after": 0.0,
+                  "hyphenate": false,
+                  "mojikumi": "lineEndHalf",
+                  "burasagari": "standard"
+                }
+              }
             }
           ]
         }
@@ -2045,7 +2177,7 @@
     },
     "raster_effects_ppi": 300.0,
     "images": {},
-    "next_id": 22,
+    "next_id": 24,
     "metadata": {
       "author": "",
       "authorTitle": "",
@@ -2056,15 +2188,15 @@
       "copyrightNotice": "",
       "copyrightUrl": "",
       "created": 1795174613,
-      "modified": 1795183402
+      "modified": 1795431895
     },
     "last_view": {
       "name": "",
       "center": {
-        "x": 257.2366126055748,
-        "y": 280.7231646884162
+        "x": -1952.808703152039,
+        "y": -651.6983341800997
       },
-      "zoom": 0.5969655922443489,
+      "zoom": 0.17469030605661157,
       "rotation": 0.0
     },
     "transparency_grid": true,
