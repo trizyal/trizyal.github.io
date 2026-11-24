@@ -1,0 +1,219 @@
+---
+import ArticleLayout from "../../layouts/ArticleLayout.astro";
+
+const gbufferAttachments = [
+  { id: "Attachment 0", desc: "Depth" },
+  { id: "Attachment 1", desc: "Surface Normals" },
+  { id: "Attachment 2", desc: "Albedo (RGB) + Metalness (A)" },
+  { id: "Attachment 3", desc: "Emissive (RGB) + Roughness (A)" },
+];
+---
+
+<ArticleLayout
+  title="Vulkan Renderer | tRizyal"
+  backHref="/#projects"
+  backLabel="← Back to Projects"
+>
+  <!-- Title & Metadata -->
+  <header class="space-y-4">
+    <div class="flex flex-wrap items-center gap-2 font-mono text-xs text-cyan-700 dark:text-cyan-300">
+      <span class="flex items-center gap-1">
+        <i
+          class="w-3.5 h-3.5 svg-icon"
+          style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/cplusplus.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/cplusplus.svg');"
+        ></i>{" "}
+        C++
+      </span>
+      <span class="text-slate-400 dark:text-slate-600">&bull;</span>
+      <span class="flex items-center gap-1">
+        <i
+          class="w-3.5 h-3.5 svg-icon"
+          style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/vulkan.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/vulkan.svg');"
+        ></i>{" "}
+        VULKAN
+      </span>
+      <span class="text-slate-400 dark:text-slate-600">&bull;</span>
+      <span>GLSL</span>
+      <span class="text-slate-400 dark:text-slate-600">&bull;</span>
+      <span>GLFW</span>
+    </div>
+
+    <h1 class="text-4xl sm:text-5xl font-fascinate tracking-tight text-slate-900 dark:text-white">
+      Vulkan Renderer
+    </h1>
+
+    <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+      A modular real-time rendering application built from the ground up in
+      Vulkan, featuring toggleable shading pipelines, Cook-Torrance PBR,
+      G-buffer deferred rendering, post-processing, and diagnostic visualization
+      modes.
+    </p>
+
+    <div class="pt-1 font-mono">
+      <a
+        href="https://github.com/trizyal/VulkanRasterisation2"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 font-mono text-xs px-4 py-2.5 rounded-lg border border-accent/40 bg-accent/10 text-cyan-700 dark:text-cyan-300 hover:bg-accent/20 transition-all shadow"
+      >
+        View on GitHub &nearr;
+      </a>
+    </div>
+  </header>
+
+  <!-- Video Showcase -->
+  <section class="viewport-frame rounded-2xl overflow-hidden bg-slate-900 dark:bg-black border border-slate-300 dark:border-white/10 aspect-video flex items-center justify-center">
+    <video
+      controls
+      autoplay
+      muted
+      loop
+      playsinline
+      class="w-full h-auto block opacity-95 dark:opacity-100"
+    >
+      <source src="/videos/vulkan.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </section>
+
+  <!-- Technical Breakdown -->
+  <article class="viewport-frame rounded-2xl bg-white/60 dark:bg-surface/50 backdrop-blur-md p-6 sm:p-10 space-y-8 leading-relaxed text-slate-700 dark:text-slate-300">
+    <section class="space-y-3">
+      <div class="font-mono text-xs text-accent tracking-widest uppercase">
+        01 // Core Engine &amp; Infrastructure
+      </div>
+      <h2 class="text-2xl font-grotesk font-bold text-slate-900 dark:text-white">
+        Vulkan Initialization &amp; Windowing
+      </h2>
+      <p>
+        As my first major project in Vulkan, I built the entire real-time
+        rendering architecture from scratch. This involved initializing the
+        Vulkan instance with validation layers, configuring window surface
+        integration, selecting physical and logical devices, and managing the
+        swap chain, render passes, and framebuffers. For scene navigation, I
+        implemented an interactive camera system using GLFW’s event-driven
+        callback and input polling framework.
+      </p>
+    </section>
+
+    <section class="space-y-3">
+      <div class="font-mono text-xs text-accent tracking-widest uppercase">
+        02 // Base Rendering &amp; Diagnostics
+      </div>
+      <h2 class="text-2xl font-grotesk font-bold text-slate-900 dark:text-white">
+        Forward Base Pass &amp; Debug Visualizations
+      </h2>
+      <p>
+        I began with a base-color forward pipeline to verify mesh loading and
+        texture sampling across the scene. To validate geometry and sampling
+        behavior before introducing complex lighting, I built toggleable debug
+        visualization pipelines for inspecting{" "}
+        <strong class="text-slate-900 dark:text-white">
+          texture mipmap levels
+        </strong>
+        ,{" "}
+        <strong class="text-slate-900 dark:text-white">surface normals</strong>,{" "}
+        <strong class="text-slate-900 dark:text-white">fragment depth</strong>,
+        and{" "}
+        <strong class="text-slate-900 dark:text-white">
+          partial depth derivatives
+        </strong>{" "}
+        (
+        <code class="font-mono text-xs text-cyan-700 dark:text-cyan-300">
+          dFdx
+        </code>{" "}
+        /{" "}
+        <code class="font-mono text-xs text-cyan-700 dark:text-cyan-300">
+          dFdy
+        </code>
+        ).
+      </p>
+    </section>
+
+    <section class="space-y-3">
+      <div class="font-mono text-xs text-accent tracking-widest uppercase">
+        03 // Physically Based Rendering
+      </div>
+      <h2 class="text-2xl font-grotesk font-bold text-slate-900 dark:text-white">
+        Cook-Torrance BRDF &amp; Alpha Masking
+      </h2>
+      <p>
+        To achieve physically plausible materials, I configured uniform buffers
+        and descriptor sets to stream per-frame and per-material data to the
+        shaders. The lighting model implements the{" "}
+        <strong class="text-slate-900 dark:text-white">
+          Cook-Torrance microfacet BRDF
+        </strong>
+        —combining a{" "}
+        <strong class="text-slate-900 dark:text-white">
+          Beckmann normal distribution function (NDF)
+        </strong>
+        ,{" "}
+        <strong class="text-slate-900 dark:text-white">
+          Schlick’s Fresnel approximation
+        </strong>
+        , and a{" "}
+        <strong class="text-slate-900 dark:text-white">
+          Lambertian diffuse
+        </strong>{" "}
+        term. Transparent and alpha-masked geometry is isolated into a dedicated
+        pipeline pass rendered after opaque meshes to preserve correct sorting
+        and blending.
+      </p>
+    </section>
+
+    <section class="space-y-3">
+      <div class="font-mono text-xs text-accent tracking-widest uppercase">
+        04 // Post-Processing &amp; Synchronization
+      </div>
+      <h2 class="text-2xl font-grotesk font-bold text-slate-900 dark:text-white">
+        Render-to-Texture Pixelation Filter
+      </h2>
+      <p>
+        I added a render-to-texture post-processing pass that applies a{" "}
+        <strong class="text-slate-900 dark:text-white">
+          5 &times; 3 texel pixelation filter
+        </strong>{" "}
+        to the final scene output. Implementing this cleanly required explicit
+        pipeline synchronization, using subpass dependencies and image layout
+        transitions to prevent read-after-write hazards between rendering
+        passes.
+      </p>
+    </section>
+
+    <section class="space-y-3">
+      <div class="font-mono text-xs text-accent tracking-widest uppercase">
+        05 // Deferred Shading Pipeline
+      </div>
+      <h2 class="text-2xl font-grotesk font-bold text-slate-900 dark:text-white">
+        4-Attachment G-Buffer &amp; Over-Shading Reduction
+      </h2>
+      <p>
+        To eliminate redundant fragment lighting calculations on occluded
+        geometry, I transitioned the engine toward deferred shading. First, I
+        implemented an{" "}
+        <strong class="text-slate-900 dark:text-white">
+          overdraw and over-shading debug view
+        </strong>{" "}
+        to profile pixel-shading bottlenecks. I then constructed a multi-target
+        G-buffer render pass with four attachments:
+      </p>
+      <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 font-mono text-xs">
+        {gbufferAttachments.map((item) => (
+          <li class="p-3.5 rounded-xl bg-slate-100 dark:bg-obsidian/80 border border-slate-200 dark:border-white/10">
+            <span class="text-cyan-700 dark:text-cyan-300 font-bold">
+              {item.id}:
+            </span>{" "}
+            <span class="text-slate-700 dark:text-slate-300">{item.desc}</span>
+          </li>
+        ))}
+      </ul>
+      <p>
+        In the subsequent lighting pass, these packed G-buffer attachments are
+        sampled in screen space so PBR lighting is evaluated strictly once per
+        visible pixel—significantly reducing over-shading and improving total
+        frame lighting times.
+      </p>
+    </section>
+  </article>
+</ArticleLayout>

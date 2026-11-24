@@ -1,0 +1,90 @@
+---
+import Layout from "./Layout.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+  title?: string;
+  backHref?: string;
+  backLabel?: string;
+}
+
+const {
+  title = "tRizyal | Graphics and Engine Programmer",
+  backHref = "/#projects",
+  backLabel = "← Back to Projects",
+} = Astro.props;
+---
+
+<Layout>
+  <header class="fixed top-0 inset-x-0 z-50 glass-nav border-b border-slate-200 dark:border-white/10 transition-colors duration-300">
+    <div class="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between font-grotesk">
+      <a
+        href="/"
+        class="font-mono text-sm font-semibold tracking-wider text-slate-900 dark:text-white flex items-center gap-2"
+      >
+        <span class="w-2.5 h-2.5 rounded-full bg-cyan-500 animate-pulse"></span>
+        TRIZYAL<span class="text-cyan-500">.TECH</span>
+      </a>
+
+      <div class="flex items-center gap-3">
+        <button
+          id="article-theme-toggle"
+          class="p-2 rounded-lg bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors cursor-pointer"
+          aria-label="Toggle Theme"
+        >
+          <svg
+            class="w-4 h-4 hidden dark:block"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+            ></path>
+          </svg>
+          <svg
+            class="w-4 h-4 block dark:hidden"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+            ></path>
+          </svg>
+        </button>
+
+        <a
+          href={backHref}
+          class="font-mono text-xs px-3.5 py-2 rounded border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 hover:bg-cyan-500/20 transition-all"
+        >
+          {backLabel}
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-6 pt-28 pb-20 space-y-10 text-slate-800 dark:text-slate-200">
+    <slot />
+  </main>
+
+  <Footer />
+</Layout>
+
+<script define:vars={{ title }}>
+  document.title = title;
+
+  const toggleBtn = document.getElementById("article-theme-toggle");
+  toggleBtn?.addEventListener("click", () => {
+    document.documentElement.classList.toggle("dark");
+    localStorage.theme = document.documentElement.classList.contains("dark")
+      ? "dark"
+      : "light";
+  });
+</script>
