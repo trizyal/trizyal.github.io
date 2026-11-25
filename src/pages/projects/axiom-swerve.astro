@@ -1,0 +1,524 @@
+---
+import ArticleLayout from "../../layouts/ArticleLayout.astro";
+
+const gameHighlights = [
+  {
+    label: "Genre & Aesthetic",
+    detail:
+      "Zero-downtime cyberpunk vehicular bullet-hell with hand-drawn art, reactive DnB audio, and screen-space powerups.",
+  },
+  {
+    label: "Rapid Prototyping",
+    detail:
+      "Empty scene to projectile-firing enemies in 2 hours; full multi-enemy wave pooling in 4.",
+  },
+  {
+    label: "Peak Stress-Test Load",
+    detail:
+      "1,500 pooled bullets, 120 enemies, 100 smoke/death particles, and 10 afterimage vehicle models.",
+  },
+  {
+    label: "GPU Frame Budget",
+    detail:
+      "Peak 4.5 ms/frame (100+ FPS) on RTX 4070 via custom vkCmdWriteTimestamp profiling; locked 60 FPS on GTX 1650 Ti.",
+  },
+];
+
+const nprStages = [
+  {
+    src: "/axiom_swerve/diffuse1.png",
+    fig: "Fig. 1a",
+    caption: "Raw Sphere Geometry (Base Diffuse Debug View)",
+  },
+  {
+    src: "/axiom_swerve/colormask1.png",
+    fig: "Fig. 1b",
+    caption: "Push-Constant Unique ID Color Mask Pass",
+  },
+  {
+    src: "/axiom_swerve/smoke1.png",
+    fig: "Fig. 1c",
+    caption: "Dual-Kernel Gaussian Blur, Outlines & Banding (Red Clear)",
+  },
+  {
+    src: "/axiom_swerve/main1.png",
+    fig: "Fig. 1d",
+    caption: "Final Composite Over Cook-Torrance PBR World",
+  },
+];
+
+const benchmarks = [
+  {
+    machine: "Machine 1 // Desktop Workstation",
+    os: "Red Hat Enterprise Linux 9.5 (x64)",
+    cpu: "Intel Core i7-12700 (20 Cores)",
+    ram: "32 GB RAM",
+    gpu: "NVIDIA GeForce RTX 4070",
+    result: "4.5 ms max / frame (100+ FPS sustained)",
+  },
+  {
+    machine: "Machine 2 // Mobile Laptop",
+    os: "Windows 10 (10.0.19045 x64)",
+    cpu: "Intel Core i5-10300H (4 Cores)",
+    ram: "8 GB RAM",
+    gpu: "NVIDIA GeForce GTX 1650 Ti",
+    result: "Consistent 60 FPS (tuned smoke kernel)",
+  },
+];
+---
+
+<ArticleLayout
+  title="Axiom Swerve | tRizyal"
+  backHref="/#projects"
+  backLabel="Back to Projects"
+>
+  <!-- Title & Metadata -->
+  <header class="space-y-4">
+    <div class="flex flex-wrap items-center gap-2 font-mono text-xs text-cyan-700 dark:text-cyan-300">
+      <span class="flex items-center gap-1">
+        <i
+          class="w-3.5 h-3.5 svg-icon"
+          style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/cplusplus.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/cplusplus.svg');"
+        ></i>{" "}
+        C++
+      </span>
+      <span class="text-slate-400 dark:text-slate-600">&bull;</span>
+      <span>UBQR ENGINE</span>
+      <span class="text-slate-400 dark:text-slate-600">&bull;</span>
+      <span>NPR + PBR</span>
+      <span class="text-slate-400 dark:text-slate-600">&bull;</span>
+      <span>JOLT PHYSICS</span>
+    </div>
+
+    <h1 class="text-4xl sm:text-5xl font-fascinate tracking-tight text-slate-900 dark:text-white">
+      Axiom Swerve
+    </h1>
+
+    <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+      A high-stimulation cyberpunk vehicular bullet-hell built alongside a
+      friend on our custom{" "}
+      <a
+        href="/projects/ubiquitous-reality"
+        class="text-cyan-700 dark:text-cyan-300 hover:underline font-medium"
+      >
+        Ubiquitous Reality (UBQR)
+      </a>{" "}
+      engine—combining zero wait-time combat, reactive drum-and-bass audio,
+      screen-space powerups, and hand-drawn artwork.
+    </p>
+
+    <div class="pt-1 font-mono flex flex-wrap items-center gap-3">
+      <a
+        href="https://github.com/trizyal/ubiquitous-reality/tree/main/game"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 font-mono text-xs px-4 py-2.5 rounded-lg border border-accent/40 bg-accent/10 text-cyan-700 dark:text-cyan-300 hover:bg-accent/20 transition-all shadow"
+      >
+        Game Source on GitHub &nearr;
+      </a>
+      <a
+        href="/projects/ubiquitous-reality"
+        class="inline-flex items-center gap-2 font-mono text-xs px-4 py-2.5 rounded-lg border border-accent/40 bg-accent/10 text-cyan-700 dark:text-cyan-300 hover:bg-accent/20 transition-all shadow"
+      >
+        Explore UBQR Engine &rarr;
+      </a>
+    </div>
+  </header>
+
+  <!-- Video Showcase -->
+  <section class="viewport-frame rounded-2xl overflow-hidden bg-slate-900 dark:bg-black border border-slate-300 dark:border-white/10 aspect-video flex items-center justify-center">
+    <video
+      controls
+      autoplay
+      muted
+      loop
+      playsinline
+      class="w-full h-auto block opacity-95 dark:opacity-100"
+    >
+      <source src="/axiom_swerve/axiom_swerve.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </section>
+
+  <!-- Quick-Glance Grid -->
+  <section class="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs">
+    {gameHighlights.map((item) => (
+      <div class="viewport-frame p-4 rounded-xl bg-white/60 dark:bg-surface/50 backdrop-blur-md space-y-1.5">
+        <div class="text-cyan-700 dark:text-cyan-300 font-bold">
+          // {item.label}
+        </div>
+        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+          {item.detail}
+        </p>
+      </div>
+    ))}
+  </section>
+
+  <!-- Technical & Design Breakdown -->
+  <article class="viewport-frame rounded-2xl bg-white/60 dark:bg-surface/50 backdrop-blur-md p-6 sm:p-10 space-y-12 leading-relaxed text-slate-700 dark:text-slate-300">
+    <!-- 01: Vision, Aesthetic & Rapid Iteration -->
+    <section class="space-y-4">
+      <div class="font-mono text-xs text-accent tracking-widest uppercase">
+        01 // Game Vision, Aesthetic &amp; Iteration
+      </div>
+      <h2 class="text-2xl font-grotesk font-bold text-slate-900 dark:text-white">
+        Zero Wait-Time Stimulation, DnB Audio &amp; Hand-Drawn Art
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+        <div class="md:col-span-8 space-y-3">
+          <p>
+            I made{" "}
+            <strong class="text-slate-900 dark:text-white">Axiom Swerve</strong>{" "}
+            with a friend using our own custom-engineered game engine,{" "}
+            <strong class="text-slate-900 dark:text-white">UBQR</strong>. From
+            the beginning, we wanted to build a highly stylised,
+            high-stimulation experience with zero wait time—where every moment
+            feels rewarding and keeps the player engaged not just with
+            objectives, but with the visual and audio feedback itself.
+          </p>
+          <p>
+            Drawing heavily from{" "}
+            <strong class="text-slate-900 dark:text-white">
+              cyberpunk aesthetics
+            </strong>{" "}
+            and kinetic{" "}
+            <strong class="text-slate-900 dark:text-white">bullet-hells</strong>
+            , the gameplay revolves around powerups that trigger dynamic
+            screen-space shader effects alongside punchy{" "}
+            <strong class="text-slate-900 dark:text-white">
+              drum-and-bass sound effects
+            </strong>{" "}
+            and layered music playlists tied to every action you take. While I
+            directed the visual aesthetic and built the rendering and engine
+            systems, my friend hand-drew the game’s artwork and title logo from
+            scratch.
+          </p>
+        </div>
+
+        <figure class="md:col-span-4 rounded-xl overflow-hidden dark:bg-black border border-slate-300 dark:border-white/10 p-3 space-y-2 shadow-lg">
+          <img
+            src="/axiom_swerve/titleCard.png"
+            alt="Hand-drawn Axiom Swerve logo"
+            class="w-full max-w-52 mx-auto h-auto rounded-lg object-contain"
+            loading="lazy"
+          />
+          <figcaption class="font-mono text-[10px] text-center text-slate-400">
+            Hand-drawn <em>Axiom Swerve</em> title card artwork.
+          </figcaption>
+        </figure>
+      </div>
+
+      <p>
+        Beyond being a complete arcade game with gamepad support, spatial 3D
+        audio, and persistent scoreboards,{" "}
+        <em class="text-slate-900 dark:text-white">Axiom Swerve</em> also served
+        as a real-world usability test for UBQR. Using the engine’s{" "}
+        <code class="font-mono text-xs text-cyan-700 dark:text-cyan-300">
+          GameWare
+        </code>{" "}
+        workflow and object pooling recipes, iteration moved quickly: within{" "}
+        <strong class="text-slate-900 dark:text-white">two hours</strong> of
+        starting from an empty scene, armed enemies were tracking and firing
+        projectiles at the player; within{" "}
+        <strong class="text-slate-900 dark:text-white">four hours</strong>,
+        multi-enemy wave spawners with pooled death-explosion smoke particles
+        and vehicle afterimage trails were running live.
+      </p>
+    </section>
+
+    <!-- 02: Driving Feel & Physics Tuning -->
+    <section class="space-y-3">
+      <div class="font-mono text-xs text-accent tracking-widest uppercase">
+        02 // Vehicle Handling &amp; Physics Tuning
+      </div>
+      <h2 class="text-2xl font-grotesk font-bold text-slate-900 dark:text-white">
+        Dialing In Arcade Grip, Weight Transfer &amp; Wheel Sync
+      </h2>
+      <p>
+        Because vehicular control is the core of{" "}
+        <em class="text-slate-900 dark:text-white">Axiom Swerve</em>, we
+        iterated extensively on Jolt’s{" "}
+        <code class="font-mono text-xs text-cyan-700 dark:text-cyan-300">
+          VehicleConstraint
+        </code>{" "}
+        and collider setup. After prototyping basic box and convex-hull chassis
+        shapes across ramps, uneven terrain, and multi-mesh racetrack geometry,
+        we settled on an{" "}
+        <code class="font-mono text-xs text-cyan-700 dark:text-cyan-300">
+          OffsetCenterOfMass
+        </code>{" "}
+        shape to artificially lower the car’s center of gravity—preventing
+        rollovers during sharp high-speed evasions while preserving responsive
+        drift physics.
+      </p>
+      <p>
+        Each wheel is authored as a child{" "}
+        <code class="font-mono text-xs text-cyan-700 dark:text-cyan-300">
+          GameWare
+        </code>{" "}
+        whose mesh bounding box automatically configures raycast suspension
+        travel, tire width, and steering geometry—keeping visual wheel spin and
+        suspension compression tightly locked to the underlying simulation.
+      </p>
+    </section>
+
+    <!-- 03: Hybrid NPR-over-PBR Visual Identity -->
+    <section class="space-y-6">
+      <div class="space-y-3">
+        <div class="font-mono text-xs text-accent tracking-widest uppercase">
+          03 // Hybrid NPR-Over-PBR Art Direction
+        </div>
+        <h2 class="text-2xl font-grotesk font-bold text-slate-900 dark:text-white">
+          Stylised Smoke &amp; Energy Projectiles Over a PBR World
+        </h2>
+        <p>
+          Our core visual goal for{" "}
+          <em class="text-slate-900 dark:text-white">Axiom Swerve</em> was to
+          pair grounded, physically based vehicles and environments (shaded with
+          a Cook-Torrance BRDF, Lambertian diffuse, and orthographic directional
+          shadows) with bold{" "}
+          <strong class="text-slate-900 dark:text-white">
+            non-photorealistic (NPR) gameplay effects
+          </strong>{" "}
+          inspired by{" "}
+          <em class="text-slate-900 dark:text-white">Need for Speed Unbound</em>{" "}
+          and <em class="text-slate-900 dark:text-white">NieR:Automata</em>. Any
+          pooled entity can opt into these stylised pipelines with a single{" "}
+          <code class="font-mono text-xs text-cyan-700 dark:text-cyan-300">
+            style
+          </code>{" "}
+          flag on its model component:
+        </p>
+        <ul class="space-y-3 pl-4 border-l-2 border-accent/40 text-sm">
+          <li>
+            <strong class="text-slate-900 dark:text-white">
+              Pooled Unit-Sphere Smoke &amp; Destruction Plumes (Fig. 1a–1d):
+            </strong>{" "}
+            Under the hood, tyre smoke and enemy explosion clouds are spawned as
+            pooled unit spheres of varying radii (
+            <strong class="text-slate-900 dark:text-white">Fig. 1a</strong>). In
+            the first pass, a masking shader assigns each active sphere a unique
+            ID color via push constants while discarding all other scene
+            geometry (
+            <strong class="text-slate-900 dark:text-white">Fig. 1b</strong>). A
+            second pass applies two 2D Gaussian kernels—one to blur the cluster
+            silhouette and another to detect color boundaries between adjacent
+            spheres—before quantizing the colors into comic-style toon bands (
+            <strong class="text-slate-900 dark:text-white">Fig. 1c</strong>). By
+            clearing this attachment to pure red{" "}
+            <code class="font-mono text-xs text-cyan-700 dark:text-cyan-300">
+              (1, 0, 0)
+            </code>{" "}
+            instead of black, dark ink outlines stay cleanly distinguishable
+            from empty background pixels during the final composite over the PBR
+            scene (
+            <strong class="text-slate-900 dark:text-white">Fig. 1d</strong>).
+          </li>
+          <li>
+            <strong class="text-slate-900 dark:text-white">
+              NieR-Inspired Energy Projectiles:
+            </strong>{" "}
+            Enemy bullets share the same multi-pass masking architecture but
+            swap the toon shader for a custom 5-texel edge-evaluating kernel
+            driven by animated 2D procedural noise—making incoming bullet-hell
+            patterns pop with high-contrast silhouettes against dark track
+            surfaces.
+          </li>
+        </ul>
+      </div>
+
+      <!-- Fig. 1: 4-Stage NPR Smoke Pipeline -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+        {nprStages.map((stage) => (
+          <figure class="rounded-xl overflow-hidden bg-slate-100 dark:bg-obsidian/80 border border-slate-200 dark:border-white/10 p-2.5 space-y-2">
+            <img
+              src={stage.src}
+              alt={stage.caption}
+              class="w-full h-auto rounded-lg object-cover"
+              loading="lazy"
+            />
+            <figcaption class="font-mono text-[11px] text-center text-slate-500 dark:text-slate-400">
+              <strong class="text-cyan-700 dark:text-cyan-300">
+                {stage.fig}
+              </strong>{" "}
+              — {stage.caption}
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+
+    <!-- 04: Performance Benchmarks -->
+    <section class="space-y-6">
+      <div class="space-y-3">
+        <div class="font-mono text-xs text-accent tracking-widest uppercase">
+          04 // Profiling &amp; Frame-Time Analysis
+        </div>
+        <h2 class="text-2xl font-grotesk font-bold text-slate-900 dark:text-white">
+          In-Engine Vulkan Timestamp Profiling at 100+ FPS
+        </h2>
+        <p>
+          To measure real-time rendering costs per pass, I built an integrated
+          GPU profiler directly into the engine using Vulkan query pools and{" "}
+          <code class="font-mono text-xs text-cyan-700 dark:text-cyan-300">
+            vkCmdWriteTimestamp
+          </code>
+          , visualizing live pass timings inside the Dear ImGui debug HUD. We
+          benchmarked{" "}
+          <em class="text-slate-900 dark:text-white">Axiom Swerve</em> across
+          two distinct hardware tiers:
+        </p>
+      </div>
+
+      <!-- Hardware Specs Comparison -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs">
+        {benchmarks.map((b) => (
+          <div class="p-4 rounded-xl bg-slate-100 dark:bg-obsidian/80 border border-slate-200 dark:border-white/10 space-y-2">
+            <div class="text-cyan-700 dark:text-cyan-300 font-bold">
+              {b.machine}
+            </div>
+            <div class="text-slate-600 dark:text-slate-400 space-y-0.5 text-[11px]">
+              <div>&bull; OS: {b.os}</div>
+              <div>&bull; CPU: {b.cpu}</div>
+              <div>
+                &bull; GPU: {b.gpu} ({b.ram})
+              </div>
+            </div>
+            <div class="pt-1 text-emerald-600 dark:text-emerald-400 font-semibold">
+              Result: {b.result}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <p>
+        As shown in{" "}
+        <strong class="text-slate-900 dark:text-white">Fig. 2</strong>, per-pass
+        GPU timings averaged across Level 1 remain low across the pipeline. The{" "}
+        <strong class="text-slate-900 dark:text-white">scene pass</strong>{" "}
+        fluctuates with forward over-shading whenever track geometry overlaps in
+        the view frustum, while the{" "}
+        <strong class="text-slate-900 dark:text-white">
+          smoke &amp; style passes
+        </strong>{" "}
+        scale dynamically with active projectiles and explosion particles
+        (varying by ~0.1–0.2 ms for smoke and ~0.02 ms for bullets).
+      </p>
+
+      <!-- Fig. 2: Average Render Pass Times -->
+      <figure class="rounded-xl overflow-hidden bg-slate-100 dark:bg-obsidian/80 border border-slate-200 dark:border-white/10 p-3 space-y-2">
+        <div class="bg-white/95 dark:bg-slate-100 rounded-lg p-2">
+          <img
+            src="/axiom_swerve/render_times.png"
+            alt="Average GPU time per render pass in Axiom Swerve"
+            class="w-full h-auto rounded"
+            loading="lazy"
+          />
+        </div>
+        <figcaption class="font-mono text-[11px] text-center text-slate-500 dark:text-slate-400">
+          <strong class="text-cyan-700 dark:text-cyan-300">Fig. 2</strong> —
+          Average GPU render time per pass across Level 1 gameplay loops on
+          Machine 1 (RTX 4070) and Machine 2 (GTX 1650 Ti).
+        </figcaption>
+      </figure>
+
+      <p>
+        To push the engine to its limits, we captured 1,000 consecutive frames
+        transitioning from standard gameplay (frames 0–500) into an extreme
+        stress-test scenario (frames 500–1,000) spawning{" "}
+        <strong class="text-slate-900 dark:text-white">
+          1,500 pooled bullets, 120 enemies, 60 vehicle smoke particles, 40
+          enemy death particles, and 10 pooled vehicle models
+        </strong>{" "}
+        for a multi-mesh afterimage trail (~200 physics bodies and 300+ active
+        models). Even under peak load, GPU render time peaked at{" "}
+        <strong class="text-slate-900 dark:text-white">4.5 ms</strong> (
+        <strong class="text-slate-900 dark:text-white">Fig. 3a</strong>) and
+        total CPU + GPU frame time stayed consistently under{" "}
+        <strong class="text-slate-900 dark:text-white">5 ms</strong>—well above
+        100 FPS (<strong class="text-slate-900 dark:text-white">Fig. 3b</strong>
+        ). Over 95% of the CPU slice is spent inside Jolt’s physics step, while
+        on Machine 2, reducing the 2D smoke kernel radius maintained a locked{" "}
+        <strong class="text-slate-900 dark:text-white">60 FPS</strong>.
+      </p>
+
+      <!-- Fig. 3: Side-by-Side 1000-Frame Stress-Test Charts -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch">
+        <figure class="rounded-xl overflow-hidden bg-slate-100 dark:bg-obsidian/80 border border-slate-200 dark:border-white/10 p-3 flex flex-col justify-between gap-2">
+          <div class="flex-1 flex items-center justify-center bg-white/95 dark:bg-slate-100 rounded-lg p-2">
+            <img
+              src="/axiom_swerve/renderpasses_only.svg"
+              alt="GPU render pass times over 1,000 frames including 1,500-bullet stress test"
+              class="w-full h-auto rounded"
+              loading="lazy"
+            />
+          </div>
+          <figcaption class="font-mono text-[11px] text-center text-slate-500 dark:text-slate-400">
+            <strong class="text-cyan-700 dark:text-cyan-300">Fig. 3a</strong> —
+            GPU pass breakdown across 1,000 frames (peaking at 4.5 ms during the
+            1,500-bullet stress test).
+          </figcaption>
+        </figure>
+
+        <figure class="rounded-xl overflow-hidden bg-slate-100 dark:bg-obsidian/80 border border-slate-200 dark:border-white/10 p-3 flex flex-col justify-between gap-2">
+          <div class="flex-1 flex items-center justify-center bg-white/95 dark:bg-slate-100 rounded-lg p-2">
+            <img
+              src="/axiom_swerve/LabFrameTime.svg"
+              alt="Full CPU and GPU per-frame breakdown during final level play-testing"
+              class="w-full h-auto rounded"
+              loading="lazy"
+            />
+          </div>
+          <figcaption class="font-mono text-[11px] text-center text-slate-500 dark:text-slate-400">
+            <strong class="text-cyan-700 dark:text-cyan-300">Fig. 3b</strong> —
+            Combined CPU &amp; GPU per-frame timings during final-level combat
+            (~200 physics bodies, 300+ models).
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 05: Takeaways & Next Steps -->
+    <section class="space-y-3">
+      <div class="font-mono text-xs text-accent tracking-widest uppercase">
+        05 // Reflections &amp; Future Improvements
+      </div>
+      <h2 class="text-2xl font-grotesk font-bold text-slate-900 dark:text-white">
+        What Building the Game Taught Us About the Engine
+      </h2>
+      <p>
+        Showcasing <em class="text-slate-900 dark:text-white">Axiom Swerve</em>{" "}
+        to dozens of play-testers during our poster session validated both the
+        hybrid NPR-over-PBR art direction and the responsiveness of the vehicle
+        handling, while highlighting concrete architectural upgrades for future
+        iterations:
+      </p>
+      <ul class="space-y-2 pl-4 border-l-2 border-accent/40 text-sm">
+        <li>
+          <strong class="text-slate-900 dark:text-white">
+            Separable Smoke Blur &amp; Depth Pre-Pass:
+          </strong>{" "}
+          Splitting the 2D smoke Gaussian into two 1D linear-sampled passes (as
+          in our bloom pipeline) and adding a depth pre-pass would cut forward
+          over-shading and eliminate particle-burst frame spikes.
+        </li>
+        <li>
+          <strong class="text-slate-900 dark:text-white">
+            In-Engine Physics Debug Draw:
+          </strong>{" "}
+          Visualizing Jolt collider wireframes and wheel raycasts directly in
+          the viewport would accelerate terrain and suspension tuning.
+        </li>
+        <li>
+          <strong class="text-slate-900 dark:text-white">
+            Expanded Asset &amp; Save Serialization:
+          </strong>{" "}
+          Moving beyond baked <code class="font-mono text-xs">.obj</code> meshes
+          and expanding the JSON save system beyond high scores to store player
+          progression and custom keybinds.
+        </li>
+      </ul>
+    </section>
+  </article>
+</ArticleLayout>

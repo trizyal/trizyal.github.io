@@ -1,0 +1,143 @@
+<svg viewBox="0 0 820 580" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="pipeline-diagram-title">
+  <title id="pipeline-diagram-title">Render Pipeline Graph</title>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#2b303a" />
+    </marker>
+
+    <style>
+      .rp-box {
+        fill: #f0f5ff;
+        stroke: #2b303a;
+        stroke-width: 1.75;
+      }
+      .rp-text {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 13px;
+        font-weight: 500;
+        fill: #1a1d24;
+        text-anchor: middle;
+        dominant-baseline: central;
+      }
+      .rp-line {
+        fill: none;
+        stroke: #2b303a;
+        stroke-width: 1.75;
+        stroke-linejoin: round;
+        stroke-linecap: round;
+      }
+    </style>
+  </defs>
+
+
+
+
+  <line class="rp-line" x1="130" y1="62" x2="130" y2="118" marker-end="url(#arrow)" />
+  <line class="rp-line" x1="410" y1="62" x2="410" y2="118" marker-end="url(#arrow)" />
+  <line class="rp-line" x1="690" y1="62" x2="690" y2="118" marker-end="url(#arrow)" />
+
+
+  <line class="rp-line" x1="130" y1="162" x2="130" y2="218" marker-end="url(#arrow)" />
+  <line class="rp-line" x1="315" y1="162" x2="215" y2="218" marker-end="url(#arrow)" />
+
+  <polyline class="rp-line" points="690,162 690,240 232,240" marker-end="url(#arrow)" />
+
+
+  <line class="rp-line" x1="130" y1="262" x2="130" y2="318" marker-end="url(#arrow)" />
+  <line class="rp-line" x1="232" y1="340" x2="306" y2="340" marker-end="url(#arrow)" />
+  <line class="rp-line" x1="512" y1="340" x2="586" y2="340" marker-end="url(#arrow)" />
+
+
+  <line class="rp-line" x1="690" y1="362" x2="690" y2="418" marker-end="url(#arrow)" />
+
+
+  <line class="rp-line" x1="410" y1="362" x2="410" y2="418" marker-end="url(#arrow)" />
+
+
+  <line class="rp-line" x1="588" y1="440" x2="514" y2="440" marker-end="url(#arrow)" />
+  <line class="rp-line" x1="308" y1="440" x2="234" y2="440" marker-end="url(#arrow)" />
+
+
+  <line class="rp-line" x1="130" y1="462" x2="130" y2="518" marker-end="url(#arrow)" />
+
+
+
+
+
+  <g transform="translate(130, 40)">
+    <rect class="rp-box" x="-102" y="-22" width="204" height="44" rx="5" />
+    <text class="rp-text" x="0" y="0">Shadow Map Pass</text>
+  </g>
+
+  <g transform="translate(410, 40)">
+    <rect class="rp-box" x="-102" y="-22" width="204" height="44" rx="5" />
+    <text class="rp-text" x="0" y="0">Toon Objects Masking</text>
+  </g>
+
+  <g transform="translate(690, 40)">
+    <rect class="rp-box" x="-102" y="-22" width="204" height="44" rx="5" />
+    <text class="rp-text" x="0" y="0">Energy Style Masking</text>
+  </g>
+
+
+  <g transform="translate(130, 140)">
+    <rect class="rp-box" x="-102" y="-22" width="204" height="44" rx="5" />
+    <text class="rp-text" x="0" y="0">Forward Shading Pass</text>
+  </g>
+
+  <g transform="translate(410, 140)">
+    <rect class="rp-box" x="-102" y="-22" width="204" height="44" rx="5" />
+    <text class="rp-text" x="0" y="0">Toon Shading</text>
+  </g>
+
+  <g transform="translate(690, 140)">
+    <rect class="rp-box" x="-102" y="-22" width="204" height="44" rx="5" />
+    <text class="rp-text" x="0" y="0">Energy Ball Shading</text>
+  </g>
+
+
+  <g transform="translate(130, 240)">
+    <rect class="rp-box" x="-102" y="-22" width="204" height="44" rx="5" />
+    <text class="rp-text" x="0" y="0">Composite Pass</text>
+  </g>
+
+
+  <g transform="translate(130, 340)">
+    <rect class="rp-box" x="-102" y="-22" width="204" height="44" rx="5" />
+    <text class="rp-text" x="0" y="0">Posterise Filter</text>
+  </g>
+
+  <g transform="translate(410, 340)">
+    <rect class="rp-box" x="-102" y="-22" width="204" height="44" rx="5" />
+    <text class="rp-text" x="0" y="0">Sharpening Filter</text>
+  </g>
+
+  <g transform="translate(690, 340)">
+    <rect class="rp-box" x="-102" y="-22" width="204" height="44" rx="5" />
+    <text class="rp-text" x="0" y="0">Brightness Masking Pass</text>
+  </g>
+
+
+  <g transform="translate(130, 440)">
+    <rect class="rp-box" x="-102" y="-22" width="204" height="44" rx="5" />
+    <text class="rp-text" x="0" y="0">Chromatic Aberration Filter</text>
+  </g>
+
+  <g transform="translate(410, 440)">
+    <rect class="rp-box" x="-102" y="-22" width="204" height="44" rx="5" />
+    <text class="rp-text" x="0" y="0">Composite Pass</text>
+  </g>
+
+  <g transform="translate(690, 440)">
+    <rect class="rp-box" x="-102" y="-22" width="204" height="44" rx="5" />
+    <text class="rp-text" x="0" y="-7">Bloom</text>
+    <text class="rp-text" x="0" y="8" style="font-size: 11.5px; fill: #4a5160;">(2 Gaussian Blur Passes)</text>
+  </g>
+
+
+  <g transform="translate(130, 540)">
+    <rect class="rp-box" x="-102" y="-22" width="204" height="44" rx="5" />
+    <text class="rp-text" x="0" y="0">Present Pass</text>
+  </g>
+</svg>

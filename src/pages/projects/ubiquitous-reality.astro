@@ -1,0 +1,597 @@
+---
+import ArticleLayout from "../../layouts/ArticleLayout.astro";
+
+const engineSubsystems = [
+  {
+    name: "ECS & GameWare",
+    detail:
+      "Hierarchical transforms, two-phase loading, and virtual custom GameWare pooling.",
+  },
+  {
+    name: "Vulkan Renderer",
+    detail:
+      "Cook-Torrance PBR, player-centered directional shadows, MSAA, and custom stylization passes.",
+  },
+  {
+    name: "Jolt Physics",
+    detail:
+      "Multithreaded simulation, raycast VehicleConstraint suspension, and spring-damped camera.",
+  },
+  {
+    name: "Systems & Tooling",
+    detail:
+      "Double-buffered event queues, 0-1 normalized GLFW/SDL3 input, SoLoud 3D audio, and ImGui.",
+  },
+];
+
+const shaderPasses = [
+  {
+    title: "Cook-Torrance PBR + TBN",
+    desc: "Beckmann NDF, Schlick Fresnel approximation, Lambertian diffuse, and per-fragment tangent-space normal mapping.",
+  },
+  {
+    title: "Player-Centered Shadow Maps",
+    desc: "Orthographic directional depth pass anchored to the player vehicle to eliminate static shadow swimming.",
+  },
+  {
+    title: "Toon & Energy Ball Shaders",
+    desc: "Two-stage object masking with dual square-kernel Gaussian/edge filters, color banding, and animated 2D noise.",
+  },
+  {
+    title: "Screen-Space Post-Processing",
+    desc: "Separable two-pass 1D Gaussian bloom, grayscale-quantized posterization, and directional chromatic aberration.",
+  },
+];
+---
+
+<ArticleLayout
+  title="Ubiquitous Reality Engine | tRizyal"
+  backHref="/#projects"
+  backLabel="Back to Projects"
+>
+  <!-- Title & Metadata -->
+  <header class="space-y-4">
+    <div class="flex flex-wrap items-center gap-2 font-mono text-xs text-cyan-700 dark:text-cyan-300">
+      <span class="flex items-center gap-1">
+        <i
+          class="w-3.5 h-3.5 svg-icon"
+          style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/cplusplus.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/cplusplus.svg');"
+        ></i>{" "}
+        C++
+      </span>
+      <span class="text-slate-400 dark:text-slate-600">&bull;</span>
+      <span class="flex items-center gap-1">
+        <i
+          class="w-3.5 h-3.5 svg-icon"
+          style="-webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/vulkan.svg'); mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/vulkan.svg');"
+        ></i>{" "}
+        VULKAN
+      </span>
+      <span class="text-slate-400 dark:text-slate-600">&bull;</span>
+      <span>JOLT PHYSICS</span>
+      <span class="text-slate-400 dark:text-slate-600">&bull;</span>
+      <span>ECS ARCHITECTURE</span>
+    </div>
+
+    <h1 class="text-4xl sm:text-5xl font-fascinate tracking-tight text-slate-900 dark:text-white">
+      Ubiquitous Reality (UBQR)
+    </h1>
+
+    <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+      A custom-built C++ vehicular game engine unifying a multi-pass Vulkan
+      renderer, Jolt raycast vehicle physics, a pooled Entity-Component-System
+      architecture, and real-time Dear ImGui inspection tools.
+    </p>
+
+    <div class="pt-1 font-mono flex flex-wrap items-center gap-3">
+      <a
+        href="https://github.com/trizyal/ubiquitous-reality"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 font-mono text-xs px-4 py-2.5 rounded-lg border border-accent/40 bg-accent/10 text-cyan-700 dark:text-cyan-300 hover:bg-accent/20 transition-all shadow"
+      >
+        Engine Repository &nearr;
+      </a>
+      <a
+        href="/projects/axiom-swerve"
+        class="inline-flex items-center gap-2 font-mono text-xs px-4 py-2.5 rounded-lg border border-accent/40 bg-accent/10 text-cyan-700 dark:text-cyan-300 hover:bg-accent/20 transition-all shadow"
+      >
+        Axiom Swerve Showcase &rarr;
+      </a>
+    </div>
+  </header>
+
+  <!-- Video Showcase -->
+  <section class="viewport-frame rounded-2xl overflow-hidden bg-slate-900 dark:bg-black border border-slate-300 dark:border-white/10 aspect-video flex items-center justify-center">
+    <video
+      controls
+      autoplay
+      muted
+      loop
+      playsinline
+      class="w-full h-auto block opacity-95 dark:opacity-100"
+    >
+      <source src="/ubqr/ubqr.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </section>
+
+  <!-- Architecture Quick-Glance Grid -->
+  <section class="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs">
+    {engineSubsystems.map((sys) => (
+      <div class="viewport-frame p-4 rounded-xl bg-white/60 dark:bg-surface/50 backdrop-blur-md space-y-1.5">
+        <div class="text-cyan-700 dark:text-cyan-300 font-bold">
+          // {sys.name}
+        </div>
+        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+          {sys.detail}
+        </p>
+      </div>
+    ))}
+  </section>
+
+  <!-- Technical Breakdown -->
+  <article class="viewport-frame rounded-2xl bg-white/60 dark:bg-surface/50 backdrop-blur-md p-6 sm:p-10 space-y-12 leading-relaxed text-slate-700 dark:text-slate-300">
+    <!-- 00: Vision & Motivation -->
+    <section class="space-y-4">
+      <div class="font-mono text-xs text-accent tracking-widest uppercase">
+        00 // Vision &amp; Engine Philosophy
+      </div>
+      <h2 class="text-2xl font-grotesk font-bold text-slate-900 dark:text-white">
+        Why Build a Stylized Engine?
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+        <div class="md:col-span-8 space-y-3">
+          <p>
+            The project began with a simple goal: combining complex rendering
+            effects and object-specific stylisation directly with responsive
+            gameplay. After a couple of conversations, a random word-generator,
+            and an early Vulkan prototype, I teamed up with a small group to
+            build{" "}
+            <strong class="text-slate-900 dark:text-white">
+              Ubiquitous Reality (UBQR)
+            </strong>{" "}
+            from scratch—starting with a playable racing loop and taking full
+            ownership of the Vulkan loader, pipeline architecture, and shader
+            effects.
+          </p>
+          <p>
+            General-purpose engines often introduce unnecessary bloat, rigid
+            inheritance trees, or multi-pass shader stutters when pushed outside
+            their target mold. By forgoing one-size-fits-all generalization,
+            UBQR tailors every subsystem around{" "}
+            <strong class="text-slate-900 dark:text-white">
+              vehicular action and bullet-hell combat
+            </strong>
+            —two genres that rely on rigid, non-humanoid models (side-stepping
+            uncanny valley and heavy skeletal animation costs) while demanding
+            high-density entity pooling and expressive NPR-over-PBR visuals.
+          </p>
+        </div>
+
+        <figure class="md:col-span-4 rounded-xl overflow-hidden dark:bg-black border border-slate-300 dark:border-white/10 p-4 space-y-2 shadow-lg">
+          <img
+            src="/ubqr/ubqr.png"
+            alt="Ubiquitous Reality (UBQR) Engine Logo"
+            class="w-full max-w-44 mx-auto h-auto rounded-lg object-contain"
+            loading="lazy"
+          />
+          <figcaption class="font-mono text-[10px] text-center text-slate-400">
+            Hand-drawn <em>Ubiquitous Reality</em> engine typeface.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 01: Core Architecture -->
+    <section class="space-y-6">
+      <div class="space-y-3">
+        <div class="font-mono text-xs text-accent tracking-widest uppercase">
+          01 // Core Engine &amp; ECS Architecture
+        </div>
+        <h2 class="text-2xl font-grotesk font-bold text-slate-900 dark:text-white">
+          GameWare Entities, Hierarchies &amp; Two-Phase Loading
+        </h2>
+        <p>
+          To avoid deep inheritance bottlenecks like the "Deadly Diamond" or
+          "Bubble-Up" effect when managing hundreds of active projectiles and
+          vehicles, UBQR uses a data-oriented Entity-Component-System (ECS)
+          core. World objects are represented as{" "}
+          <strong class="text-slate-900 dark:text-white">GameWares</strong>{" "}
+          equipped with default transform components and parent-child
+          hierarchies. Calling{" "}
+          <code class="font-mono text-xs text-cyan-700 dark:text-cyan-300">
+            getWorldTransform()
+          </code>{" "}
+          iteratively resolves nested local-to-world matrix chains, while{" "}
+          <code class="font-mono text-xs text-cyan-700 dark:text-cyan-300">
+            getModelTransforms()
+          </code>{" "}
+          gives the renderer direct, low-overhead access to active scene
+          geometry. Transform updates operate in a{" "}
+          <strong class="text-slate-900 dark:text-white">
+            ping-pong synchronization loop
+          </strong>{" "}
+          with the physics engine so gameplay scripts and rigid-body simulations
+          stay cleanly in sync.
+        </p>
+        <p>
+          As illustrated in{" "}
+          <strong class="text-slate-900 dark:text-white">Fig. 1</strong>,
+          individual{" "}
+          <code class="font-mono text-xs text-cyan-700 dark:text-cyan-300">
+            Component
+          </code>{" "}
+          instances attach either to standard{" "}
+          <code class="font-mono text-xs text-cyan-700 dark:text-cyan-300">
+            GameWare
+          </code>{" "}
+          entities or developer-subclassed{" "}
+          <strong class="text-slate-900 dark:text-white">
+            Custom GameWares
+          </strong>{" "}
+          that expose virtual lifecycle callbacks while remaining resident in
+          memory. From there, entities register into{" "}
+          <code class="font-mono text-xs text-cyan-700 dark:text-cyan-300">
+            Scene Component Space
+          </code>{" "}
+          for direct scene instantiation or into{" "}
+          <code class="font-mono text-xs text-cyan-700 dark:text-cyan-300">
+            Recipe Component Space
+          </code>{" "}
+          to define a reusable{" "}
+          <code class="font-mono text-xs text-cyan-700 dark:text-cyan-300">
+            Pool Recipe
+          </code>{" "}
+          for multi-instance object pooling—allowing pooled and non-pooled
+          GameWares to behave identically inside the active{" "}
+          <code class="font-mono text-xs text-cyan-700 dark:text-cyan-300">
+            Scene
+          </code>
+          .
+        </p>
+        <p>
+          To keep load times balanced and extensible, startup is split into{" "}
+          <strong class="text-slate-900 dark:text-white">
+            engine initialization
+          </strong>{" "}
+          (subsystems and global allocators) and{" "}
+          <strong class="text-slate-900 dark:text-white">scene loading</strong>{" "}
+          (component-space data), paired with dual engine/game delta clocks for
+          time dilation and a built-in checkpoint and scoreboard save system.
+        </p>
+      </div>
+
+      <!-- Side-by-Side Architecture Diagrams (Fig. 1 & Fig. 2) -->
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-4 items-stretch pt-1">
+        <figure class="md:col-span-2 rounded-xl overflow-hidden border border-slate-200 dark:border-white/10 p-4 flex flex-col justify-between gap-3">
+          <div class="flex-1 flex items-center justify-center rounded-lg p-3">
+            <img
+              src="/ubqr/gameware.svg"
+              alt="GameWare Interfacing System Diagram"
+              class="w-full max-h-80 object-contain"
+              loading="lazy"
+            />
+          </div>
+          <figcaption class="font-mono text-[11px] text-center text-slate-500 dark:text-slate-400">
+            <strong class="text-cyan-700 dark:text-cyan-300">Fig. 1</strong> —
+            GameWare interfacing and pooling hierarchy from the developer's
+            perspective.
+          </figcaption>
+        </figure>
+
+        <figure class="md:col-span-3 rounded-xl overflow-hidden border border-slate-200 dark:border-white/10 p-4 flex flex-col justify-between gap-3">
+          <div class="flex-1 flex items-center justify-center rounded-lg p-3">
+            <img
+              src="/ubqr/render-pipeline.svg"
+              alt="UBQR Render Pass Pipeline"
+              class="w-full max-h-80 object-contain"
+              loading="lazy"
+            />
+          </div>
+          <figcaption class="font-mono text-[11px] text-center text-slate-500 dark:text-slate-400">
+            <strong class="text-cyan-700 dark:text-cyan-300">Fig. 2</strong> —
+            Linear multi-pass Vulkan rendering pipeline managed by{" "}
+            <code>RenderManager</code>.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 02: Vulkan Renderer -->
+    <section class="space-y-6">
+      <div class="space-y-3">
+        <div class="font-mono text-xs text-accent tracking-widest uppercase">
+          02 // Multi-Pass Vulkan Renderer
+        </div>
+        <h2 class="text-2xl font-grotesk font-bold text-slate-900 dark:text-white">
+          PBR, Stylised Object Shaders &amp; Screen-Space Filters
+        </h2>
+        <p>
+          The rendering subsystem initializes in two stages—allocating
+          persistent Vulkan device resources and memory pools first, followed by
+          scene-specific buffers and textures. At runtime,{" "}
+          <code class="font-mono text-xs text-cyan-700 dark:text-cyan-300">
+            RenderManager
+          </code>{" "}
+          orchestrates the linear multi-pass frame graph shown in{" "}
+          <strong class="text-slate-900 dark:text-white">Fig. 2</strong>,
+          encapsulating Vulkan synchronization while exposing runtime shader
+          arguments directly through the ECS.
+        </p>
+        <p>
+          For directional lighting, a dedicated shadow pass renders an
+          orthographic depth map centered on the player vehicle (
+          <strong class="text-slate-900 dark:text-white">Fig. 3a</strong>) so
+          shadows remain crisp in the player's view without static shadow edges
+          swimming during movement (
+          <strong class="text-slate-900 dark:text-white">Fig. 3b</strong>). In
+          the forward pass, hardware-queried max-sample{" "}
+          <strong class="text-slate-900 dark:text-white">MSAA</strong> resolves
+          multi-sampled attachments to eliminate geometric aliasing (
+          <strong class="text-slate-900 dark:text-white">Fig. 4</strong>).
+        </p>
+        <p>
+          Beyond default Cook-Torrance PBR with tangent-space (TBN) normal
+          mapping, model components can opt into custom{" "}
+          <code class="font-mono text-xs text-cyan-700 dark:text-cyan-300">
+            style
+          </code>{" "}
+          passes—injecting dedicated object-masking and kernel-filtering stages
+          for dual-kernel toon-shaded smoke (
+          <strong class="text-slate-900 dark:text-white">Fig. 5a</strong>) and
+          procedural noise energy-ball projectiles (
+          <strong class="text-slate-900 dark:text-white">Fig. 5b</strong>),
+          followed by separable two-pass 1D Gaussian bloom (
+          <strong class="text-slate-900 dark:text-white">Fig. 6a</strong>),
+          band-quantized posterization (
+          <strong class="text-slate-900 dark:text-white">Fig. 6b</strong>), and
+          directional chromatic aberration:
+        </p>
+      </div>
+
+      <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs">
+        {shaderPasses.map((pass) => (
+          <li class="p-3.5 rounded-xl bg-slate-100 dark:bg-obsidian/80 border border-slate-200 dark:border-white/10 space-y-1">
+            <div class="text-cyan-700 dark:text-cyan-300 font-bold">
+              {pass.title}
+            </div>
+            <div class="text-slate-600 dark:text-slate-400 leading-relaxed">
+              {pass.desc}
+            </div>
+          </li>
+        ))}
+      </ul>
+
+      <!-- Fig. 3: Shadow Maps -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+        <figure class="rounded-xl overflow-hidden bg-slate-100 dark:bg-obsidian/80 border border-slate-200 dark:border-white/10 p-2.5 space-y-2">
+          <img
+            src="/ubqr/shadowmap3.png"
+            alt="Directional Light Depth Shadow Map"
+            class="w-full h-auto rounded-lg object-cover"
+            loading="lazy"
+          />
+          <figcaption class="font-mono text-[11px] text-center text-slate-500 dark:text-slate-400">
+            <strong class="text-cyan-700 dark:text-cyan-300">Fig. 3a</strong> —
+            Orthographic Directional Shadow Map
+          </figcaption>
+        </figure>
+        <figure class="rounded-xl overflow-hidden bg-slate-100 dark:bg-obsidian/80 border border-slate-200 dark:border-white/10 p-2.5 space-y-2">
+          <img
+            src="/ubqr/shadowmap2.png"
+            alt="Shadows Rendered in Scene"
+            class="w-full h-auto rounded-lg object-cover"
+            loading="lazy"
+          />
+          <figcaption class="font-mono text-[11px] text-center text-slate-500 dark:text-slate-400">
+            <strong class="text-cyan-700 dark:text-cyan-300">Fig. 3b</strong> —
+            Player-Centered Shadows Rendered
+          </figcaption>
+        </figure>
+      </div>
+
+      <!-- Fig. 4: MSAA Comparison -->
+      <figure class="rounded-xl overflow-hidden bg-slate-100 dark:bg-obsidian/80 border border-slate-200 dark:border-white/10 p-3 space-y-2">
+        <img
+          src="/ubqr/msaaex.png"
+          alt="Aliased geometry vs Hardware MSAA enabled"
+          class="w-full h-auto rounded-lg"
+          loading="lazy"
+        />
+        <figcaption class="font-mono text-[11px] text-center text-slate-500 dark:text-slate-400">
+          <strong class="text-cyan-700 dark:text-cyan-300">Fig. 4</strong> —
+          Hardware Multi-Sampling Anti-Aliasing (Left: Aliased edges | Right:
+          Max-sample MSAA resolved)
+        </figcaption>
+      </figure>
+
+      <!-- Fig. 5: Object-Specific Stylisations -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <figure class="rounded-xl overflow-hidden bg-slate-100 dark:bg-obsidian/80 border border-slate-200 dark:border-white/10 p-2.5 space-y-2">
+          <img
+            src="/ubqr/toon.png"
+            alt="Dual-kernel Toon Shaded Smoke"
+            class="w-full h-auto rounded-lg object-cover"
+            loading="lazy"
+          />
+          <figcaption class="font-mono text-[11px] text-center text-slate-500 dark:text-slate-400">
+            <strong class="text-cyan-700 dark:text-cyan-300">Fig. 5a</strong> —
+            Dual-Kernel Toon Shaded Smoke
+          </figcaption>
+        </figure>
+        <figure class="rounded-xl overflow-hidden bg-slate-100 dark:bg-obsidian/80 border border-slate-200 dark:border-white/10 p-2.5 space-y-2">
+          <img
+            src="/ubqr/finalbullet.png"
+            alt="Procedural Noise Energy Ball Bullets"
+            class="w-full h-auto rounded-lg object-cover"
+            loading="lazy"
+          />
+          <figcaption class="font-mono text-[11px] text-center text-slate-500 dark:text-slate-400">
+            <strong class="text-cyan-700 dark:text-cyan-300">Fig. 5b</strong> —
+            Edge-Evaluated Energy Ball Shaders
+          </figcaption>
+        </figure>
+      </div>
+
+      <!-- Fig. 6: Bloom & Posterise Post-Processing -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <figure class="rounded-xl overflow-hidden bg-slate-100 dark:bg-obsidian/80 border border-slate-200 dark:border-white/10 p-2.5 space-y-2">
+          <img
+            src="/ubqr/default.png"
+            alt="Two-Pass Gaussian Bloom with PBR"
+            class="w-full h-auto rounded-lg object-cover"
+            loading="lazy"
+          />
+          <figcaption class="font-mono text-[11px] text-center text-slate-500 dark:text-slate-400">
+            <strong class="text-cyan-700 dark:text-cyan-300">Fig. 6a</strong> —
+            Separable 1D Gaussian Bloom + PBR
+          </figcaption>
+        </figure>
+        <figure class="rounded-xl overflow-hidden bg-slate-100 dark:bg-obsidian/80 border border-slate-200 dark:border-white/10 p-2.5 space-y-2">
+          <img
+            src="/ubqr/posterize.png"
+            alt="Screen-Space Posterise Filter"
+            class="w-full h-auto rounded-lg object-cover"
+            loading="lazy"
+          />
+          <figcaption class="font-mono text-[11px] text-center text-slate-500 dark:text-slate-400">
+            <strong class="text-cyan-700 dark:text-cyan-300">Fig. 6b</strong> —
+            Band-Quantized Posterise Filter
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 03: Jolt Physics & Vehicle Dynamics -->
+    <section class="space-y-3">
+      <div class="font-mono text-xs text-accent tracking-widest uppercase">
+        03 // Physics, Vehicles &amp; Camera Rig
+      </div>
+      <h2 class="text-2xl font-grotesk font-bold text-slate-900 dark:text-white">
+        Jolt Integration &amp; Raycast Wheeled Vehicles
+      </h2>
+      <p>
+        UBQR integrates{" "}
+        <strong class="text-slate-900 dark:text-white">Jolt Physics</strong> via
+        a multithreaded job system, mapping{" "}
+        <code class="font-mono text-xs text-cyan-700 dark:text-cyan-300">
+          Rigidbody
+        </code>{" "}
+        and{" "}
+        <code class="font-mono text-xs text-cyan-700 dark:text-cyan-300">
+          Collider
+        </code>{" "}
+        components into quadtree-partitioned{" "}
+        <code class="font-mono text-xs text-cyan-700 dark:text-cyan-300">
+          BroadPhase
+        </code>{" "}
+        layers with custom{" "}
+        <code class="font-mono text-xs text-cyan-700 dark:text-cyan-300">
+          ContactListener
+        </code>{" "}
+        callbacks.
+      </p>
+      <p>
+        Player vehicles are driven by Jolt’s{" "}
+        <code class="font-mono text-xs text-cyan-700 dark:text-cyan-300">
+          VehicleConstraint
+        </code>{" "}
+        and{" "}
+        <code class="font-mono text-xs text-cyan-700 dark:text-cyan-300">
+          WheeledVehicleController
+        </code>
+        . Tagged wheel GameWares automatically derive their radius, width, and
+        chassis offsets directly from mesh bounding boxes so suspension,
+        steering, and drifting stay visually locked to the 3D model. A dual-mode
+        player camera (Follow and Top-Down) uses Jolt{" "}
+        <code class="font-mono text-xs text-cyan-700 dark:text-cyan-300">
+          NarrowPhase
+        </code>{" "}
+        shape casting with spring-damped collision avoidance to prevent wall
+        clipping.
+      </p>
+    </section>
+
+    <!-- 04: Event System & Unified Input -->
+    <section class="space-y-3">
+      <div class="font-mono text-xs text-accent tracking-widest uppercase">
+        04 // Events &amp; Input Abstraction
+      </div>
+      <h2 class="text-2xl font-grotesk font-bold text-slate-900 dark:text-white">
+        Backlog Event Queues &amp; Normalized GLFW / SDL3 Input
+      </h2>
+      <p>
+        To minimize per-frame polling overhead, UBQR uses a templated Observer
+        event system with compile-time type IDs and a{" "}
+        <strong class="text-slate-900 dark:text-white">
+          two-stage queue/backlog architecture
+        </strong>
+        : events emitted while draining the primary queue are deferred into a
+        secondary backlog queue for the following frame, preventing infinite
+        recursive event cascades.
+      </p>
+      <p>
+        On the input side, keyboard/mouse events from{" "}
+        <strong class="text-slate-900 dark:text-white">GLFW</strong> and
+        controller/haptic rumble events from{" "}
+        <strong class="text-slate-900 dark:text-white">SDL3</strong> are unified
+        into a normalized{" "}
+        <strong class="text-slate-900 dark:text-white">
+          0–1 magnitude scale
+        </strong>{" "}
+        and mapped to rebindable{" "}
+        <code class="font-mono text-xs text-cyan-700 dark:text-cyan-300">
+          InputAction
+        </code>{" "}
+        components at runtime.
+      </p>
+    </section>
+
+    <!-- 05: Audio, UI & Debugging Tools -->
+    <section class="space-y-3">
+      <div class="font-mono text-xs text-accent tracking-widest uppercase">
+        05 // Audio, UI &amp; Runtime Inspector
+      </div>
+      <h2 class="text-2xl font-grotesk font-bold text-slate-900 dark:text-white">
+        SoLoud 3D Spatial Audio &amp; Dear ImGui Debug Suite
+      </h2>
+      <p>
+        Spatialized 3D audio and dynamic gameplay music playlists are powered by{" "}
+        <strong class="text-slate-900 dark:text-white">SoLoud</strong>, with
+        real-time listener attenuation, panning, and post-processing filters.
+        For both gameplay HUDs and engine diagnostics, UBQR integrates{" "}
+        <strong class="text-slate-900 dark:text-white">Dear ImGui</strong>
+        —enabling live scene switching without restarts, real-time GameWare
+        entity and component inspection, G-buffer/masking debug views, and
+        interactive sliders for tuning shader parameters like emission, bloom
+        thresholds, and filter kernels on the fly.
+      </p>
+    </section>
+
+    <!-- 06: Project Poster Showcase -->
+    <section class="space-y-4 pt-2 border-t border-slate-200 dark:border-white/10">
+      <div class="font-mono text-xs text-accent tracking-widest uppercase">
+        06 // Architecture &amp; Showcase Poster
+      </div>
+      <h2 class="text-2xl font-grotesk font-bold text-slate-900 dark:text-white">
+        System Overview Poster
+      </h2>
+      <figure class="rounded-xl overflow-hidden bg-slate-100 dark:bg-obsidian/80 border border-slate-200 dark:border-white/10 p-3 space-y-2.5">
+        <img
+          src="/ubqr/ubqr-poster.jpg"
+          alt="Ubiquitous Reality Engine Showcase Poster"
+          class="w-full h-auto rounded-lg shadow-lg"
+          loading="lazy"
+        />
+        <figcaption class="font-mono text-[11px] text-center text-slate-500 dark:text-slate-400">
+          <strong class="text-cyan-700 dark:text-cyan-300">Fig. 7</strong> —
+          Full project poster presented at the University of Leeds showcase,
+          summarizing UBQR’s architecture, rendering passes, and{" "}
+          <em>Axiom Swerve</em> benchmarks.
+        </figcaption>
+      </figure>
+    </section>
+  </article>
+</ArticleLayout>

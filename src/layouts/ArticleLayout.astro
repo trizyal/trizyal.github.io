@@ -11,7 +11,7 @@ interface Props {
 const {
   title = "tRizyal | Graphics and Engine Programmer",
   backHref = "/#projects",
-  backLabel = "← Back to Projects",
+  backLabel = "Back to Projects",
 } = Astro.props;
 ---
 
@@ -64,13 +64,13 @@ const {
           href={backHref}
           class="font-mono text-xs px-3.5 py-2 rounded border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 hover:bg-cyan-500/20 transition-all"
         >
-          {backLabel}
+          &larr; {backLabel}
         </a>
       </div>
     </div>
   </header>
 
-  <main class="max-w-4xl mx-auto px-6 pt-28 pb-20 space-y-10 text-slate-800 dark:text-slate-200">
+  <main class="max-w-5xl mx-auto px-6 pt-28 pb-20 space-y-10 text-slate-800 dark:text-slate-200">
     <slot />
   </main>
 
