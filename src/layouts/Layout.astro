@@ -24,13 +24,105 @@ import "../styles/global.css";
   </head>
   <body class="bg-slate-50 dark:bg-obsidian text-slate-800 dark:text-slate-200 antialiased selection:bg-accent/30 selection:text-cyan-900 dark:selection:text-cyan-200 relative transition-colors duration-300">
     <slot />
+
+    <!-- Global Image Lightbox Overlay -->
+    <div
+      id="image-lightbox"
+      class="fixed inset-0 z-100 hidden items-center justify-center bg-slate-950/85 backdrop-blur-md p-4 sm:p-8 cursor-zoom-out transition-opacity duration-200 opacity-0"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Enlarged figure view"
+    >
+      <div class="relative max-w-[92vw] max-h-[90vh] flex flex-col items-center justify-center">
+        <img
+          id="lightbox-img"
+          src=""
+          alt=""
+          class="max-w-[92vw] max-h-[84vh] w-auto h-auto object-contain rounded-xl border border-white/15 shadow-2xl cursor-zoom-out"
+        />
+        <p
+          id="lightbox-caption"
+          class="mt-3 font-mono text-xs text-slate-200 bg-obsidian/90 px-3.5 py-1.5 rounded-lg border border-white/10 text-center max-w-2xl empty:hidden"
+        ></p>
+      </div>
+    </div>
+
+    <script is:inline>
+      if (localStorage.theme === "light") {
+        document.documentElement.classList.remove("dark");
+      } else {
+        document.documentElement.classList.add("dark");
+      }
+
+      // Global Image Lightbox Logic
+      (function () {
+        const lightbox = document.getElementById("image-lightbox");
+        const lightboxImg = document.getElementById("lightbox-img");
+        const lightboxCaption = document.getElementById("lightbox-caption");
+
+        if (!lightbox || !lightboxImg || !lightboxCaption) return;
+
+        function openLightbox(imgEl) {
+          const src = imgEl.currentSrc || imgEl.src;
+          lightboxImg.src = src;
+          lightboxImg.alt = imgEl.alt || "";
+
+          // Give SVGs a clean light surface so dark text/axes stay readable
+          if (/\.svg(\?.*)?$/i.test(src)) {
+            lightboxImg.classList.add("bg-slate-100", "p-4");
+            lightboxImg.classList.remove("bg-obsidian");
+          } else {
+            lightboxImg.classList.remove("bg-slate-100", "p-4");
+            lightboxImg.classList.add("bg-obsidian");
+          }
+
+          // Pull caption from parent <figcaption> if present, otherwise use alt text
+          const figure = imgEl.closest("figure");
+          const figcaption = figure ? figure.querySelector("figcaption") : null;
+          lightboxCaption.textContent = figcaption
+            ? figcaption.textContent.trim()
+            : imgEl.alt || "";
+
+          lightbox.classList.remove("hidden");
+          lightbox.classList.add("flex");
+          requestAnimationFrame(() => {
+            lightbox.classList.remove("opacity-0");
+            lightbox.classList.add("opacity-100");
+          });
+        }
+
+        function closeLightbox() {
+          lightbox.classList.remove("opacity-100");
+          lightbox.classList.add("opacity-0");
+          setTimeout(() => {
+            lightbox.classList.add("hidden");
+            lightbox.classList.remove("flex");
+            lightboxImg.src = "";
+          }, 180);
+        }
+
+        // Event delegation handles all static and carousel images automatically
+        document.addEventListener("click", (e) => {
+          const target = e.target;
+          if (!(target instanceof HTMLImageElement)) return;
+          if (target.id === "lightbox-img") return;
+
+          const src = target.getAttribute("src") || "";
+          if (/\.(jpg|jpeg|png|svg)(\?.*)?$/i.test(src)) {
+            e.preventDefault();
+            e.stopPropagation();
+            openLightbox(target);
+          }
+        });
+
+        lightbox.addEventListener("click", closeLightbox);
+
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && !lightbox.classList.contains("hidden")) {
+            closeLightbox();
+          }
+        });
+      })();
+    </script>
   </body>
 </html>
-
-<script is:inline>
-  if (localStorage.theme === "light") {
-    document.documentElement.classList.remove("dark");
-  } else {
-    document.documentElement.classList.add("dark");
-  }
-</script>

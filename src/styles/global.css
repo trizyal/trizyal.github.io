@@ -113,3 +113,21 @@
   -webkit-mask-position: center;
   mask-position: center;
 }
+
+/* Image Zoom / Lightbox Cursor */
+img[src$=".jpg" i],
+img[src$=".jpeg" i],
+img[src$=".png" i],
+img[src$=".svg" i] {
+  cursor: zoom-in;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+img[src$=".jpg" i]:hover,
+img[src$=".jpeg" i]:hover,
+img[src$=".png" i]:hover,
+img[src$=".svg" i]:hover {
+  opacity: 0.95;
+}
